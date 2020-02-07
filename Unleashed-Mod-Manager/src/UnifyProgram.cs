@@ -7,12 +7,12 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using Unify.Networking.GameBanana;
 
-// Sonic '06 Mod Manager is licensed under the MIT License:
+// Unleashed Mod Manager is licensed under the MIT License:
 /*
  * MIT License
 
- * Copyright (c) 2020 Knuxfan24
  * Copyright (c) 2020 Gabriel (HyperPolygon64)
+ * Copyright (c) 2017 thesupersonic16
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,8 +37,8 @@ namespace Unleash.Environment3
 {
     static class Program
     {
-        public static readonly string VersionNumberDev = "Version 1.0",
-                                      VersionNumber    = $"Version 1.0-indev-{DateTime.Now.ToString("ddMMyy")}r4";
+        public static readonly string VersionNumber    = "Version 1.0",
+                                      VersionNumberDev = $"Version 1.0-indev-{DateTime.Now.ToString("ddMMyy")}r4";
 
         public static string ApplicationData    = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                              _7Zip              = $"{ApplicationData}\\Unleash\\Tools\\7z.exe",
@@ -164,7 +164,7 @@ namespace Unleash.Environment3
 #if !DEBUG
             } catch (Exception ex) {
                 DialogResult confirmation = UnifyMessenger.UnifyMessage.ShowDialog($"Failed to load your settings... Please report this error immediately!\n\n{ex.ToString()}\n\n" +
-                                                                                   "Click OK to reset Sonic '06 Mod Manager.",
+                                                                                   "Click OK to reset Unleashed Mod Manager.",
                                                                                    "Settings failed", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
 
                 if (confirmation == DialogResult.OK) Program.Reset(); // Reset settings
@@ -174,7 +174,7 @@ namespace Unleash.Environment3
         }
 
         /// <summary>
-        /// Erases all user settings for Sonic '06 Mod Manager.
+        /// Erases all user settings for Unleashed Mod Manager.
         /// </summary>
         public static void Reset() {
             try {

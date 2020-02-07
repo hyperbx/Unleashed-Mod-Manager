@@ -39,7 +39,7 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Emulator_VerticalSync" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="Emulator_Gamma" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>

@@ -20,12 +20,12 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Microsoft.VisualBasic.Devices;
 
-// Sonic '06 Mod Manager is licensed under the MIT License:
+// Unleashed Mod Manager is licensed under the MIT License:
 /*
  * MIT License
 
- * Copyright (c) 2020 Knuxfan24
  * Copyright (c) 2020 Gabriel (HyperPolygon64)
+ * Copyright (c) 2017 thesupersonic16
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -397,11 +397,11 @@ namespace Unleash.Environment3
         private void OnCheckForUpdates(string latestVersion, string changelogs) {
             // Give feedback on update status
             Label_UpdaterStatus.Text = "Updates available";
-            Label_Status.Text = "A new version of Sonic '06 Mod Manager is available!";
+            Label_Status.Text = "A new version of Unleashed Mod Manager is available!";
             PictureBox_UpdaterIcon.BackgroundImage = Properties.Resources.Exception_Logo;
 
             // Request changelogs
-            RichTextBox_Changelogs.Text = $"Sonic '06 Mod Manager - {latestVersion}\n\n" +
+            RichTextBox_Changelogs.Text = $"Unleashed Mod Manager - {latestVersion}\n\n" +
                                           $"" +
                                           $"{changelogs}";
 
@@ -560,7 +560,7 @@ namespace Unleash.Environment3
                     // If no mods are added to the updates list - presumably, all of them are up to date
                     if (ListView_ModUpdates.Items.Count == 0)
                         UnifyMessenger.UnifyMessage.ShowDialog("All mods are up to date! Check back later...",
-                                                                "Sonic '06 Mod Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                                "Unleashed Mod Manager", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } else {
                 // Browse for mods directory
                 string browseMods = RequestPath.ModsDirectory();
@@ -771,7 +771,7 @@ namespace Unleash.Environment3
                 case "Open Folder":
                     try { Process.Start(Program.Patches); }
                     catch {
-                        UnifyMessenger.UnifyMessage.ShowDialog("The patches directory is missing... Please restart Sonic '06 Mod Manager.",
+                        UnifyMessenger.UnifyMessage.ShowDialog("The patches directory is missing... Please restart Unleashed Mod Manager.",
                                                                "Unable to locate patches...", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         RefreshLists(); // Refresh patches list
                     }
@@ -1047,20 +1047,14 @@ namespace Unleash.Environment3
                     }
                     
                     try {
-                        TweakEngine.ApplyTweaks(this); // Begin tweak application
-                        InstallPatches(); // Begin patch installation
+                        // Begin patch installation
+                        InstallPatches();
                     }
                     catch (Exception ex) {
                         if (_debug) Console.WriteLine(ex.ToString());
-                        if (ex is Win32Exception) {
-                            UnifyMessenger.UnifyMessage.ShowDialog($"Sonic '06 Mod Manager requires Java to decompile Lua scripts. Please install Java and restart your computer...",
-                                                                   "Missing pre-requisites", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        } else {
-                            UnifyMessenger.UnifyMessage.ShowDialog($"An error occurred whilst installing your patches and tweaks...\n\n{ex}",
-                                                                   "Installation failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            return;
-                        }
+                        UnifyMessenger.UnifyMessage.ShowDialog($"An error occurred whilst installing your patches and tweaks...\n\n{ex}",
+                                                                "Installation failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
                     }
 
                     // Check skipped list to ensure any errors occurred
@@ -1214,7 +1208,7 @@ namespace Unleash.Environment3
 
                 Process emulatorProc = Process.Start(xeniaProc); // Launch the emulator
                 Label_Status.Text = "Waiting for emulator exit call...";
-                emulatorProc.WaitForExit(); // Halt usage of Sonic '06 Mod Manager to prevent the user from breaking stuff in the background
+                emulatorProc.WaitForExit(); // Halt usage of Unleashed Mod Manager to prevent the user from breaking stuff in the background
 
                 // Uninstall mods after emulator quits
                 if (Properties.Settings.Default.General_AutoUninstall) UninstallThread();
@@ -1312,17 +1306,17 @@ namespace Unleash.Environment3
         }
 
         /// <summary>
-        /// Resets Sonic '06 Mod Manager.
+        /// Resets Unleashed Mod Manager.
         /// </summary>
         private void LinkLabel_Reset_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            DialogResult confirmation = UnifyMessenger.UnifyMessage.ShowDialog("This will clear all of the settings for Sonic '06 Mod Manager. Are you sure you want to continue?",
-                                                                               "Sonic '06 Mod Manager", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult confirmation = UnifyMessenger.UnifyMessage.ShowDialog("This will clear all of the settings for Unleashed Mod Manager. Are you sure you want to continue?",
+                                                                               "Unleashed Mod Manager", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (confirmation == DialogResult.Yes) Program.Reset();
         }
 
         /// <summary>
-        /// Update Sonic '06 Mod Manager via requested server.
+        /// Update Unleashed Mod Manager via requested server.
         /// </summary>
         private void UpdateVersion(bool useBackupServer) {
             // Set controls enabled and visibility state
@@ -1343,10 +1337,10 @@ namespace Unleash.Environment3
                             // Extract and overwrite all with ZIP contents
                             ZIP.ExtractToDirectory(archive, Application.StartupPath, true);
 
-                            //Overwrite 'Sonic '06 Mod Manager.exe' with the newly extracted build
+                            //Overwrite 'Unleashed Mod Manager.exe' with the newly extracted build
                             File.Replace($"{Application.ExecutablePath}.new", Application.ExecutablePath, $"{Application.ExecutablePath}.bak");
 
-                            UnifyMessenger.UnifyMessage.ShowDialog("Update complete! Restarting Sonic '06 Mod Manager...",
+                            UnifyMessenger.UnifyMessage.ShowDialog("Update complete! Restarting Unleashed Mod Manager...",
                                                                    "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                             // Erase ZIP file
@@ -1358,7 +1352,7 @@ namespace Unleash.Environment3
                 }
             } catch (Exception ex) {
                 if (_debug) Console.WriteLine(ex.ToString()); // Write exception to debug log
-                UnifyMessenger.UnifyMessage.ShowDialog("Failed to update Sonic '06 Mod Manager. Reverting back to the previous version...",
+                UnifyMessenger.UnifyMessage.ShowDialog("Failed to update Unleashed Mod Manager. Reverting back to the previous version...",
                                                        "Update failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 // Reset update button for future checking
@@ -1367,7 +1361,7 @@ namespace Unleash.Environment3
                 SectionButton_CheckForSoftwareUpdates.SectionText = "Check for updates";
                 SectionButton_CheckForSoftwareUpdates.Refresh();
 
-                // Replace 'Sonic '06 Mod Manager.exe' with the backup created earlier
+                // Replace 'Unleashed Mod Manager.exe' with the backup created earlier
                 if (File.Exists($"{Application.ExecutablePath}.bak")) {
                     File.Replace($"{Application.ExecutablePath}.bak", Application.ExecutablePath, $"{Application.ExecutablePath}.err");
                     File.Delete($"{Application.ExecutablePath}.err");
@@ -1384,7 +1378,7 @@ namespace Unleash.Environment3
             TabControl_Rush.SelectedTab.ScrollControlIntoView(Panel_Updates_UICleanSpace);
 
             try {
-                //Clone Sonic '06 Mod Manager Patches repository from GitHub
+                //Clone Unleashed Mod Manager Patches repository from GitHub
                 string getRepoContents = await Client.RequestString(Properties.Resources.PatchURI_GitHub);
                 string[] repoLinks = getRepoContents.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
 
@@ -1627,7 +1621,7 @@ namespace Unleash.Environment3
                 Process.Start(info);
                 Application.Exit();
             } else
-                UnifyMessenger.UnifyMessage.ShowDialog("Protocol Manager is missing, please restart Sonic '06 Mod Manager.",
+                UnifyMessenger.UnifyMessage.ShowDialog("Protocol Manager is missing, please restart Unleashed Mod Manager.",
                                                        "Protocol Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
@@ -1757,6 +1751,7 @@ namespace Unleash.Environment3
             else if   (sender == LinkLabel_AssemblyPP) Process.Start("https://gamebanana.com/tools/6738");
             else if (sender == LinkLabel_SEGACarnival) Process.Start("https://www.segacarnival.com/forum/index.php");
             else if        (sender == LinkLabel_Beatz) Process.Start("https://www.youtube.com/channel/UCEjwges-3BTaWsMwOGJDoGQ");
+            else if          (sender == LinkLabel_GPF) Process.Start("https://www.youtube.com/channel/UCZfOGBkXRKICFozWU5bE0Xg");
         }
 
         /// <summary>

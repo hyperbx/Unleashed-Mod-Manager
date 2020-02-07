@@ -13,12 +13,12 @@ using System.Windows.Forms;
 using System.IO.Compression;
 using System.Collections.Generic;
 
-// Sonic '06 Mod Manager is licensed under the MIT License:
+// Unleashed Mod Manager is licensed under the MIT License:
 /*
  * MIT License
 
- * Copyright (c) 2020 Knuxfan24
  * Copyright (c) 2020 Gabriel (HyperPolygon64)
+ * Copyright (c) 2017 thesupersonic16
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -84,6 +84,38 @@ namespace Unleash.Patcher
 
                 // Backup the original file
                 if (File.Exists(vanillaFilePath) && !File.Exists(targetFilePath)) File.Copy(vanillaFilePath, targetFilePath);
+                
+                // Remove already installed archives
+                else if (File.Exists(targetFilePath) && Path.GetExtension(targetFilePath) == ".arl_back") {
+                    uint arCount;
+
+                    using (var stream = File.Open(vanillaFilePath, FileMode.Open, FileAccess.Read)) {
+                        stream.Position = 0x04;
+                        arCount = (uint)stream.ReadByte();
+                    }
+
+                    for (int i = 0; i < arCount; i++) {
+                        if (RushInterface._debug) Console.WriteLine($"Removing: {vanillaFilePath}");
+
+                        if (i < 10) {
+                            string archiveSub10 = $"{file.Remove(file.Length - 6)}.0{i}";
+                            if (File.Exists(archiveSub10)) {
+                                if (File.Exists($"{archiveSub10}_back")) {
+                                    File.Delete(archiveSub10); // Delete file with last five characters set to '_back'
+                                    File.Move($"{archiveSub10}_back", archiveSub10); // Remove last five characters ('_back')
+                                }
+                            }
+                        } else {
+                            string archive = $"{file.Remove(file.Length - 6)}.{i}";
+                            if (File.Exists(archive)) {
+                                if (File.Exists($"{archive}_back")) {
+                                    File.Delete(archive); // Delete file with last five characters set to '_back'
+                                    File.Move($"{archive}_back", archive); // Remove last five characters ('_back')
+                                }
+                            }
+                        }
+                    }
+                }
 
                 // Copy the modified data
                 if (RushInterface._debug) Console.WriteLine($"Copying: {file}");
@@ -101,8 +133,7 @@ namespace Unleash.Patcher
                 List<string> files = Directory.GetFiles(
                                                Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory),
                                                "*.*_back",
-                                               SearchOption.AllDirectories)
-                                               .Where(s => !s.Contains(".ar.")).ToList();
+                                               SearchOption.AllDirectories).ToList();
 
                 foreach (string file in files) {
                     string originalName = file.Remove(file.Length - 5);
@@ -121,14 +152,18 @@ namespace Unleash.Patcher
                             if (i < 10) {
                                 string archiveSub10 = $"{file.Remove(file.Length - 6)}.0{i}";
                                 if (File.Exists(archiveSub10)) {
-                                    File.Delete(archiveSub10); // Delete file with last five characters set to '_back'
-                                    if (File.Exists($"{archiveSub10}_back")) File.Move($"{archiveSub10}_back", archiveSub10); // Remove last five characters ('_back')
+                                    if (File.Exists($"{archiveSub10}_back")) {
+                                        File.Delete(archiveSub10); // Delete file with last five characters set to '_back'
+                                        File.Move($"{archiveSub10}_back", archiveSub10); // Remove last five characters ('_back')
+                                    }
                                 }
                             } else {
                                 string archive = $"{file.Remove(file.Length - 6)}.{i}";
                                 if (File.Exists(archive)) {
-                                    File.Delete(archive); // Delete file with last five characters set to '_back'
-                                    if (File.Exists($"{archive}_back")) File.Move($"{archive}_back", archive); // Remove last five characters ('_back')
+                                    if (File.Exists($"{archive}_back")) {
+                                        File.Delete(archive); // Delete file with last five characters set to '_back'
+                                        File.Move($"{archive}_back", archive); // Remove last five characters ('_back')
+                                    }
                                 }
                             }
                         }
@@ -210,46 +245,6 @@ namespace Unleash.Patcher
                 }
             }
         }
-
-        /// <summary>
-        /// Extracts an archive to a temporary location.
-        /// </summary>
-        public static string UnpackARC(string arc, string tempPath) {
-            Directory.CreateDirectory(tempPath); // Create temporary location
-            File.Copy(arc, Path.Combine(tempPath, Path.GetFileName(arc))); // Copy archive to temporary location
-
-            // Extracts the archive in the temporary location
-            var unpack = new ProcessStartInfo() {
-                FileName = Program.Arctool,
-                Arguments = $"-d \"{Path.Combine(tempPath, Path.GetFileName(arc))}\"",
-                WorkingDirectory = Path.GetDirectoryName(Program.Arctool),
-                WindowStyle = ProcessWindowStyle.Hidden
-            };
-
-            var Unpack = Process.Start(unpack);
-            Unpack.WaitForExit();
-            Unpack.Close();
-
-            return tempPath;
-        }
-
-        /// <summary>
-        /// Repacks an archive from a temporary location.
-        /// </summary>
-        public static void RepackARC(string arc, string output) {
-            ArcPacker repack = new ArcPacker();
-            repack.WriteArc(output, Path.Combine(arc, Path.GetFileNameWithoutExtension(output)));
-
-            // Erases temporary repack data
-            try {
-                DirectoryInfo tempData = new DirectoryInfo(arc);
-                if (Directory.Exists(arc)) {
-                    foreach (FileInfo file in tempData.GetFiles()) file.Delete();
-                    foreach (DirectoryInfo directory in tempData.GetDirectories()) directory.Delete(true);
-                    Directory.Delete(arc);
-                }
-            } catch { }
-        }
     }
 
     class PatchEngine
@@ -290,12 +285,12 @@ namespace Unleash.Patcher
                         systemReached = true;
 
                     if (systemReached) {
-                        if (line.StartsWith("BeginBlock")) {
-                            string _BeginBlock = Lua.DeserialiseParameter("BeginBlock", line, false); // Deserialise 'BeginBlock' parameter
+                        //if (line.StartsWith("BeginBlock")) {
+                        //    string _BeginBlock = Lua.DeserialiseParameter("BeginBlock", line, false); // Deserialise 'BeginBlock' parameter
 
-                            if (_BeginBlock != string.Empty)
-                                BeginBlock(Literal.CoreReplace(_BeginBlock));
-                        }
+                        //    if (_BeginBlock != string.Empty)
+                        //        BeginBlock(Literal.CoreReplace(_BeginBlock));
+                        //}
 
                         if (line.StartsWith("Dec")) {
                             if (line.StartsWith("DecryptExecutable"))
@@ -353,56 +348,46 @@ namespace Unleash.Patcher
                                 _ignoreList = _Ignore.ToList();
                         }
 
-                        if (line.StartsWith("Parameter")) {
-                            string[] _ParameterAdd = Lua.DeserialiseParameterList("ParameterAdd", line, false),     // Deserialise 'ParameterEdit' parameter
-                                     _ParameterEdit = Lua.DeserialiseParameterList("ParameterEdit", line, false),     // Deserialise 'ParameterEdit' parameter
-                                     _ParameterErase = Lua.DeserialiseParameterList("ParameterErase", line, false),   // Deserialise 'ParameterErase' parameter
-                                     _ParameterRename = Lua.DeserialiseParameterList("ParameterRename", line, false); // Deserialise 'ParameterRename' parameter
+                        //if (line.StartsWith("Parameter")) {
+                        //    string[] _ParameterAdd = Lua.DeserialiseParameterList("ParameterAdd", line, false),     // Deserialise 'ParameterEdit' parameter
+                        //             _ParameterEdit = Lua.DeserialiseParameterList("ParameterEdit", line, false),     // Deserialise 'ParameterEdit' parameter
+                        //             _ParameterErase = Lua.DeserialiseParameterList("ParameterErase", line, false),   // Deserialise 'ParameterErase' parameter
+                        //             _ParameterRename = Lua.DeserialiseParameterList("ParameterRename", line, false); // Deserialise 'ParameterRename' parameter
 
-                            if (line.StartsWith("ParameterAdd") && _ParameterAdd.Length != 0)
-                                ParameterAdd(Literal.CoreReplace(_ParameterAdd[0]), _ParameterAdd[1], _ParameterAdd[2]);
-                            else if (line.StartsWith("ParameterEdit") && _ParameterEdit.Length != 0)
-                                ParameterEdit(Literal.CoreReplace(_ParameterEdit[0]), _ParameterEdit[1], _ParameterEdit[2]);
-                            else if (line.StartsWith("ParameterErase") && _ParameterErase.Length != 0)
-                                ParameterErase(Literal.CoreReplace(_ParameterErase[0]), _ParameterErase[1]);
-                            else if (line.StartsWith("ParameterRename") && _ParameterRename.Length != 0)
-                                ParameterRename(Literal.CoreReplace(_ParameterRename[0]), _ParameterRename[1], _ParameterRename[2]);
-                        }
+                        //    if (line.StartsWith("ParameterAdd") && _ParameterAdd.Length != 0)
+                        //        ParameterAdd(Literal.CoreReplace(_ParameterAdd[0]), _ParameterAdd[1], _ParameterAdd[2]);
+                        //    else if (line.StartsWith("ParameterEdit") && _ParameterEdit.Length != 0)
+                        //        ParameterEdit(Literal.CoreReplace(_ParameterEdit[0]), _ParameterEdit[1], _ParameterEdit[2]);
+                        //    else if (line.StartsWith("ParameterErase") && _ParameterErase.Length != 0)
+                        //        ParameterErase(Literal.CoreReplace(_ParameterErase[0]), _ParameterErase[1]);
+                        //    else if (line.StartsWith("ParameterRename") && _ParameterRename.Length != 0)
+                        //        ParameterRename(Literal.CoreReplace(_ParameterRename[0]), _ParameterRename[1], _ParameterRename[2]);
+                        //}
 
-                        if (line.StartsWith("StringReplace")) {
-                            string[] _StringReplace = Lua.DeserialiseParameterList("StringReplace", line, false); // Deserialise 'StringReplace' parameter
+                        //if (line.StartsWith("StringReplace")) {
+                        //    string[] _StringReplace = Lua.DeserialiseParameterList("StringReplace", line, false); // Deserialise 'StringReplace' parameter
 
-                            if (_StringReplace.Length != 0)
-                                StringReplace(Literal.CoreReplace(_StringReplace[0]), _StringReplace[1], _StringReplace[2]);
-                        }
+                        //    if (_StringReplace.Length != 0)
+                        //        StringReplace(Literal.CoreReplace(_StringReplace[0]), _StringReplace[1], _StringReplace[2]);
+                        //}
 
-                        if (line.StartsWith("Package")) {
-                            string[] _PackageAdd = Lua.DeserialiseParameterList("PackageAdd", line, false), // Deserialise 'PackageAdd' parameter
-                                     _PackageEdit = Lua.DeserialiseParameterList("PackageEdit", line, false); // Deserialise 'PackageEdit' parameter
+                        //if (line.StartsWith("EndBlock")) {
+                        //    string _EndBlock = Lua.DeserialiseParameter("EndBlock", line, false); // Deserialise 'EndBlock' parameter
 
-                            if (line.StartsWith("PackageAdd") && _PackageAdd.Length != 0)
-                                PackageAdd(Literal.CoreReplace(_PackageAdd[0]), _PackageAdd[1], _PackageAdd[2], _PackageAdd[3]);
-                            else if (line.StartsWith("PackageEdit") && _PackageEdit.Length != 0)
-                                PackageEdit(Literal.CoreReplace(_PackageEdit[0]), _PackageEdit[1], _PackageEdit[2], _PackageEdit[3]);
-                        }
-
-                        if (line.StartsWith("EndBlock")) {
-                            string _EndBlock = Lua.DeserialiseParameter("EndBlock", line, false); // Deserialise 'EndBlock' parameter
-
-                            if (_EndBlock != string.Empty)
-                                EndBlock();
-                        }
+                        //    if (_EndBlock != string.Empty)
+                        //        EndBlock();
+                        //}
                     }
                 }
             }
         }
 
-        private static string BeginBlock(string location) {
-            location = Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), location);
+        //private static string BeginBlock(string location) {
+        //    location = Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), location);
 
-            _archiveLocation = location;
-            return _archive = ModEngine.UnpackARC(location, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()));
-        }
+        //    _archiveLocation = location;
+        //    return _archive = ModEngine.UnpackARC(location, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()));
+        //}
 
         private static void Copy(string location, string newFile, bool overwrite) {
             if (_archive != string.Empty)
@@ -430,13 +415,13 @@ namespace Unleash.Patcher
             if (File.Exists(location)) File.Delete(location);
         }
 
-        private static void EndBlock() {
-            if (!File.Exists($"{_archiveLocation}_back"))
-                File.Copy(_archiveLocation, $"{_archiveLocation}_back");
+        //private static void EndBlock() {
+        //    if (!File.Exists($"{_archiveLocation}_back"))
+        //        File.Copy(_archiveLocation, $"{_archiveLocation}_back");
 
-            ModEngine.RepackARC(_archive, _archiveLocation);
-            _archive = _archiveLocation = string.Empty;
-        }
+        //    ModEngine.RepackARC(_archive, _archiveLocation);
+        //    _archive = _archiveLocation = string.Empty;
+        //}
 
         private static void EncryptExecutable() {
             string gameDirectory = Properties.Settings.Default.Path_GameDirectory;
@@ -551,697 +536,192 @@ namespace Unleash.Patcher
             }
         }
 
-        private static void ParameterAdd(string location, string parameter, string value) {
-            if (_archive != string.Empty) location = Path.Combine(Path.Combine(_archive, Path.GetFileNameWithoutExtension(_archiveLocation)), location);
-            else location = Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), location);
-
-            if (File.Exists(location)) {
-                DecompileLua(location);
-                value = value.Replace("\\\"", "\"");
-                List<string> scriptList = File.ReadAllLines(location).ToList();
-                scriptList.Add($"{parameter} = {value}");
-                File.WriteAllLines(location, scriptList);
-            } else if (Directory.Exists(location)) {
-                foreach (string luaData in Directory.GetFiles(location, "*.lub", SearchOption.TopDirectoryOnly)) {
-                    if (!_ignoreList.Any(s => Path.GetFileName(luaData).Contains(s))) {
-                        DecompileLua(luaData);
-                        value = value.Replace("\\\"", "\"");
-                        List<string> scriptList = File.ReadAllLines(location).ToList();
-                        scriptList.Add($"{parameter} = {value}");
-                        File.WriteAllLines(location, scriptList);
-                    }
-                }
-            }
-        }
-
-        private static void ParameterEdit(string location, string parameter, string value) {
-            if (_archive != string.Empty) location = Path.Combine(Path.Combine(_archive, Path.GetFileNameWithoutExtension(_archiveLocation)), location);
-            else location = Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), location);
-
-            if (File.Exists(location)) {
-                DecompileLua(location);
-                string[] script = File.ReadAllLines(location);
-                int lineCount = 0;
-
-                value = value.Replace("\\\"", "\"");
-                foreach (string line in script) {
-                    if (line.StartsWith(parameter)) {
-                        string[] split = line.Split(' ');
-                        split[2] = value;
-                        for (int i = 3; i < split.Count(); i++) split[i] = string.Empty;
-                        script[lineCount] = string.Join(" ", split);
-                        break;
-                    }
-                    lineCount++;
-                }
-
-                File.WriteAllLines(location, script);
-            } else if (Directory.Exists(location)) {
-                foreach (string luaData in Directory.GetFiles(location, "*.lub", SearchOption.TopDirectoryOnly)) {
-                    if (!_ignoreList.Any(s => Path.GetFileName(luaData).Contains(s))) {
-                        DecompileLua(luaData);
-                        List<string> script = File.ReadAllLines(luaData).ToList();
-                        int lineCount = 0;
-
-                        value = value.Replace("\\\"", "\"");
-                        foreach (string line in script) {
-                            if (line.StartsWith(parameter)) {
-                                string[] split = line.Split(' ');
-                                split[2] = value;
-                                for (int i = 3; i < split.Count(); i++) split[i] = string.Empty;
-                                script[lineCount] = string.Join(" ", split);
-                                break;
-                            }
-                            lineCount++;
-                        }
-
-                        File.WriteAllLines(luaData, script);
-                    }
-                }
-            }
-        }
-
-        private static void ParameterErase(string location, string parameter) {
-            if (_archive != string.Empty) location = Path.Combine(Path.Combine(_archive, Path.GetFileNameWithoutExtension(_archiveLocation)), location);
-            else location = Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), location);
-
-            if (File.Exists(location) && !_ignoreList.Contains(Path.GetFileName(location))) {
-                DecompileLua(location);
-                List<string> script = File.ReadAllLines(location).ToList();
-                List<string> editedScript = File.ReadAllLines(location).ToList();
-                int lineCount = 0;
-
-                foreach (string line in script) {
-                    if (line.Contains(parameter)) editedScript.RemoveAt(lineCount);
-                    lineCount++;
-                }
-
-                File.WriteAllLines(location, editedScript);
-            } else if (Directory.Exists(location)) {
-                foreach (string luaData in Directory.GetFiles(location, "*.lub", SearchOption.TopDirectoryOnly)) {
-                    if (!_ignoreList.Any(s => Path.GetFileName(luaData).Contains(s))) {
-                        DecompileLua(luaData);
-                        List<string> script = File.ReadAllLines(luaData).ToList();
-                        List<string> editedScript = File.ReadAllLines(luaData).ToList();
-                        int lineCount = 0;
-
-                        foreach (string line in script) {
-                            if (line.Contains(parameter)) editedScript.RemoveAt(lineCount);
-                            lineCount++;
-                        }
-
-                        File.WriteAllLines(luaData, editedScript);
-                    }
-                }
-            }
-        }
-
-        private static void ParameterRename(string location, string parameter, string _new) {
-            if (_archive != string.Empty) location = Path.Combine(Path.Combine(_archive, Path.GetFileNameWithoutExtension(_archiveLocation)), location);
-            else location = Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), location);
-
-            if (File.Exists(location) && !_ignoreList.Contains(Path.GetFileName(location))) {
-                DecompileLua(location);
-                string[] script = File.ReadAllLines(location);
-                int lineCount = 0;
-
-                foreach (string line in script) {
-                    if (line.StartsWith(parameter)) {
-                        string[] split = line.Split(' ');
-                        split[0] = _new;
-                        script[lineCount] = string.Join(" ", split);
-                        break;
-                    }
-                    lineCount++;
-                }
-
-                File.WriteAllLines(location, script);
-            } else if (Directory.Exists(location)) {
-                foreach (string luaData in Directory.GetFiles(location, "*.lub", SearchOption.TopDirectoryOnly)) {
-                    if (!_ignoreList.Any(s => Path.GetFileName(luaData).Contains(s))) {
-                        DecompileLua(luaData);
-                        string[] script = File.ReadAllLines(location);
-                        int lineCount = 0;
-
-                        foreach (string line in script) {
-                            if (line.StartsWith(parameter)) {
-                                string[] split = line.Split(' ');
-                                split[0] = _new;
-                                script[lineCount] = string.Join(" ", split);
-                                break;
-                            }
-                            lineCount++;
-                        }
-
-                        File.WriteAllLines(luaData, script);
-                    }
-                }
-            }
-        }
-
-        private static void StringReplace(string location, string _string, string _new) {
-            if (_archive != string.Empty) location = Path.Combine(Path.Combine(_archive, Path.GetFileNameWithoutExtension(_archiveLocation)), location);
-            else location = Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), location);
-
-            if (File.Exists(location) && !_ignoreList.Contains(Path.GetFileName(location))) {
-                DecompileLua(location);
-                string[] script = File.ReadAllLines(location);
-                int lineCount = 0;
-
-                foreach (string line in script) {
-                    if (line.Contains(_string)) {
-                        script[lineCount] = line.Replace(_string, _new);
-                        break;
-                    }
-                    lineCount++;
-                }
-
-                File.WriteAllLines(location, script);
-            } else if (Directory.Exists(location)) {
-                foreach (string luaData in Directory.GetFiles(location, "*.lub", SearchOption.TopDirectoryOnly)) {
-                    if (!_ignoreList.Any(s => Path.GetFileName(luaData).Contains(s))) {
-                        DecompileLua(luaData);
-                        string[] script = File.ReadAllLines(luaData);
-                        int lineCount = 0;
-
-                        foreach (string line in script) {
-                            if (line == _string) {
-                                line.Replace(_string, _new);
-                                break;
-                            }
-                            lineCount++;
-                        }
-
-                        File.WriteAllLines(luaData, script);
-                    }
-                }
-            }
-        }
-
-        private static void PackageAdd(string location, string key, string _event, string reference) {
-            if (_archive != string.Empty) location = Paths.GetPathWithoutExtension(Path.Combine(_archive, Path.GetFileNameWithoutExtension(_archiveLocation), location));
-            else location = Paths.GetPathWithoutExtension(Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), location));
-
-            if (File.Exists($"{location}.pkg") && !_ignoreList.Contains($"{Path.GetFileName(location)}.pkg")) {
-                PKG.PKGTool($"{location}.pkg");
-                List<string> package = File.ReadAllLines($"{location}.txt").ToList();
-                package.Add($"\"{key}\"\n{"{"}");
-                package.Add($"\t\"{_event}\" = \"{reference}\";");
-                package.Add("}");
-                File.WriteAllLines($"{location}.txt", package);
-                PKG.PKGTool($"{location}.txt");
-            } else if (Directory.Exists(location)) {
-                foreach (string packageData in Directory.GetFiles(location, "*.pkg", SearchOption.TopDirectoryOnly)) {
-                    if (!_ignoreList.Any(s => Path.GetFileName(packageData).Contains(s))) {
-                        PKG.PKGTool(packageData);
-                        List<string> package = File.ReadAllLines(packageData).ToList();
-                        package.Add($"\"{key}\"\n{"{"}");
-                        package.Add($"\t\"{_event}\" = \"{reference}\";");
-                        package.Add("}");
-                        File.WriteAllLines(packageData, package);
-                        PKG.PKGTool(Path.Combine(Path.GetDirectoryName(packageData), $"{Path.GetFileNameWithoutExtension(packageData)}.txt"));
-                    }
-                }
-            }
-        }
-
-        private static void PackageEdit(string location, string key, string _event, string reference) {
-            if (_archive != string.Empty) location = Paths.GetPathWithoutExtension(Path.Combine(_archive, Path.GetFileNameWithoutExtension(_archiveLocation), location));
-            else location = Paths.GetPathWithoutExtension(Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), location));
-
-            if (File.Exists($"{location}.pkg") && !_ignoreList.Contains($"{Path.GetFileName(location)}.pkg")) {
-                PKG.PKGTool($"{location}.pkg");
-                List<string> package = File.ReadAllLines($"{location}.txt").ToList();
-                List<string> editedPackage = File.ReadAllLines($"{location}.txt").ToList();
-                bool keyFound = false;
-                int lineCount = 0;
-
-                foreach (string entry in package) {
-                    if (entry.StartsWith($"\"{key}\"")) keyFound = true;
-                    if (entry.Contains($"\"{_event}\"")) {
-                        editedPackage.RemoveAt(lineCount);
-                        editedPackage.Insert(lineCount, $"\t\"{_event}\" = \"{reference}\";");
-                        break;
-                    }
-                    if (entry.StartsWith("}") && keyFound) {
-                        editedPackage.Insert(lineCount - 1, $"\t\"{_event}\" = \"{reference}\";");
-                        break;
-                    }
-                    lineCount++;
-                }
-
-                File.WriteAllLines($"{location}.txt", editedPackage); PKG.PKGTool($"{location}.txt");
-            } else if (Directory.Exists(location)) {
-                foreach (string packageData in Directory.GetFiles(location, "*.pkg", SearchOption.TopDirectoryOnly)) {
-                    if (!_ignoreList.Any(s => Path.GetFileName(packageData).Contains(s))) {
-                        PKG.PKGTool(packageData);
-                        List<string> package = File.ReadAllLines(packageData).ToList();
-                        List<string> editedPackage = File.ReadAllLines($"{location}.txt").ToList();
-                        bool keyFound = false;
-                        int lineCount = 0;
-
-                        foreach (string entry in package) {
-                            if (entry.StartsWith($"\"{key}\"")) keyFound = true;
-                            if (entry.Contains($"\"{_event}\"")) {
-                                editedPackage.RemoveAt(lineCount);
-                                editedPackage.Insert(lineCount, $"\t\"{_event}\" = \"{reference}\";");
-                                break;
-                            }
-                            if (entry.StartsWith("}") && keyFound) {
-                                editedPackage.Insert(lineCount - 1, $"\t\"{_event}\" = \"{reference}\";");
-                                break;
-                            }
-                            lineCount++;
-                        }
-
-                        File.WriteAllLines(packageData, editedPackage);
-                        PKG.PKGTool(Path.Combine(Path.GetDirectoryName(packageData), $"{Path.GetFileNameWithoutExtension(packageData)}.txt"));
-                    }
-                }
-            }
-        }
-
-        public static void DecompileLua(string _file) {
-            string[] readText = File.ReadAllLines(_file); //Read the Lub into an array
-
-            if (readText[0].Contains("LuaP")) {
-                using (Process process = new Process()) {
-                    process.StartInfo.FileName = "java.exe";
-                    process.StartInfo.Arguments = $"-jar \"{Program.unlub}\" \"{_file}\"";
-                    process.StartInfo.UseShellExecute = false;
-                    process.StartInfo.RedirectStandardOutput = true;
-                    process.StartInfo.CreateNoWindow = true;
-
-                    StringBuilder outputBuilder = new StringBuilder();
-                    process.OutputDataReceived += (s, e) => { if (e.Data != null) outputBuilder.AppendLine(e.Data); };
-
-                    process.Start();
-                    process.BeginOutputReadLine();
-                    process.WaitForExit();
-
-                    File.WriteAllText(_file, outputBuilder.ToString());
-                }
-            }
-        }
-    }
-
-    class TweakEngine
-    {
-        /// <summary>
-        /// Apply the specified tweaks.
-        /// </summary>
-        /// <param name="rush">Required for status change</param>
-        public static void ApplyTweaks(RushInterface rush) {
-            string gameDirectory = Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory);
-            string[] files = Directory.GetFiles(gameDirectory, "*.arc", SearchOption.AllDirectories);
-            string system = Literal.Core(Properties.Settings.Default.Path_GameDirectory);
-            string tweak = string.Empty;
-
-            // Define short variables to properties
-            int renderer     = Properties.Settings.Default.Tweak_Renderer,
-                reflections  = Properties.Settings.Default.Tweak_Reflections,
-                antiAliasing = Properties.Settings.Default.Tweak_AntiAliasing,
-                cameraType   = Properties.Settings.Default.Tweak_CameraType;
-
-            decimal cameraHeight   = Properties.Settings.Default.Tweak_CameraHeight,
-                    cameraDistance = Properties.Settings.Default.Tweak_CameraDistance,
-                    hammerRange    = Properties.Settings.Default.Tweak_AmyHammerRange,
-                    fieldOfView    = Properties.Settings.Default.Tweak_FieldOfView;
-
-            bool forceMSAA        = Properties.Settings.Default.Tweak_ForceMSAA,
-                 tailsFlightLimit = Properties.Settings.Default.Tweak_TailsFlightLimit;
-
-            // Field of View
-            if (fieldOfView != 90) {
-                string xex = Path.Combine(gameDirectory, "default.xex"); // Location of the XEX
-
-                if (!File.Exists($"{xex}_back"))
-                    File.Copy(xex, $"{xex}_back", true);
-
-                XEX.Decrypt(xex); // Decrypt the XEX to be able to modify it properly
-                XEX.FieldOfView(xex, fieldOfView); // Set FOV
-            }
-
-            foreach (string archive in files) {
-                if (Path.GetFileName(archive) == "cache.arc") {
-                    int proceed = 0;
-
-                    if (renderer != 0)         proceed++;
-                    if (reflections != 1)      proceed++;
-                    if (antiAliasing != 1)     proceed++;
-                    if (!forceMSAA)            proceed++;
-                    if (cameraType != 0)       proceed++;
-                    if (cameraDistance != 650) proceed++;
-
-                    if (proceed != 0) {
-                        if (!File.Exists($"{archive}_back"))
-                            File.Copy(archive, $"{archive}_back", true);
-
-                        // Unpack archive to temporary location
-                        tweak = ModEngine.UnpackARC(archive, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()));
-
-                        // Default
-                        if (renderer == 0) {
-                            // Force MSAA
-                            if (antiAliasing != 1 || forceMSAA) {
-                                rush.Status = $"Tweaking Anti-Aliasing...";
-                                MSAA(Path.Combine(tweak, $"cache\\{system}\\scripts\\render\\"), antiAliasing, SearchOption.TopDirectoryOnly);
-                            }
-                        }
-
-                        // Optimised
-                        else if (renderer == 1) {
-                            rush.Status = $"Tweaking Renderer...";
-                            File.WriteAllBytes(Path.Combine(tweak, $"cache\\{system}\\scripts\\render\\core\\render_main.lub"), Properties.Resources.optimised_render_main);
-                        }
-
-                        // Destructive
-                        else if (renderer == 2) {
-                            rush.Status = $"Tweaking Renderer...";
-                            File.WriteAllBytes(Path.Combine(tweak, $"cache\\{system}\\scripts\\render\\render_gamemode.lub"),   Properties.Resources.vulkan_render_gamemode);
-                            File.WriteAllBytes(Path.Combine(tweak, $"cache\\{system}\\scripts\\render\\render_title.lub"),      Properties.Resources.vulkan_render_title);
-                            File.WriteAllBytes(Path.Combine(tweak, $"cache\\{system}\\scripts\\render\\core\\render_main.lub"), Properties.Resources.vulkan_render_main);
-                        }
-
-                        // Cheap
-                        else if (renderer == 3) {
-                            rush.Status = $"Tweaking Renderer...";
-                            File.WriteAllBytes(Path.Combine(tweak, $"cache\\{system}\\scripts\\render\\render_gamemode.lub"), Properties.Resources.render_cheap);
-                        }
-
-                        // Reflections
-                        if (reflections != 1) {
-                            rush.Status = $"Tweaking Reflections...";
-                            Reflections(Path.Combine(tweak, $"cache\\{system}\\scripts\\render\\core\\render_reflection.lub"), reflections);
-                        }
-
-                        if (system == "ps3") {
-                            rush.Status = $"Tweaking Camera...";
-
-                            // Camera Type
-                            if (cameraType != 0)
-                                CameraType(Path.Combine(tweak, $"cache\\{system}\\cameraparam.lub"), cameraType, fieldOfView);
-
-                            // Camera Distance
-                            if (cameraDistance != 650)
-                                CameraDistance(Path.Combine(tweak, $"cache\\{system}\\cameraparam.lub"), (int)cameraDistance);
-                        }
-
-                        // Repack archive as tweak
-                        ModEngine.RepackARC(tweak, archive);
-                    }
-                } else if (Path.GetFileName(archive) == "scripts.arc") {
-                    int proceed = 0;
-
-                    if (antiAliasing != 1)  proceed++;
-                    if (!forceMSAA) proceed++;
-
-                    if (proceed != 0) {
-                        if (!File.Exists($"{archive}_back"))
-                            File.Copy(archive, $"{archive}_back", true);
-
-                        // Unpack archive to temporary location
-                        tweak = ModEngine.UnpackARC(archive, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()));
-
-                        // Default
-                        if (Properties.Settings.Default.Tweak_Renderer == 0)
-                            // Force MSAA
-                            if (antiAliasing != 1 || forceMSAA) {
-                                rush.Status = $"Tweaking Anti-Aliasing...";
-                                MSAA(Path.Combine(tweak, $"scripts\\{system}\\scripts\\render\\"), antiAliasing, SearchOption.AllDirectories);
-                            }
-
-                        // Repack archive as tweak
-                        ModEngine.RepackARC(tweak, archive);
-                    }
-                } else if (Path.GetFileName(archive) == "game.arc") {
-                    int proceed = 0;
-
-                    if (cameraType != 0)       proceed++;
-                    if (cameraDistance != 650) proceed++;
-
-                    if (proceed != 0) {
-                        if (!File.Exists($"{archive}_back"))
-                            File.Copy(archive, $"{archive}_back", true);
-
-                        // Unpack archive to temporary location
-                        tweak = ModEngine.UnpackARC(archive, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()));
-
-                        if (system == "xenon") {
-                            rush.Status = $"Tweaking Camera...";
-
-                            // Camera Type
-                            if (cameraType != 0)
-                                CameraType(Path.Combine(tweak, $"game\\{system}\\cameraparam.lub"), cameraType, fieldOfView);
-
-                            // Camera Distance
-                            if (cameraDistance != 650)
-                                CameraDistance(Path.Combine(tweak, $"game\\{system}\\cameraparam.lub"), (int)cameraDistance);
-                        }
-
-                        // Repack archive as tweak
-                        ModEngine.RepackARC(tweak, archive);
-                    }
-                } else if (Path.GetFileName(archive) == "player.arc") {
-                    int proceed = 0;
-
-                    if (cameraHeight != 70) proceed++;
-                    if (hammerRange != 50)  proceed++;
-                    if (!tailsFlightLimit) proceed++;
-
-                    if (proceed != 0) {
-                        if (!File.Exists($"{archive}_back"))
-                            File.Copy(archive, $"{archive}_back", true);
-
-                        // Unpack archive to temporary location
-                        tweak = ModEngine.UnpackARC(archive, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()));
-
-                        // Tokyo Game Show
-                        if (cameraType == 1) {
-                            rush.Status = $"Tweaking Camera...";
-                            CameraType(Path.Combine(tweak, $"player\\{system}\\player\\common.lub"), cameraType, fieldOfView);
-                        }
-
-                        // Camera Height
-                        if (cameraHeight != 70) {
-                            rush.Status = $"Tweaking Camera...";
-                            CameraHeight(Path.Combine(tweak, $"player\\{system}\\player\\common.lub"), cameraHeight);
-                        }
-
-                        // Amy's Hammer Range
-                        if (hammerRange != 50) {
-                            rush.Status = $"Tweaking Characters...";
-                            HammerRange(Path.Combine(tweak, $"player\\{system}\\player\\amy.lub"), hammerRange);
-                        }
-
-                        // Unlock Tails' Flight Limit
-                        if (tailsFlightLimit) {
-                            rush.Status = $"Tweaking Characters...";
-                            UnlockTailsFlightLimit(Path.Combine(tweak, $"player\\{system}\\player\\tails.lub"));
-                        }
-
-                        // Repack archive as tweak
-                        ModEngine.RepackARC(tweak, archive);
-                    }
-                }
-            }
-        }
-
-        private static void MSAA(string directoryRoot, int MSAA, SearchOption searchOption) {
-            string[] files = Directory.GetFiles(directoryRoot, "*.lub", searchOption);
-
-            foreach (var lub in files) {
-                PatchEngine.DecompileLua(lub);
-
-                if (Path.GetFileName(lub) == "render_utility.lub") {
-                    List<string> editedLua = File.ReadAllLines(lub).ToList();
-
-                    if (MSAA == 0)      editedLua.Add("MSAAType = \"1x\"");
-                    else if (MSAA == 1) editedLua.Add("MSAAType = \"2x\"");
-                    else if (MSAA == 2) editedLua.Add("MSAAType = \"4x\"");
-                    File.WriteAllLines(lub, editedLua);
-                } else {
-                    string[] editedLua = File.ReadAllLines(lub);
-                    int lineNum = 0;
-                    int modified = 0;
-
-                    foreach (string line in editedLua) {
-                        if (line.Contains("MSAAType")) {
-                            string[] tempLine = line.Split(' ');
-                            if (MSAA == 0)      tempLine[2] = "\"1x\"";
-                            else if (MSAA == 1) tempLine[2] = "\"2x\"";
-                            else if (MSAA == 2) tempLine[2] = "\"4x\"";
-                            editedLua[lineNum] = string.Join(" ", tempLine);
-                            modified++;
-                        }
-                        lineNum++;
-                    }
-                    if (modified != 0) File.WriteAllLines(lub, editedLua);
-                }
-            }
-        }
-
-        private static void Reflections(string directoryRoot, int scale) {
-            PatchEngine.DecompileLua(directoryRoot);
-            string[] editedLua = File.ReadAllLines(directoryRoot);
-            int lineNum = 0;
-
-            foreach (string line in editedLua) {
-                if (line.StartsWith("EnableReflection")) {
-                    string[] tempLine = line.Split(' ');
-                    if (scale == 0)
-                        tempLine[2] = "false";
-                    else
-                        tempLine[2] = "true";
-                    editedLua[lineNum] = string.Join(" ", tempLine);
-                }
-
-                if (line.StartsWith("  texture_width") || line.StartsWith("  texture_height")) {
-                    string[] tempLine = line.Split(' ');
-                    if (scale == 1)
-                        tempLine[7] = "4";
-                    else if (scale == 2)
-                        tempLine[7] = "2";
-                    else if (scale == 3)
-                        tempLine[6] = tempLine[7] = string.Empty;
-                    editedLua[lineNum] = string.Join(" ", tempLine);
-                }
-                lineNum++;
-            }
-            File.WriteAllLines(directoryRoot, editedLua);
-        }
-
-        private static void CameraType(string directoryRoot, int type, decimal fov) {
-            PatchEngine.DecompileLua(directoryRoot);
-            string[] editedLua = File.ReadAllLines(directoryRoot);
-            int lineNum = 0;
-
-            foreach (string line in editedLua) {
-                if (line.StartsWith("distance")) {
-                    string[] tempLine = line.Split(' ');
-                    if (type == 0)
-                        tempLine[2] = "6.5"; //Retail
-                    else if (type == 1)
-                        if (fov > 90)
-                            tempLine[2] = "3.5";
-                        else
-                            tempLine[2] = "4.5";
-                    else if (type == 2)
-                        tempLine[2] = "5.5"; //E3
-                    editedLua[lineNum] = string.Join(" ", tempLine);
-                }
-                if (line.StartsWith("springK")) {
-                    string[] tempLine = line.Split(' ');
-                    if (type == 1)
-                        if (fov > 90)
-                            tempLine[2] = "0.325";
-                        else
-                            tempLine[2] = "0.225";
-                    else
-                        tempLine[2] = "0.98";
-                    editedLua[lineNum] = string.Join(" ", tempLine);
-                }
-                if (line.StartsWith("altitude")) {
-                    string[] tempLine = line.Split(' ');
-                    if (type == 1)
-                        tempLine[2] = "-15";
-                    else
-                        tempLine[2] = "15";
-                    editedLua[lineNum] = string.Join(" ", tempLine);
-                }
-                if (line.StartsWith("az_driveK")) {
-                    string[] tempLine = line.Split(' ');
-                    if (type == 1)
-                        tempLine[2] = "50000"; //TGS (32500 old)
-                    else if(type == 2)
-                        tempLine[2] = "690";
-                    else
-                        tempLine[2] = "3250";
-                    editedLua[lineNum] = string.Join(" ", tempLine);
-                }
-                if (line.StartsWith("az_dampingK")) {
-                    string[] tempLine = line.Split(' ');
-                    if (type == 1)
-                        tempLine[2] = "2500";
-                    else if(type == 2)
-                        tempLine[2] = "100";
-                    else
-                        tempLine[2] = "250";
-                    editedLua[lineNum] = string.Join(" ", tempLine);
-                }
-                lineNum++;
-            }
-            File.WriteAllLines(directoryRoot, editedLua);
-        }
-
-        private static void CameraDistance(string directoryRoot, int distance) {
-            PatchEngine.DecompileLua(directoryRoot);
-            string[] editedLua = File.ReadAllLines(directoryRoot);
-            int lineNum = 0;
-
-            foreach (string line in editedLua) {
-                if (line.StartsWith("distance")) {
-                    string[] tempLine = line.Split(' ');
-                    tempLine[2] = decimal.Divide(distance, 100).ToString();
-                    editedLua[lineNum] = string.Join(" ", tempLine);
-                }
-                lineNum++;
-            }
-            File.WriteAllLines(directoryRoot, editedLua); //Resave the Lua
-        }
-
-        private static void CameraHeight(string directoryRoot, decimal height) {
-            PatchEngine.DecompileLua(directoryRoot);
-            string[] editedLua = File.ReadAllLines(directoryRoot);
-            int lineNum = 0;
-
-            foreach (string line in editedLua) {
-                if (line.StartsWith("c_camera")) {
-                    if (editedLua[lineNum].Contains("c_camera = { x ="))
-                        editedLua[lineNum] = "c_camera = { x = 0 * meter, y = " + (height / 100) + " * meter, z = 0 * meter }";
-                    else
-                        editedLua[lineNum += 2] = $"  y = {height / 100} * meter,";
-                }
-                lineNum++;
-            }
-            File.WriteAllLines(directoryRoot, editedLua);
-        }
-
-        private static void HammerRange(string directoryRoot, decimal range) {
-            PatchEngine.DecompileLua(directoryRoot);
-            string[] editedLua = File.ReadAllLines(directoryRoot);
-            int lineNum = 0;
-
-            foreach (string line in editedLua) {
-                string[] tempLine = line.Split(' ');
-                if (line.StartsWith("c_hammer_head")) {
-                    if (editedLua[lineNum].Contains("c_hammer_head"))
-                        editedLua[lineNum] = $"c_hammer_head = {range / 100} * meter";
-                }
-                lineNum++;
-            }
-            File.WriteAllLines(directoryRoot, editedLua);
-        }
-
-        private static void UnlockTailsFlightLimit(string directoryRoot) {
-            PatchEngine.DecompileLua(directoryRoot);
-            string[] editedLua = File.ReadAllLines(directoryRoot);
-            int lineNum = 0;
-            decimal origTimer = 0;
-
-            foreach (string line in editedLua) {
-                string[] tempLine = line.Split(' ');
-
-                if (tempLine[0] == "c_flight_timer") origTimer = decimal.Parse(tempLine[2]);
-
-                if (tempLine[0] == "c_flight_timer_b") {
-                    tempLine[2] = (((origTimer * 1000) + 125) / 1000).ToString();
-                    editedLua[lineNum] = string.Join(" ", tempLine);
-                }
-                lineNum++;
-            }
-            File.WriteAllLines(directoryRoot, editedLua);
-        }
+        //private static void ParameterAdd(string location, string parameter, string value) {
+        //    if (_archive != string.Empty) location = Path.Combine(Path.Combine(_archive, Path.GetFileNameWithoutExtension(_archiveLocation)), location);
+        //    else location = Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), location);
+
+        //    if (File.Exists(location)) {
+        //        DecompileLua(location);
+        //        value = value.Replace("\\\"", "\"");
+        //        List<string> scriptList = File.ReadAllLines(location).ToList();
+        //        scriptList.Add($"{parameter} = {value}");
+        //        File.WriteAllLines(location, scriptList);
+        //    } else if (Directory.Exists(location)) {
+        //        foreach (string luaData in Directory.GetFiles(location, "*.lub", SearchOption.TopDirectoryOnly)) {
+        //            if (!_ignoreList.Any(s => Path.GetFileName(luaData).Contains(s))) {
+        //                DecompileLua(luaData);
+        //                value = value.Replace("\\\"", "\"");
+        //                List<string> scriptList = File.ReadAllLines(location).ToList();
+        //                scriptList.Add($"{parameter} = {value}");
+        //                File.WriteAllLines(location, scriptList);
+        //            }
+        //        }
+        //    }
+        //}
+
+        //private static void ParameterEdit(string location, string parameter, string value) {
+        //    if (_archive != string.Empty) location = Path.Combine(Path.Combine(_archive, Path.GetFileNameWithoutExtension(_archiveLocation)), location);
+        //    else location = Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), location);
+
+        //    if (File.Exists(location)) {
+        //        DecompileLua(location);
+        //        string[] script = File.ReadAllLines(location);
+        //        int lineCount = 0;
+
+        //        value = value.Replace("\\\"", "\"");
+        //        foreach (string line in script) {
+        //            if (line.StartsWith(parameter)) {
+        //                string[] split = line.Split(' ');
+        //                split[2] = value;
+        //                for (int i = 3; i < split.Count(); i++) split[i] = string.Empty;
+        //                script[lineCount] = string.Join(" ", split);
+        //                break;
+        //            }
+        //            lineCount++;
+        //        }
+
+        //        File.WriteAllLines(location, script);
+        //    } else if (Directory.Exists(location)) {
+        //        foreach (string luaData in Directory.GetFiles(location, "*.lub", SearchOption.TopDirectoryOnly)) {
+        //            if (!_ignoreList.Any(s => Path.GetFileName(luaData).Contains(s))) {
+        //                DecompileLua(luaData);
+        //                List<string> script = File.ReadAllLines(luaData).ToList();
+        //                int lineCount = 0;
+
+        //                value = value.Replace("\\\"", "\"");
+        //                foreach (string line in script) {
+        //                    if (line.StartsWith(parameter)) {
+        //                        string[] split = line.Split(' ');
+        //                        split[2] = value;
+        //                        for (int i = 3; i < split.Count(); i++) split[i] = string.Empty;
+        //                        script[lineCount] = string.Join(" ", split);
+        //                        break;
+        //                    }
+        //                    lineCount++;
+        //                }
+
+        //                File.WriteAllLines(luaData, script);
+        //            }
+        //        }
+        //    }
+        //}
+
+        //private static void ParameterErase(string location, string parameter) {
+        //    if (_archive != string.Empty) location = Path.Combine(Path.Combine(_archive, Path.GetFileNameWithoutExtension(_archiveLocation)), location);
+        //    else location = Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), location);
+
+        //    if (File.Exists(location) && !_ignoreList.Contains(Path.GetFileName(location))) {
+        //        DecompileLua(location);
+        //        List<string> script = File.ReadAllLines(location).ToList();
+        //        List<string> editedScript = File.ReadAllLines(location).ToList();
+        //        int lineCount = 0;
+
+        //        foreach (string line in script) {
+        //            if (line.Contains(parameter)) editedScript.RemoveAt(lineCount);
+        //            lineCount++;
+        //        }
+
+        //        File.WriteAllLines(location, editedScript);
+        //    } else if (Directory.Exists(location)) {
+        //        foreach (string luaData in Directory.GetFiles(location, "*.lub", SearchOption.TopDirectoryOnly)) {
+        //            if (!_ignoreList.Any(s => Path.GetFileName(luaData).Contains(s))) {
+        //                DecompileLua(luaData);
+        //                List<string> script = File.ReadAllLines(luaData).ToList();
+        //                List<string> editedScript = File.ReadAllLines(luaData).ToList();
+        //                int lineCount = 0;
+
+        //                foreach (string line in script) {
+        //                    if (line.Contains(parameter)) editedScript.RemoveAt(lineCount);
+        //                    lineCount++;
+        //                }
+
+        //                File.WriteAllLines(luaData, editedScript);
+        //            }
+        //        }
+        //    }
+        //}
+
+        //private static void ParameterRename(string location, string parameter, string _new) {
+        //    if (_archive != string.Empty) location = Path.Combine(Path.Combine(_archive, Path.GetFileNameWithoutExtension(_archiveLocation)), location);
+        //    else location = Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), location);
+
+        //    if (File.Exists(location) && !_ignoreList.Contains(Path.GetFileName(location))) {
+        //        DecompileLua(location);
+        //        string[] script = File.ReadAllLines(location);
+        //        int lineCount = 0;
+
+        //        foreach (string line in script) {
+        //            if (line.StartsWith(parameter)) {
+        //                string[] split = line.Split(' ');
+        //                split[0] = _new;
+        //                script[lineCount] = string.Join(" ", split);
+        //                break;
+        //            }
+        //            lineCount++;
+        //        }
+
+        //        File.WriteAllLines(location, script);
+        //    } else if (Directory.Exists(location)) {
+        //        foreach (string luaData in Directory.GetFiles(location, "*.lub", SearchOption.TopDirectoryOnly)) {
+        //            if (!_ignoreList.Any(s => Path.GetFileName(luaData).Contains(s))) {
+        //                DecompileLua(luaData);
+        //                string[] script = File.ReadAllLines(location);
+        //                int lineCount = 0;
+
+        //                foreach (string line in script) {
+        //                    if (line.StartsWith(parameter)) {
+        //                        string[] split = line.Split(' ');
+        //                        split[0] = _new;
+        //                        script[lineCount] = string.Join(" ", split);
+        //                        break;
+        //                    }
+        //                    lineCount++;
+        //                }
+
+        //                File.WriteAllLines(luaData, script);
+        //            }
+        //        }
+        //    }
+        //}
+
+        //private static void StringReplace(string location, string _string, string _new) {
+        //    if (_archive != string.Empty) location = Path.Combine(Path.Combine(_archive, Path.GetFileNameWithoutExtension(_archiveLocation)), location);
+        //    else location = Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), location);
+
+        //    if (File.Exists(location) && !_ignoreList.Contains(Path.GetFileName(location))) {
+        //        DecompileLua(location);
+        //        string[] script = File.ReadAllLines(location);
+        //        int lineCount = 0;
+
+        //        foreach (string line in script) {
+        //            if (line.Contains(_string)) {
+        //                script[lineCount] = line.Replace(_string, _new);
+        //                break;
+        //            }
+        //            lineCount++;
+        //        }
+
+        //        File.WriteAllLines(location, script);
+        //    } else if (Directory.Exists(location)) {
+        //        foreach (string luaData in Directory.GetFiles(location, "*.lub", SearchOption.TopDirectoryOnly)) {
+        //            if (!_ignoreList.Any(s => Path.GetFileName(luaData).Contains(s))) {
+        //                DecompileLua(luaData);
+        //                string[] script = File.ReadAllLines(luaData);
+        //                int lineCount = 0;
+
+        //                foreach (string line in script) {
+        //                    if (line == _string) {
+        //                        line.Replace(_string, _new);
+        //                        break;
+        //                    }
+        //                    lineCount++;
+        //                }
+
+        //                File.WriteAllLines(luaData, script);
+        //            }
+        //        }
+        //    }
+        //}
     }
 
     class EBOOT
@@ -1315,77 +795,6 @@ namespace Unleash.Patcher
             process.StartInfo = startInfo;
             process.Start();
             process.WaitForExit();
-        }
-
-        public static void FieldOfView(string filepath, decimal fov) {
-            using (var stream = File.Open(filepath, FileMode.Open, FileAccess.Write)) {
-                stream.Position = 0x4F4D; stream.WriteByte(decimal.ToByte(fov));
-            }
-        }
-    }
-
-    class PKG
-    {
-        /// <summary>
-        /// Use the PKGTool to encode/decode the given file.
-        /// </summary>
-        public static void PKGTool(string filepath) {
-            Process process = new Process();
-            ProcessStartInfo startInfo = new ProcessStartInfo {
-                FileName = Program.pkgtool,
-                WorkingDirectory = Path.GetDirectoryName(Program.pkgtool),
-                WindowStyle = ProcessWindowStyle.Hidden,
-                Arguments = filepath
-            };
-            process.StartInfo = startInfo;
-            process.Start();
-            process.WaitForExit();
-
-            // Erase the TXT file once encoded as PKG
-            if (Path.GetExtension(filepath) == ".txt") File.Delete(filepath);
-        }
-
-        /// <summary>
-        /// Adds an entry to a specified PKG - should be used for patches.
-        /// </summary>
-        public static void AddEntry(string filepath, string directoryRoot, string key, string _event, string reference) {
-            // Backs up the archive containing the PKG
-            if (!File.Exists($"{filepath}_back"))
-                File.Copy(filepath, $"{filepath}_back", true);
-
-            // Extracts the archive containing the PKG
-            string unpack = ModEngine.UnpackARC(filepath, Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()));
-
-            // Decodes the PKG
-            PKGTool($"{Path.Combine(unpack, directoryRoot)}.pkg");
-            List<string> basePKG = File.ReadAllLines($"{Path.Combine(unpack, directoryRoot)}.txt").ToList();
-            bool keyfound = false;
-            int lineNum = 0;
-
-            foreach (string line in basePKG) {
-                // Look for the already existing key before adding a new one
-                if (line.StartsWith($"\"{key}\"")) {
-                    keyfound = true;
-                    basePKG.Insert(lineNum + 2, $"\t\"{_event}\" = \"{reference}\";");
-                    break;
-                }
-                lineNum++;
-            }
-
-            // Add new key to PKG if it doesn't exist already
-            if (keyfound == false) {
-                basePKG.Add($"\"{key}\"\n{"{"}");
-                basePKG.Add($"\t\"{_event}\" = \"{reference}\";");
-                basePKG.Add("}");
-            }
-
-            File.WriteAllLines($"{Path.Combine(unpack, directoryRoot)}.txt", basePKG); //Save the edited text file
-
-            // Encodes the PKG
-            PKGTool($"{Path.Combine(unpack, directoryRoot)}.txt");
-
-            // Repacks the archive
-            ModEngine.RepackARC(unpack, filepath);
         }
     }
 
