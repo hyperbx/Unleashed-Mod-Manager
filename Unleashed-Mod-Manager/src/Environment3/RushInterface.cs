@@ -697,10 +697,10 @@ namespace Unleash.Environment3
         private async void ContextMenu_ModMenu_Items_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).ToString()) {
                 case "Mod Information":
-                    new ModInfo(ListView_ModsList.FocusedItem.SubItems[6].Text).ShowDialog();
+                    new ModInfo(ListView_ModsList.FocusedItem.SubItems[5].Text).ShowDialog();
                     break;
                 case "Open Folder":
-                    try { Process.Start(Path.GetDirectoryName(ListView_ModsList.FocusedItem.SubItems[6].Text)); }
+                    try { Process.Start(Path.GetDirectoryName(ListView_ModsList.FocusedItem.SubItems[5].Text)); }
                     catch {
                         UnifyMessenger.UnifyMessage.ShowDialog("Unable to locate the selected mod. It may have been removed from the mods directory. Removing from list...",
                                                                "Unable to find mod...", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -715,7 +715,7 @@ namespace Unleash.Environment3
                     TabControl_Rush.SelectedTab.ScrollControlIntoView(Panel_Updates_UICleanSpace);
 
                     // Check for updates...
-                    await CheckForModUpdates(ListView_ModsList.FocusedItem.SubItems[6].Text);
+                    await CheckForModUpdates(ListView_ModsList.FocusedItem.SubItems[5].Text);
                     break;
                 case "Create Mod":
                     // Launch Mod Creator
@@ -724,7 +724,7 @@ namespace Unleash.Environment3
                     break;
                 case "Edit Mod":
                     // Launch Mod Editor
-                    new ModCreator(ListView_ModsList.FocusedItem.SubItems[6].Text, true).ShowDialog();
+                    new ModCreator(ListView_ModsList.FocusedItem.SubItems[5].Text, true).ShowDialog();
                     RefreshLists(); // Refresh on Mod Editor exit
                     break;
                 case "Delete Mod":
@@ -733,7 +733,7 @@ namespace Unleash.Environment3
                                                                                            $"Deleting {ListView_ModsList.FocusedItem.Text}...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (confirmation == DialogResult.Yes) {
-                            string modPath = Path.GetDirectoryName(ListView_ModsList.FocusedItem.SubItems[6].Text);
+                            string modPath = Path.GetDirectoryName(ListView_ModsList.FocusedItem.SubItems[5].Text);
                             DirectoryInfo modData = new DirectoryInfo(modPath);
 
                             if (Directory.Exists(modPath)) {

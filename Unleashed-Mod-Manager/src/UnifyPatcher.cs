@@ -153,7 +153,7 @@ namespace Unleash.Patcher
                     string saveLocation = Path.GetDirectoryName(Path.GetDirectoryName(Properties.Settings.Default.Path_SaveData));
 
                     // Deserialise 'Save' key
-                    string savedata = INI.DeserialiseKey("Save", mod.SubItems[6].Text);
+                    string savedata = INI.DeserialiseKey("Save", mod.SubItems[5].Text);
 
                     if (savedata != string.Empty) { // Speeds things up a bit - ensures it's not checking a default null parameter
                         if (Literal.Emulator(Properties.Settings.Default.Path_GameDirectory) == "Xenia") {
@@ -169,7 +169,7 @@ namespace Unleash.Patcher
                                 // Copy redirected save data back to the mod's directory (keeps user progress)
                                 if (File.Exists(saveFile)) {
                                     Console.WriteLine($"Removing: {dir}");
-                                    if (savedata != string.Empty) File.Copy(saveFile, Path.Combine(Path.GetDirectoryName(mod.SubItems[6].Text), "savedata.360"), true);
+                                    if (savedata != string.Empty) File.Copy(saveFile, Path.Combine(Path.GetDirectoryName(mod.SubItems[5].Text), "savedata.360"), true);
                                 }
 
                                 // Recursively erase redirected save data
@@ -193,7 +193,7 @@ namespace Unleash.Patcher
                                 // Copy redirected save data back to the mod's directory (keeps user progress)
                                 if (File.Exists(saveFile)) {
                                     Console.WriteLine($"Removing: {file}");
-                                    if (savedata != string.Empty) File.Copy(saveFile, Path.Combine(Path.GetDirectoryName(mod.SubItems[6].Text), "savedata.ps3"), true);
+                                    if (savedata != string.Empty) File.Copy(saveFile, Path.Combine(Path.GetDirectoryName(mod.SubItems[5].Text), "savedata.ps3"), true);
                                 }
 
                                 // Erase redirected save data
