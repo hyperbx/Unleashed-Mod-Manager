@@ -19,7 +19,7 @@ When you first run the Mod Manager it will prompt you with the first time setup,
 Configure your Game Executable and Emulator Executable locations using the text fields (or browse buttons). The Emulator Executable simply requires you to select your EXE of [Xenia emulator](https://github.com/xenia-project/xenia) or [RPCS3](https://github.com/RPCS3/rpcs3). Then click `Save, install content and launch Unleashed` to automatically copy the mods to your game directory and launch the game in the selected emulator.
 
 ## Real Hardware
-Uncheck `Launch emulator after installing mods` in the Settings section, then set your game executable to an extracted copy of Sonic Unleashed on external media. Click `Install mods` and once finished, you can launch the game on the external media from real hardware, provided it's modified.
+Uncheck `Launch emulator after installing mods` in the Settings section, then set your game executable to an extracted copy of Sonic Unleashed on external media. Click `Save and install content` and once finished, you can launch the game on the external media from real hardware, provided it's modified.
 
 # ISO Extraction
 In order to use the Mod Manager, your copy of Sonic Unleashed needs to be extracted, how you will do this depends on your system, follow the appropriate instructions in the links below.
