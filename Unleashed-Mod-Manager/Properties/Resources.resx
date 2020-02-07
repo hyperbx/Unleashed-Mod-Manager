@@ -242,7 +242,7 @@
     <value>https://raw.githubusercontent.com/HyperPolygon64/Unify-Networking/master/Unleashed_Mod_Manager/latest.txt</value>
   </data>
   <data name="VersionURI_SEGACarnival" xml:space="preserve">
-    <value>https://www.segacarnival.com/hyper/updates/unleashed-06-mod-manager/latest.txt</value>
+    <value>https://www.segacarnival.com/hyper/updates/unleashed-mod-manager/latest.txt</value>
   </data>
   <data name="vsh_curves" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\applications\data\vsh_curves;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

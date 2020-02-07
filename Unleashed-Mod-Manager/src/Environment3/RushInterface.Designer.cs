@@ -181,13 +181,14 @@ namespace Unleash.Environment3
             this.LinkLabel_Microsoft = new System.Windows.Forms.LinkLabel();
             this.LinkLabel_SuperSonic16 = new System.Windows.Forms.LinkLabel();
             this.LinkLabel_HyperPolygon64 = new System.Windows.Forms.LinkLabel();
-            this.Label_Testers = new System.Windows.Forms.Label();
             this.Title_Testers = new System.Windows.Forms.Label();
             this.Label_SpecialThanks = new System.Windows.Forms.Label();
             this.Title_SpecialThanks = new System.Windows.Forms.Label();
             this.Label_Contributors = new System.Windows.Forms.Label();
             this.Title_Contributors = new System.Windows.Forms.Label();
             this.Label_Version = new System.Windows.Forms.Label();
+            this.LinkLabel_GPF = new System.Windows.Forms.LinkLabel();
+            this.Label_Testers = new System.Windows.Forms.Label();
             this.Panel_About_UICleanSpace = new System.Windows.Forms.Panel();
             this.Rush_Section_Debug = new Unleash.Environment3.SectionButton();
             this.Rush_Section_Updates = new Unleash.Environment3.SectionButton();
@@ -197,7 +198,6 @@ namespace Unleash.Environment3
             this.Rush_Section_Emulator = new Unleash.Environment3.SectionButton();
             this.Rush_Section_Mods = new Unleash.Environment3.SectionButton();
             this.Container_Rush = new Unleash.Environment3.UserContainer();
-            this.LinkLabel_GPF = new System.Windows.Forms.LinkLabel();
             this.Panel_MainControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_MainControls)).BeginInit();
             this.SplitContainer_MainControls.Panel1.SuspendLayout();
@@ -311,7 +311,7 @@ namespace Unleash.Environment3
             this.SectionButton_LaunchGame.SectionImage = global::Unleash.Properties.Resources.Run_16x;
             this.SectionButton_LaunchGame.SectionText = "Launch Sonic Unleashed";
             this.SectionButton_LaunchGame.SelectedSection = false;
-            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1152, 35);
+            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1155, 35);
             this.SectionButton_LaunchGame.TabIndex = 51;
             this.SectionButton_LaunchGame.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_LaunchGame.Click += new System.EventHandler(this.SectionButton_LaunchGame_Click);
@@ -416,7 +416,7 @@ namespace Unleash.Environment3
             this.SectionButton_RefreshMods.SectionImage = ((System.Drawing.Bitmap)(resources.GetObject("SectionButton_RefreshMods.SectionImage")));
             this.SectionButton_RefreshMods.SectionText = "Refresh mods list";
             this.SectionButton_RefreshMods.SelectedSection = false;
-            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1874, 35);
+            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1877, 35);
             this.SectionButton_RefreshMods.TabIndex = 52;
             this.SectionButton_RefreshMods.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_RefreshMods.Click += new System.EventHandler(this.SectionButton_Refresh_Click);
@@ -1144,7 +1144,7 @@ namespace Unleash.Environment3
             this.Button_Patches_DeselectAll.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Button_Patches_DeselectAll.Location = new System.Drawing.Point(3, 0);
             this.Button_Patches_DeselectAll.Name = "Button_Patches_DeselectAll";
-            this.Button_Patches_DeselectAll.Size = new System.Drawing.Size(303, 23);
+            this.Button_Patches_DeselectAll.Size = new System.Drawing.Size(291, 23);
             this.Button_Patches_DeselectAll.TabIndex = 48;
             this.Button_Patches_DeselectAll.Text = "Deselect All";
             this.Button_Patches_DeselectAll.UseVisualStyleBackColor = false;
@@ -1162,7 +1162,7 @@ namespace Unleash.Environment3
             this.SectionButton_RefreshPatches.SectionImage = ((System.Drawing.Bitmap)(resources.GetObject("SectionButton_RefreshPatches.SectionImage")));
             this.SectionButton_RefreshPatches.SectionText = "Refresh patches list";
             this.SectionButton_RefreshPatches.SelectedSection = false;
-            this.SectionButton_RefreshPatches.Size = new System.Drawing.Size(1271, 35);
+            this.SectionButton_RefreshPatches.Size = new System.Drawing.Size(1274, 35);
             this.SectionButton_RefreshPatches.TabIndex = 52;
             this.SectionButton_RefreshPatches.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_RefreshPatches.Click += new System.EventHandler(this.SectionButton_Refresh_Click);
@@ -2286,16 +2286,6 @@ namespace Unleash.Environment3
             this.LinkLabel_HyperPolygon64.Text = "HyperPolygon64";
             this.LinkLabel_HyperPolygon64.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
             // 
-            // Label_Testers
-            // 
-            this.Label_Testers.AutoSize = true;
-            this.Label_Testers.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.Label_Testers.Location = new System.Drawing.Point(9, 383);
-            this.Label_Testers.Name = "Label_Testers";
-            this.Label_Testers.Size = new System.Drawing.Size(150, 50);
-            this.Label_Testers.TabIndex = 39;
-            this.Label_Testers.Text = "► Beatz\r\n► Gotta Play Fast";
-            // 
             // Title_Testers
             // 
             this.Title_Testers.AutoSize = true;
@@ -2360,6 +2350,31 @@ namespace Unleash.Environment3
             this.Label_Version.TabIndex = 0;
             this.Label_Version.Text = "Unleash 1.0";
             this.Label_Version.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // LinkLabel_GPF
+            // 
+            this.LinkLabel_GPF.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
+            this.LinkLabel_GPF.AutoSize = true;
+            this.LinkLabel_GPF.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
+            this.LinkLabel_GPF.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.LinkLabel_GPF.LinkColor = System.Drawing.SystemColors.Control;
+            this.LinkLabel_GPF.Location = new System.Drawing.Point(30, 408);
+            this.LinkLabel_GPF.Name = "LinkLabel_GPF";
+            this.LinkLabel_GPF.Size = new System.Drawing.Size(129, 25);
+            this.LinkLabel_GPF.TabIndex = 189;
+            this.LinkLabel_GPF.TabStop = true;
+            this.LinkLabel_GPF.Text = "Gotta Play Fast";
+            this.LinkLabel_GPF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
+            // 
+            // Label_Testers
+            // 
+            this.Label_Testers.AutoSize = true;
+            this.Label_Testers.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.Label_Testers.Location = new System.Drawing.Point(9, 383);
+            this.Label_Testers.Name = "Label_Testers";
+            this.Label_Testers.Size = new System.Drawing.Size(150, 50);
+            this.Label_Testers.TabIndex = 39;
+            this.Label_Testers.Text = "► Beatz\r\n► Gotta Play Fast";
             // 
             // Panel_About_UICleanSpace
             // 
@@ -2493,21 +2508,6 @@ namespace Unleash.Environment3
             this.Container_Rush.SplitterDistance = 250;
             this.Container_Rush.TabIndex = 17;
             this.Container_Rush.Title = "Mods";
-            // 
-            // LinkLabel_GPF
-            // 
-            this.LinkLabel_GPF.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
-            this.LinkLabel_GPF.AutoSize = true;
-            this.LinkLabel_GPF.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
-            this.LinkLabel_GPF.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.LinkLabel_GPF.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_GPF.Location = new System.Drawing.Point(30, 408);
-            this.LinkLabel_GPF.Name = "LinkLabel_GPF";
-            this.LinkLabel_GPF.Size = new System.Drawing.Size(129, 25);
-            this.LinkLabel_GPF.TabIndex = 189;
-            this.LinkLabel_GPF.TabStop = true;
-            this.LinkLabel_GPF.Text = "Gotta Play Fast";
-            this.LinkLabel_GPF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
             // 
             // RushInterface
             // 

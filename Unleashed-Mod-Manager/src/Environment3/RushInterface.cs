@@ -1609,11 +1609,9 @@ namespace Unleash.Environment3
         /// Launches Protocol Manager for GameBanana registry key installation.
         /// </summary>
         private void LinkLabel_ProtocolManager_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            string protocolManager = $"{Program.ApplicationData}\\Unify\\Tools\\Protocol Manager.exe";
-            
-            if (File.Exists(protocolManager)) {
+            if (File.Exists(Program.ProtocolManager)) {
                 ProcessStartInfo info = new ProcessStartInfo() {
-                    FileName = protocolManager,
+                    FileName = Program.ProtocolManager,
                     Arguments = $"\"{Application.ExecutablePath}\" \"True\"",
                     UseShellExecute = true,
                     Verb = "runas"

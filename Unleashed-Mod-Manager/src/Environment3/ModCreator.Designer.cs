@@ -387,8 +387,6 @@
             // check_GenerateFilesystem
             // 
             this.check_GenerateFilesystem.AutoSize = true;
-            this.check_GenerateFilesystem.Checked = true;
-            this.check_GenerateFilesystem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.check_GenerateFilesystem.ForeColor = System.Drawing.SystemColors.Control;
             this.check_GenerateFilesystem.Location = new System.Drawing.Point(13, 25);
             this.check_GenerateFilesystem.Name = "check_GenerateFilesystem";

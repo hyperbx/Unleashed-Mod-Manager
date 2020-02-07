@@ -503,7 +503,7 @@ namespace Unleash.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://www.segacarnival.com/hyper/updates/unleashed-06-mod-manager/latest.txt.
+        ///   Looks up a localized string similar to https://www.segacarnival.com/hyper/updates/unleashed-mod-manager/latest.txt.
         /// </summary>
         internal static string VersionURI_SEGACarnival {
             get {

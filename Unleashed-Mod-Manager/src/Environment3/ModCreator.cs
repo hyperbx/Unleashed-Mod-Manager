@@ -129,45 +129,45 @@ namespace Unleash.Environment3
                     if (!edit)
                         Directory.CreateDirectory(newPath);
                     else if (!Directory.Exists(newPath))
-                        Directory.Move(mod, newPath);
+                        Directory.Move(Path.GetDirectoryName(mod), newPath);
 
                     using (Stream configCreate = File.Open(Path.Combine(newPath, "mod.ini"), FileMode.Create))
-                    using (StreamWriter configInfo = new StreamWriter(configCreate)) {
-                                                                configInfo.WriteLine("[Details]");
-                                                                configInfo.WriteLine($"Title=\"{text_Title.Text}\"");
-                        if (text_Version.Text != string.Empty)  configInfo.WriteLine($"Version=\"{text_Version.Text}\"");
-                        if (text_Date.Text != string.Empty)     configInfo.WriteLine($"Date=\"{text_Date.Text}\"");
-                        if (text_Author.Text != string.Empty)   configInfo.WriteLine($"Author=\"{text_Author.Text}\"");
-                                                                configInfo.WriteLine($"Platform=\"{combo_System.Text}\"");
+                        using (StreamWriter configInfo = new StreamWriter(configCreate)) {
+                                                                    configInfo.WriteLine("[Details]");
+                                                                    configInfo.WriteLine($"Title=\"{text_Title.Text}\"");
+                            if (text_Version.Text != string.Empty)  configInfo.WriteLine($"Version=\"{text_Version.Text}\"");
+                            if (text_Date.Text != string.Empty)     configInfo.WriteLine($"Date=\"{text_Date.Text}\"");
+                            if (text_Author.Text != string.Empty)   configInfo.WriteLine($"Author=\"{text_Author.Text}\"");
+                                                                    configInfo.WriteLine($"Platform=\"{combo_System.Text}\"");
 
-                        if (tb_Description.Text != string.Empty) {
-                            string descriptionText = string.Empty;
-                            string lastLine = tb_Description.Lines.Last();
-                            foreach (var newLine in tb_Description.Lines) {
-                                if (newLine != lastLine) descriptionText += $"{newLine}\\n";
-                                else descriptionText += newLine;
+                            if (tb_Description.Text != string.Empty) {
+                                string descriptionText = string.Empty;
+                                string lastLine = tb_Description.Lines.Last();
+                                foreach (var newLine in tb_Description.Lines) {
+                                    if (newLine != lastLine) descriptionText += $"{newLine}\\n";
+                                    else descriptionText += newLine;
+                                }
+                                configInfo.WriteLine($"Description=\"{descriptionText}\"");
                             }
-                            configInfo.WriteLine($"Description=\"{descriptionText}\"");
+
+                            if (text_Save.Text != string.Empty && combo_System.SelectedIndex == 0) {
+                                configInfo.WriteLine("\n[Filesystem]");
+                                configInfo.WriteLine($"Save=\"savedata.360\"");
+                            } else if (text_Save.Text != string.Empty && combo_System.SelectedIndex == 1) {
+                                configInfo.WriteLine("\n[Filesystem]");
+                                configInfo.WriteLine($"Save=\"savedata.ps3\"");
+                            }
+
+                            if (text_Server.Text != string.Empty) {
+                                configInfo.WriteLine();
+                                configInfo.WriteLine("[Updater]");
+                                configInfo.WriteLine($"Metadata=\"{text_Server.Text}\"");
+                            }
+
+                            if (text_Data.Text != string.Empty) configInfo.WriteLine($"Data=\"{text_Data.Text}\"");
+
+                            configInfo.Close();
                         }
-
-                        if (text_Save.Text != string.Empty && combo_System.SelectedIndex == 0) {
-                            configInfo.WriteLine("\n[Filesystem]");
-                            configInfo.WriteLine($"Save=\"savedata.360\"");
-                        } else if (text_Save.Text != string.Empty && combo_System.SelectedIndex == 1) {
-                            configInfo.WriteLine("\n[Filesystem]");
-                            configInfo.WriteLine($"Save=\"savedata.ps3\"");
-                        }
-
-                        if (text_Server.Text != string.Empty) {
-                            configInfo.WriteLine();
-                            configInfo.WriteLine("[Updater]");
-                            configInfo.WriteLine($"Metadata=\"{text_Server.Text}\"");
-                        }
-
-                        if (text_Data.Text != string.Empty) configInfo.WriteLine($"Data=\"{text_Data.Text}\"");
-
-                        configInfo.Close();
-                    }
 
                     if (File.Exists(modThumbnail))
                         File.Copy(modThumbnail, Path.Combine(newPath, $"thumbnail{Path.GetExtension(modThumbnail)}"), true);

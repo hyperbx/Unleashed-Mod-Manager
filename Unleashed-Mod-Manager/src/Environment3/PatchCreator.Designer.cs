@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PatchCreator));
             this.btn_Create = new System.Windows.Forms.Button();
-            this.unifytb_ModCreator = new UnifyTabControl();
+            this.unifytb_ModCreator = new Unleash.Environment3.UnifyTabControl();
             this.unifytb_Tab_Details = new System.Windows.Forms.TabPage();
             this.text_Blurb = new System.Windows.Forms.TextBox();
             this.lbl_Blurb = new System.Windows.Forms.Label();
