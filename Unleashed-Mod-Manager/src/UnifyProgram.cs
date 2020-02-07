@@ -37,16 +37,12 @@ namespace Unleash.Environment3
 {
     static class Program
     {
-        public static readonly string VersionNumber    = "Version 1.0",
-                                      VersionNumberDev = $"Version 1.0-indev-{DateTime.Now.ToString("ddMMyy")}r4";
+        public static readonly string VersionNumberDev = "Version 1.0",
+                                      VersionNumber    = $"Version 1.0-indev-{DateTime.Now.ToString("ddMMyy")}r4";
 
         public static string ApplicationData    = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                              _7Zip              = $"{ApplicationData}\\Unleash\\Tools\\7z.exe",
-                             Arctool            = $"{ApplicationData}\\Unleash\\Tools\\arctool.exe",
                              XexTool            = $"{ApplicationData}\\Unleash\\Tools\\xextool.exe",
-                             pkgtool            = $"{ApplicationData}\\Unleash\\Tools\\pkgtool.exe",
-                             vcruntime          = $"{ApplicationData}\\Unleash\\Tools\\vcruntime140_1.dll",
-                             unlub              = $"{ApplicationData}\\Unleash\\Tools\\unlub.jar",
                              Patches            = $"{ApplicationData}\\Unleash\\Patches\\",
                              ProtocolManager    = $"{ApplicationData}\\Unleash\\Tools\\Protocol Manager.exe",
                              scetool            = $"{ApplicationData}\\Unleash\\Tools\\scetool.exe",
@@ -73,20 +69,8 @@ namespace Unleash.Environment3
             if (!File.Exists(_7Zip))
                 File.WriteAllBytes(_7Zip, Properties.Resources._7z);
 
-            if (!File.Exists(Arctool))
-                File.WriteAllBytes(Arctool, Properties.Resources.arctool);
-
             if (!File.Exists(XexTool))
                 File.WriteAllBytes(XexTool, Properties.Resources.xextool);
-
-            if (!File.Exists(pkgtool))
-                File.WriteAllBytes(pkgtool, Properties.Resources.pkgtool);
-
-            if (!File.Exists(vcruntime))
-                File.WriteAllBytes(vcruntime, Properties.Resources.vcruntime140_1);
-
-            if (!File.Exists(unlub))
-                File.WriteAllBytes(unlub, Properties.Resources.unlub);
 
             if (!File.Exists(ProtocolManager))
                 File.WriteAllBytes(ProtocolManager, Properties.Resources.Protocol_Manager);

@@ -118,9 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="arctool" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\applications\arctool.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Cancel_16x" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\Images\Cancel_16x.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -223,9 +220,6 @@
   <data name="PatchURI_GitHub" xml:space="preserve">
     <value>https://raw.githubusercontent.com/HyperPolygon64/Unleashed-Mod-Manager-Patches/master/.git-repo</value>
   </data>
-  <data name="pkgtool" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\applications\pkgtool.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Protocol_Manager" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\applications\protocol manager.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -241,14 +235,8 @@
   <data name="scetool" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\applications\scetool.exe;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="unlub" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\applications\unlub.jar;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="Update_4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\res\images\update 4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="vcruntime140_1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\res\applications\vcruntime140_1.dll;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="VersionURI_GitHub" xml:space="preserve">
     <value>https://raw.githubusercontent.com/HyperPolygon64/Unify-Networking/master/Unleashed_Mod_Manager/latest.txt</value>

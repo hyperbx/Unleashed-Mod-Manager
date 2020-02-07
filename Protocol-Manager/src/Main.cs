@@ -35,7 +35,7 @@ namespace Protocol_Manager
     public partial class Main : Form
     {
         public static bool theme = false;
-        public static string protocol = "sonic06mm";
+        public static string protocol = "unleashedmm";
         public static string modManager = string.Empty;
         public static RegistryKey sonic06mmKey = Registry.ClassesRoot.OpenSubKey($"{protocol}\\shell\\open\\command");
 
@@ -60,7 +60,7 @@ namespace Protocol_Manager
         }
 
         private void CheckRegistry() {
-            RegistryKey key = Registry.ClassesRoot.OpenSubKey(protocol, false); // Open the Sonic '06 Mod Manager protocol key
+            RegistryKey key = Registry.ClassesRoot.OpenSubKey(protocol, false); // Open the Unleashed Mod Manager protocol key
             RegistryKey getLocation = Registry.ClassesRoot.OpenSubKey($"{protocol}\\shell\\open\\command");
 
             if (key == null) { // If the key does not exist, keep the checkbox unchecked.
@@ -97,7 +97,7 @@ namespace Protocol_Manager
             sonic06mmKey = Registry.ClassesRoot.OpenSubKey(protocol, true);
             if (sonic06mmKey == null)
                 sonic06mmKey = Registry.ClassesRoot.CreateSubKey(protocol);
-            sonic06mmKey.SetValue("", "URL:Sonic '06 Mod Manager");
+            sonic06mmKey.SetValue("", "URL:Unleashed Mod Manager");
             sonic06mmKey.SetValue("URL Protocol", "");
             var prevkey = sonic06mmKey;
             sonic06mmKey = sonic06mmKey.OpenSubKey("shell", true);
@@ -127,7 +127,7 @@ namespace Protocol_Manager
         }
 
         private void help_Invalid_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            MessageBox.Show("If you launched Protocol Manager manually and not through Sonic '06 Mod Manager, this will always be invalid.\n\n" +
+            MessageBox.Show("If you launched Protocol Manager manually and not through Unleashed Mod Manager, this will always be invalid.\n\n" +
                             "" +
                             "If otherwise, please update your protocol.",
                             "Invalid Protocol", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -137,7 +137,7 @@ namespace Protocol_Manager
             try {
                 if (modManager != string.Empty) Process.Start(modManager);
             } catch {
-                MessageBox.Show("Failed to launch Sonic '06 Mod Manager... Please run it manually.",
+                MessageBox.Show("Failed to launch Unleashed Mod Manager... Please run it manually.",
                                 "Process Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
