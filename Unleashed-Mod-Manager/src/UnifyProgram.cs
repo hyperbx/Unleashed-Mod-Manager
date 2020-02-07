@@ -38,7 +38,7 @@ namespace Unleash.Environment3
     static class Program
     {
         public static readonly string VersionNumberDev = "Version 1.0",
-                                      VersionNumber    = $"Version 1.0-indev-{DateTime.Now.ToString("ddMMyy")}r4";
+                                      VersionNumber    = $"Version 1.0-indev-{DateTime.Now.ToString("ddMMyy")}r5";
 
         public static string ApplicationData    = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                              _7Zip              = $"{ApplicationData}\\Unleash\\Tools\\7z.exe",
