@@ -175,6 +175,8 @@ namespace Unleash.Environment3
             this.Label_Description_ModsDirectory = new System.Windows.Forms.Label();
             this.Label_Description_Snapshot = new System.Windows.Forms.Label();
             this.Tab_Section_About = new System.Windows.Forms.TabPage();
+            this.LinkLabel_Velcomia = new System.Windows.Forms.LinkLabel();
+            this.LinkLabel_CodenameGamma = new System.Windows.Forms.LinkLabel();
             this.LinkLabel_Beatz = new System.Windows.Forms.LinkLabel();
             this.LinkLabel_SEGACarnival = new System.Windows.Forms.LinkLabel();
             this.LinkLabel_AssemblyPP = new System.Windows.Forms.LinkLabel();
@@ -198,8 +200,6 @@ namespace Unleash.Environment3
             this.Rush_Section_Emulator = new Unleash.Environment3.SectionButton();
             this.Rush_Section_Mods = new Unleash.Environment3.SectionButton();
             this.Container_Rush = new Unleash.Environment3.UserContainer();
-            this.LinkLabel_CodenameGamma = new System.Windows.Forms.LinkLabel();
-            this.LinkLabel_Velcomia = new System.Windows.Forms.LinkLabel();
             this.Panel_MainControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_MainControls)).BeginInit();
             this.SplitContainer_MainControls.Panel1.SuspendLayout();
@@ -313,7 +313,7 @@ namespace Unleash.Environment3
             this.SectionButton_LaunchGame.SectionImage = global::Unleash.Properties.Resources.Run_16x;
             this.SectionButton_LaunchGame.SectionText = "Launch Sonic Unleashed";
             this.SectionButton_LaunchGame.SelectedSection = false;
-            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1164, 35);
+            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1167, 35);
             this.SectionButton_LaunchGame.TabIndex = 51;
             this.SectionButton_LaunchGame.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_LaunchGame.Click += new System.EventHandler(this.SectionButton_LaunchGame_Click);
@@ -418,7 +418,7 @@ namespace Unleash.Environment3
             this.SectionButton_RefreshMods.SectionImage = ((System.Drawing.Bitmap)(resources.GetObject("SectionButton_RefreshMods.SectionImage")));
             this.SectionButton_RefreshMods.SectionText = "Refresh mods list";
             this.SectionButton_RefreshMods.SelectedSection = false;
-            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1889, 35);
+            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1892, 35);
             this.SectionButton_RefreshMods.TabIndex = 52;
             this.SectionButton_RefreshMods.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_RefreshMods.Click += new System.EventHandler(this.SectionButton_Refresh_Click);
@@ -1164,7 +1164,7 @@ namespace Unleash.Environment3
             this.SectionButton_RefreshPatches.SectionImage = ((System.Drawing.Bitmap)(resources.GetObject("SectionButton_RefreshPatches.SectionImage")));
             this.SectionButton_RefreshPatches.SectionText = "Refresh patches list";
             this.SectionButton_RefreshPatches.SelectedSection = false;
-            this.SectionButton_RefreshPatches.Size = new System.Drawing.Size(1286, 35);
+            this.SectionButton_RefreshPatches.Size = new System.Drawing.Size(1289, 35);
             this.SectionButton_RefreshPatches.TabIndex = 52;
             this.SectionButton_RefreshPatches.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_RefreshPatches.Click += new System.EventHandler(this.SectionButton_Refresh_Click);
@@ -2200,6 +2200,36 @@ namespace Unleash.Environment3
             this.Tab_Section_About.Text = "About";
             this.Tab_Section_About.Visible = false;
             // 
+            // LinkLabel_Velcomia
+            // 
+            this.LinkLabel_Velcomia.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
+            this.LinkLabel_Velcomia.AutoSize = true;
+            this.LinkLabel_Velcomia.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
+            this.LinkLabel_Velcomia.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.LinkLabel_Velcomia.LinkColor = System.Drawing.SystemColors.Control;
+            this.LinkLabel_Velcomia.Location = new System.Drawing.Point(30, 483);
+            this.LinkLabel_Velcomia.Name = "LinkLabel_Velcomia";
+            this.LinkLabel_Velcomia.Size = new System.Drawing.Size(83, 25);
+            this.LinkLabel_Velcomia.TabIndex = 191;
+            this.LinkLabel_Velcomia.TabStop = true;
+            this.LinkLabel_Velcomia.Text = "Velcomia";
+            this.LinkLabel_Velcomia.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
+            // 
+            // LinkLabel_CodenameGamma
+            // 
+            this.LinkLabel_CodenameGamma.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
+            this.LinkLabel_CodenameGamma.AutoSize = true;
+            this.LinkLabel_CodenameGamma.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
+            this.LinkLabel_CodenameGamma.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.LinkLabel_CodenameGamma.LinkColor = System.Drawing.SystemColors.Control;
+            this.LinkLabel_CodenameGamma.Location = new System.Drawing.Point(30, 457);
+            this.LinkLabel_CodenameGamma.Name = "LinkLabel_CodenameGamma";
+            this.LinkLabel_CodenameGamma.Size = new System.Drawing.Size(160, 25);
+            this.LinkLabel_CodenameGamma.TabIndex = 190;
+            this.LinkLabel_CodenameGamma.TabStop = true;
+            this.LinkLabel_CodenameGamma.Text = "CodenameGamma";
+            this.LinkLabel_CodenameGamma.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
+            // 
             // LinkLabel_Beatz
             // 
             this.LinkLabel_Beatz.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
@@ -2309,7 +2339,7 @@ namespace Unleash.Environment3
             this.Label_SpecialThanks.Size = new System.Drawing.Size(294, 75);
             this.Label_SpecialThanks.TabIndex = 37;
             this.Label_SpecialThanks.Text = "► Microsoft - Design inspiration\r\n► Assembly++ - Design inspiration\r\n► SEGA Carni" +
-    "val - Update Servers";
+    "val - Update servers";
             // 
             // Title_SpecialThanks
             // 
@@ -2512,36 +2542,6 @@ namespace Unleash.Environment3
             this.Container_Rush.SplitterDistance = 250;
             this.Container_Rush.TabIndex = 17;
             this.Container_Rush.Title = "Mods";
-            // 
-            // LinkLabel_CodenameGamma
-            // 
-            this.LinkLabel_CodenameGamma.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
-            this.LinkLabel_CodenameGamma.AutoSize = true;
-            this.LinkLabel_CodenameGamma.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
-            this.LinkLabel_CodenameGamma.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.LinkLabel_CodenameGamma.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_CodenameGamma.Location = new System.Drawing.Point(30, 457);
-            this.LinkLabel_CodenameGamma.Name = "LinkLabel_CodenameGamma";
-            this.LinkLabel_CodenameGamma.Size = new System.Drawing.Size(160, 25);
-            this.LinkLabel_CodenameGamma.TabIndex = 190;
-            this.LinkLabel_CodenameGamma.TabStop = true;
-            this.LinkLabel_CodenameGamma.Text = "CodenameGamma";
-            this.LinkLabel_CodenameGamma.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
-            // 
-            // LinkLabel_Velcomia
-            // 
-            this.LinkLabel_Velcomia.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
-            this.LinkLabel_Velcomia.AutoSize = true;
-            this.LinkLabel_Velcomia.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
-            this.LinkLabel_Velcomia.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.LinkLabel_Velcomia.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_Velcomia.Location = new System.Drawing.Point(30, 483);
-            this.LinkLabel_Velcomia.Name = "LinkLabel_Velcomia";
-            this.LinkLabel_Velcomia.Size = new System.Drawing.Size(83, 25);
-            this.LinkLabel_Velcomia.TabIndex = 191;
-            this.LinkLabel_Velcomia.TabStop = true;
-            this.LinkLabel_Velcomia.Text = "Velcomia";
-            this.LinkLabel_Velcomia.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
             // 
             // RushInterface
             // 
