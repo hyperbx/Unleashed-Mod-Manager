@@ -120,7 +120,7 @@ namespace Unleash.Environment3
                 }
             } catch {
                 UnifyMessenger.UnifyMessage.ShowDialog("Unable to establish a connection to GameBanana.",
-                                                        "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                       "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
             }
         }
