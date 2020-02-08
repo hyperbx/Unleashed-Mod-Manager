@@ -190,6 +190,7 @@ namespace Unleash.Environment3
             this.Title_Contributors = new System.Windows.Forms.Label();
             this.Label_Version = new System.Windows.Forms.Label();
             this.LinkLabel_GPF = new System.Windows.Forms.LinkLabel();
+            this.LinkLabel_slashiee = new System.Windows.Forms.LinkLabel();
             this.Label_Testers = new System.Windows.Forms.Label();
             this.Panel_About_UICleanSpace = new System.Windows.Forms.Panel();
             this.Rush_Section_Debug = new Unleash.Environment3.SectionButton();
@@ -313,7 +314,7 @@ namespace Unleash.Environment3
             this.SectionButton_LaunchGame.SectionImage = global::Unleash.Properties.Resources.Run_16x;
             this.SectionButton_LaunchGame.SectionText = "Launch Sonic Unleashed";
             this.SectionButton_LaunchGame.SelectedSection = false;
-            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1173, 35);
+            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1185, 35);
             this.SectionButton_LaunchGame.TabIndex = 51;
             this.SectionButton_LaunchGame.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_LaunchGame.Click += new System.EventHandler(this.SectionButton_LaunchGame_Click);
@@ -418,7 +419,7 @@ namespace Unleash.Environment3
             this.SectionButton_RefreshMods.SectionImage = ((System.Drawing.Bitmap)(resources.GetObject("SectionButton_RefreshMods.SectionImage")));
             this.SectionButton_RefreshMods.SectionText = "Refresh mods list";
             this.SectionButton_RefreshMods.SelectedSection = false;
-            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1898, 35);
+            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1913, 35);
             this.SectionButton_RefreshMods.TabIndex = 52;
             this.SectionButton_RefreshMods.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_RefreshMods.Click += new System.EventHandler(this.SectionButton_Refresh_Click);
@@ -1164,7 +1165,7 @@ namespace Unleash.Environment3
             this.SectionButton_RefreshPatches.SectionImage = ((System.Drawing.Bitmap)(resources.GetObject("SectionButton_RefreshPatches.SectionImage")));
             this.SectionButton_RefreshPatches.SectionText = "Refresh patches list";
             this.SectionButton_RefreshPatches.SelectedSection = false;
-            this.SectionButton_RefreshPatches.Size = new System.Drawing.Size(1295, 35);
+            this.SectionButton_RefreshPatches.Size = new System.Drawing.Size(1310, 35);
             this.SectionButton_RefreshPatches.TabIndex = 52;
             this.SectionButton_RefreshPatches.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_RefreshPatches.Click += new System.EventHandler(this.SectionButton_Refresh_Click);
@@ -2188,10 +2189,11 @@ namespace Unleash.Environment3
             this.Tab_Section_About.Controls.Add(this.Title_SpecialThanks);
             this.Tab_Section_About.Controls.Add(this.Label_Contributors);
             this.Tab_Section_About.Controls.Add(this.Title_Contributors);
-            this.Tab_Section_About.Controls.Add(this.Label_Version);
             this.Tab_Section_About.Controls.Add(this.LinkLabel_GPF);
+            this.Tab_Section_About.Controls.Add(this.LinkLabel_slashiee);
             this.Tab_Section_About.Controls.Add(this.Label_Testers);
             this.Tab_Section_About.Controls.Add(this.Panel_About_UICleanSpace);
+            this.Tab_Section_About.Controls.Add(this.Label_Version);
             this.Tab_Section_About.Location = new System.Drawing.Point(4, 20);
             this.Tab_Section_About.Name = "Tab_Section_About";
             this.Tab_Section_About.Size = new System.Drawing.Size(591, 1013);
@@ -2400,19 +2402,35 @@ namespace Unleash.Environment3
             this.LinkLabel_GPF.Text = "Gotta Play Fast";
             this.LinkLabel_GPF.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
             // 
+            // LinkLabel_slashiee
+            // 
+            this.LinkLabel_slashiee.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
+            this.LinkLabel_slashiee.AutoSize = true;
+            this.LinkLabel_slashiee.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
+            this.LinkLabel_slashiee.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.LinkLabel_slashiee.LinkColor = System.Drawing.SystemColors.Control;
+            this.LinkLabel_slashiee.Location = new System.Drawing.Point(30, 508);
+            this.LinkLabel_slashiee.Name = "LinkLabel_slashiee";
+            this.LinkLabel_slashiee.Size = new System.Drawing.Size(73, 25);
+            this.LinkLabel_slashiee.TabIndex = 192;
+            this.LinkLabel_slashiee.TabStop = true;
+            this.LinkLabel_slashiee.Text = "slashiee";
+            this.LinkLabel_slashiee.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
+            // 
             // Label_Testers
             // 
             this.Label_Testers.AutoSize = true;
             this.Label_Testers.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.Label_Testers.Location = new System.Drawing.Point(9, 383);
             this.Label_Testers.Name = "Label_Testers";
-            this.Label_Testers.Size = new System.Drawing.Size(181, 125);
+            this.Label_Testers.Size = new System.Drawing.Size(181, 150);
             this.Label_Testers.TabIndex = 39;
-            this.Label_Testers.Text = "► Beatz\r\n► Gotta Play Fast\r\n► ChrisHighwind\r\n► CodenameGamma\r\n► Velcomia";
+            this.Label_Testers.Text = "► Beatz\r\n► Gotta Play Fast\r\n► ChrisHighwind\r\n► CodenameGamma\r\n► Velcomia\r\n► slash" +
+    "iee";
             // 
             // Panel_About_UICleanSpace
             // 
-            this.Panel_About_UICleanSpace.Location = new System.Drawing.Point(9, 507);
+            this.Panel_About_UICleanSpace.Location = new System.Drawing.Point(9, 532);
             this.Panel_About_UICleanSpace.Name = "Panel_About_UICleanSpace";
             this.Panel_About_UICleanSpace.Size = new System.Drawing.Size(214, 17);
             this.Panel_About_UICleanSpace.TabIndex = 175;
@@ -2778,5 +2796,6 @@ namespace Unleash.Environment3
         private System.Windows.Forms.LinkLabel LinkLabel_GPF;
         private System.Windows.Forms.LinkLabel LinkLabel_Velcomia;
         private System.Windows.Forms.LinkLabel LinkLabel_CodenameGamma;
+        private System.Windows.Forms.LinkLabel LinkLabel_slashiee;
     }
 }

@@ -69,7 +69,7 @@ namespace Unleash.Environment3
             else
                 web_Description.DocumentText = $"<html><head><meta charset=\"UTF-8\"><style>{Properties.Resources.GBStyleSheetDark}</style></head><body>{item.Body}</body></html>";
 
-            if (modID == 6666) return;
+            if (modID == 6765) return;
 
             if (item.ScreenshotURL != null) {
                 try {
@@ -120,7 +120,7 @@ namespace Unleash.Environment3
                 }
             } catch {
                 UnifyMessenger.UnifyMessage.ShowDialog("Unable to establish a connection to GameBanana.",
-                                                       "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                        "Server Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Close();
             }
         }

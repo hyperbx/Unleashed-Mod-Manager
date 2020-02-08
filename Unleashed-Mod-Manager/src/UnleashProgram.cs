@@ -37,8 +37,8 @@ namespace Unleash.Environment3
 {
     static class Program
     {
-        public static readonly string VersionNumber    = "Version 1.02",
-                                      VersionNumberDev = $"Version 1.02-indev-{DateTime.Now.ToString("ddMMyy")}r5";
+        public static readonly string VersionNumber    = "Version 1.03",
+                                      VersionNumberDev = $"Version 1.03-indev-{DateTime.Now.ToString("ddMMyy")}r5";
 
         public static string ApplicationData    = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                              _7Zip              = $"{ApplicationData}\\Unleash\\Tools\\7z.exe",
@@ -104,14 +104,17 @@ namespace Unleash.Environment3
                 if ((Process.GetProcessesByName(Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly().Location)).Count() > 1) == false) {
                     if (args.Length > 0) {
                         if (args[0] == "-banana") {
-                            string[] getIDs = args[1].Remove(0, 40).Split(','); // Split URL
+                            string[] getIDs = args[1].Remove(0, 42).Split(','); // Split URL
                             string modType = string.Empty;
                             int downloadID = 0;
                             int modID = 0;
                             int i = 0;
 
+                            foreach (string item2 in getIDs)
+                                MessageBox.Show(item2);
+
                             //Get IDs from URL
-                            foreach (var item in getIDs)
+                            foreach (string item in getIDs)
                                 if      (i == 0) { int.TryParse(item, out downloadID); { i++; } }
                                 else if (i == 1) { modType = item; i++; }
                                 else if (i == 2) { int.TryParse(item, out modID); { i++; } }
@@ -129,14 +132,14 @@ namespace Unleash.Environment3
                 // If application is running, just load the 1-Click Installer only
                 } else if (args.Length > 0) {
                     if (args[0] == "-banana") {
-                        string[] getIDs = args[1].Remove(0, 40).Split(','); // Split URL
+                        string[] getIDs = args[1].Remove(0, 42).Split(','); // Split URL
                         string modType = string.Empty;
                         int downloadID = 0;
                         int modID = 0;
                         int i = 0;
 
                         //Get IDs from URL
-                        foreach (var item in getIDs)
+                        foreach (string item in getIDs)
                             if      (i == 0) { int.TryParse(item, out downloadID); { i++; } }
                             else if (i == 1) { modType = item; i++; }
                             else if (i == 2) { int.TryParse(item, out modID); { i++; } }

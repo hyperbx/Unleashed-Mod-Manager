@@ -1811,6 +1811,7 @@ namespace Unleash.Environment3
             else if           (sender == LinkLabel_GPF) Process.Start("https://www.youtube.com/channel/UCZfOGBkXRKICFozWU5bE0Xg");
             else if (sender == LinkLabel_CodenameGamma) Process.Start("https://www.youtube.com/user/codenamegamma");
             else if      (sender == LinkLabel_Velcomia) Process.Start("https://twitter.com/Velcomia");
+            else if      (sender == LinkLabel_slashiee) Process.Start("https://github.com/slashiee");
         }
 
         /// <summary>
