@@ -170,8 +170,10 @@ namespace Unleash.Patcher
                     if (File.Exists(originalName)) {
                         if (RushInterface._debug) Console.WriteLine($"Removing: {file}");
                         File.Delete(originalName); // Delete file with last five characters set to '_back'
-                        if (File.Exists(file)) File.Move(file, originalName); // Remove last five characters ('_back')
                     }
+
+                    if (File.Exists(file))
+                        File.Move(file, originalName); // Remove last five characters ('_back')
                 }
             }
         }

@@ -1061,6 +1061,13 @@ namespace Unleash.Environment3
                         return;
                     }
 
+                    if (Literal.System(Properties.Settings.Default.Path_GameDirectory) == "PlayStation 3") {
+                        string rsdxCache = Paths.ReplaceFilename(Properties.Settings.Default.Path_GameDirectory, "RsdxPackedCacheFile.bin");
+
+                        if (File.Exists(rsdxCache))
+                            File.Move(rsdxCache, Path.ChangeExtension(rsdxCache, ".bin_back"));
+                    }
+
                     // Check skipped list to ensure any errors occurred
                     if (ModEngine.skipped.Count != 0)
                         UnifyMessenger.UnifyMessage.ShowDialog($"Installation completed, but the following mods need revising:\n\n{string.Join("\n", ModEngine.skipped)}",
