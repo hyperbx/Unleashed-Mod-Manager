@@ -2,13 +2,13 @@
 using System.IO;
 using System.Net;
 using System.Linq;
-using Unleash.Patcher;
 using System.Drawing;
+using Unleash.Patcher;
 using Unleash.Messenger;
 using Unleash.Networking;
 using Unleash.Serialisers;
-using Unleash.Globalisation;
 using System.Windows.Forms;
+using Unleash.Globalisation;
 using System.IO.Compression;
 
 // Unleashed Mod Manager is licensed under the MIT License:

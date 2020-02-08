@@ -52,6 +52,17 @@ namespace Unleash.Serialisers
         }
     }
 
+    class Verification
+    {
+        public static bool ARL(string file) {
+            string hexString = BitConverter.ToString(File.ReadAllBytes(file).Take(4).ToArray()).Replace("-", " ");
+
+            if      (hexString == "0F F5 12 EE") return false;
+            else if (hexString == "41 52 4C 32") return true;
+            else return false;
+        }
+    }
+
     class Lua
     {
         /// <summary>

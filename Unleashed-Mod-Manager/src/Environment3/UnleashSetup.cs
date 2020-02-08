@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
-using Unleash.Dialogs;
 using System.Drawing;
+using Unleash.Dialogs;
 using Unleash.Messenger;
 using Unleash.Environment3;
-using Unleash.Globalisation;
 using System.Windows.Forms;
+using Unleash.Globalisation;
 
 // Unleashed Mod Manager is licensed under the MIT License:
 /*

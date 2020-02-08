@@ -4,8 +4,8 @@ using System.Linq;
 using System.Drawing;
 using Unleash.Messenger;
 using Unleash.Networking;
-using Unleash.Serialisers;
 using System.Diagnostics;
+using Unleash.Serialisers;
 using System.Windows.Forms;
 
 // Unleashed Mod Manager is licensed under the MIT License:

@@ -2,15 +2,13 @@
 using System.IO;
 using System.Text;
 using System.Linq;
-using ArcPackerLib;
 using Unleash.Messenger;
-using Microsoft.Win32;
+using System.Diagnostics;
 using Unleash.Serialisers;
 using Unleash.Environment3;
-using System.Diagnostics;
-using Unleash.Globalisation;
 using System.Windows.Forms;
 using System.IO.Compression;
+using Unleash.Globalisation;
 using System.Collections.Generic;
 
 // Unleashed Mod Manager is licensed under the MIT License:
@@ -86,7 +84,7 @@ namespace Unleash.Patcher
                 if (File.Exists(vanillaFilePath) && !File.Exists(targetFilePath)) File.Copy(vanillaFilePath, targetFilePath);
                 
                 // Remove already installed archives
-                else if (File.Exists(targetFilePath) && Path.GetExtension(targetFilePath) == ".arl_back") {
+                else if (File.Exists(targetFilePath) && Path.GetExtension(targetFilePath) == ".arl_back" && Verification.ARL(targetFilePath)) {
                     uint arCount;
 
                     using (var stream = File.Open(vanillaFilePath, FileMode.Open, FileAccess.Read)) {
@@ -138,7 +136,7 @@ namespace Unleash.Patcher
                 foreach (string file in files) {
                     string originalName = file.Remove(file.Length - 5);
 
-                    if (Path.GetExtension(file) == ".arl_back") {
+                    if (Path.GetExtension(file) == ".arl_back" && Verification.ARL(file)) {
                         uint arCount;
 
                         using (var stream = File.Open(file, FileMode.Open, FileAccess.Read)) {

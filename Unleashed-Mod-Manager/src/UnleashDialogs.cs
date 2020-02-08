@@ -1,6 +1,6 @@
 ﻿using Ookii.Dialogs;
-using Unleash.Globalisation;
 using System.Windows.Forms;
+using Unleash.Globalisation;
 
 // Unleashed Mod Manager is licensed under the MIT License:
 /*

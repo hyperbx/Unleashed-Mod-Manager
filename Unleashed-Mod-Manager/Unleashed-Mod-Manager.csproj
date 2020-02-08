@@ -77,7 +77,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="third_party\ArcPackerLib\ArcPacker.cs" />
     <Compile Include="src\Environment3\Controls\UnifyMessenger.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,8 +101,8 @@
     <Compile Include="src\Environment3\ModOneClickInstall.designer.cs">
       <DependentUpon>ModOneClickInstall.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\UnifyConsole.cs" />
-    <Compile Include="src\UnifySerialisers.cs" />
+    <Compile Include="src\UnleashConsole.cs" />
+    <Compile Include="src\UnleashSerialisers.cs" />
     <Compile Include="src\Environment3\Controls\ContextMenuDark.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -122,13 +121,13 @@
     <Compile Include="src\Environment3\Controls\WindowsColourPicker.Designer.cs">
       <DependentUpon>WindowsColourPicker.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\Environment3\UnifyEnvironment.cs">
+    <Compile Include="src\Environment3\UnleashEnvironment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Environment3\UnifyEnvironment.Designer.cs">
-      <DependentUpon>UnifyEnvironment.cs</DependentUpon>
+    <Compile Include="src\Environment3\UnleashEnvironment.Designer.cs">
+      <DependentUpon>UnleashEnvironment.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\UnifyProgram.cs" />
+    <Compile Include="src\UnleashProgram.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\Environment3\Controls\UnifyTabControl.cs">
       <SubType>Component</SubType>
@@ -139,7 +138,6 @@
     <Compile Include="src\Environment3\Controls\SectionButton.Designer.cs">
       <DependentUpon>SectionButton.cs</DependentUpon>
     </Compile>
-    <Compile Include="third_party\ArcPackerLib\ZlibStream.cs" />
     <Compile Include="third_party\Ookii.Dialogs\AdditionalVisualStyleElements.cs" />
     <Compile Include="third_party\Ookii.Dialogs\AnimationResource.cs" />
     <Compile Include="third_party\Ookii.Dialogs\ButtonType.cs" />
@@ -206,16 +204,16 @@
     <Compile Include="src\Environment3\RushInterface.Designer.cs">
       <DependentUpon>RushInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\UnifyGlobalisation.cs" />
-    <Compile Include="src\UnifyPatcher.cs" />
-    <Compile Include="src\UnifyNetworking.cs" />
-    <Compile Include="src\Environment3\UnifySetup.cs">
+    <Compile Include="src\UnleashGlobalisation.cs" />
+    <Compile Include="src\UnleashPatcher.cs" />
+    <Compile Include="src\UnleashNetworking.cs" />
+    <Compile Include="src\Environment3\UnleashSetup.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="src\Environment3\UnifySetup.Designer.cs">
-      <DependentUpon>UnifySetup.cs</DependentUpon>
+    <Compile Include="src\Environment3\UnleashSetup.Designer.cs">
+      <DependentUpon>UnleashSetup.cs</DependentUpon>
     </Compile>
-    <Compile Include="src\UnifyDialogs.cs" />
+    <Compile Include="src\UnleashDialogs.cs" />
     <EmbeddedResource Include="src\Environment3\PatchCreator.resx">
       <DependentUpon>PatchCreator.cs</DependentUpon>
     </EmbeddedResource>
@@ -249,14 +247,14 @@
       <DependentUpon>RushInterface.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Environment3\UnifyEnvironment.resx">
-      <DependentUpon>UnifyEnvironment.cs</DependentUpon>
+    <EmbeddedResource Include="src\Environment3\UnleashEnvironment.resx">
+      <DependentUpon>UnleashEnvironment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\Environment3\Controls\SectionButton.resx">
       <DependentUpon>SectionButton.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="src\Environment3\UnifySetup.resx">
-      <DependentUpon>UnifySetup.cs</DependentUpon>
+    <EmbeddedResource Include="src\Environment3\UnleashSetup.resx">
+      <DependentUpon>UnleashSetup.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">

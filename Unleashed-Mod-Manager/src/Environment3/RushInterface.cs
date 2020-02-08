@@ -2,19 +2,19 @@
 using System.IO;
 using System.Net;
 using System.Linq;
+using System.Drawing;
 using Unleash.Patcher;
 using Unleash.Dialogs;
-using System.Drawing;
 using Microsoft.Win32;
 using Unleash.Messenger;
-using Unleash.Networking;
 using System.Management;
-using Unleash.Serialisers;
+using Unleash.Networking;
 using System.Diagnostics;
-using Unleash.Globalisation;
+using Unleash.Serialisers;
 using System.Windows.Forms;
 using System.Configuration;
 using System.ComponentModel;
+using Unleash.Globalisation;
 using System.IO.Compression;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -52,11 +52,12 @@ namespace Unleash.Environment3
     {
         public static bool _debug = false;
         private bool _isPathInvalid = false;
+        private static string protocol = "unleashedmm";
 
         public RushInterface() {
             InitializeComponent(); // Designer support
 
-            // Prevents actions being performed in UnifyEnvironment's design time.
+            // Prevents actions being performed in UnleashEnvironment's design time.
             if (!DesignMode) {
                 // Begin first time setup
                 if (Properties.Settings.Default.General_FirstLaunch &&
@@ -75,6 +76,9 @@ namespace Unleash.Environment3
                 }
 
                 LoadSettings(); // Load user settings
+
+                // Check registry for 1-Click Install registry key
+                try { CheckRegistry(); } catch { LinkLabel_1ClickURLHandler.Text = "Reinstall 1-Click URL Handler"; }
 
                 Label_Version.Text = Program.VersionNumber; // Sets the version string in the About section
                 Properties.Settings.Default.SettingsSaving += Settings_SettingsSaving; // Subscribe to event for SettingsSaving
@@ -1608,19 +1612,67 @@ namespace Unleash.Environment3
         /// <summary>
         /// Launches Protocol Manager for GameBanana registry key installation.
         /// </summary>
-        private void LinkLabel_ProtocolManager_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            if (File.Exists(Program.ProtocolManager)) {
-                ProcessStartInfo info = new ProcessStartInfo() {
-                    FileName = Program.ProtocolManager,
-                    Arguments = $"\"{Application.ExecutablePath}\" \"True\"",
-                    UseShellExecute = true,
-                    Verb = "runas"
-                };
-                Process.Start(info);
-                Application.Exit();
-            } else
-                UnifyMessenger.UnifyMessage.ShowDialog("Protocol Manager is missing, please restart Unleashed Mod Manager.",
-                                                       "Protocol Manager", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        private void LinkLabel_1ClickURLHandler_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
+            try {
+                RegistryKey unleashedmmKey = Registry.CurrentUser.OpenSubKey($"Software\\Classes\\{protocol}\\shell\\open\\command", true);
+
+                // Install handler
+                if (((LinkLabel)sender).Text == "Install 1-Click URL Handler" || ((LinkLabel)sender).Text == "Reinstall 1-Click URL Handler") {
+                    unleashedmmKey = Registry.CurrentUser.OpenSubKey($"Software\\Classes\\{protocol}", true);
+                    if (unleashedmmKey == null)
+                        unleashedmmKey = Registry.CurrentUser.CreateSubKey($"Software\\Classes\\{protocol}");
+                    unleashedmmKey.SetValue(string.Empty, "URL:Sonic '06 Mod Manager");
+                    unleashedmmKey.SetValue("URL Protocol", string.Empty);
+                    RegistryKey prevkey = unleashedmmKey;
+                    unleashedmmKey = unleashedmmKey.OpenSubKey("shell", true);
+                    if (unleashedmmKey == null)
+                        unleashedmmKey = prevkey.CreateSubKey("shell");
+                    prevkey = unleashedmmKey;
+                    unleashedmmKey = unleashedmmKey.OpenSubKey("open", true);
+                    if (unleashedmmKey == null)
+                        unleashedmmKey = prevkey.CreateSubKey("open");
+                    prevkey = unleashedmmKey;
+                    unleashedmmKey = unleashedmmKey.OpenSubKey("command", true);
+                    if (unleashedmmKey == null)
+                        unleashedmmKey = prevkey.CreateSubKey("command");
+
+                    unleashedmmKey.SetValue(string.Empty, $"\"{Application.ExecutablePath}\" \"-banana\" \"%1\"");
+                    unleashedmmKey.Close();
+
+                // Uninstall handler
+                } else if (((LinkLabel)sender).Text == "Uninstall 1-Click URL Handler") {
+                    unleashedmmKey = Registry.CurrentUser.OpenSubKey($"Software\\Classes\\{protocol}", true);
+                    unleashedmmKey.SetValue(string.Empty, string.Empty);
+                    unleashedmmKey = Registry.CurrentUser.OpenSubKey($"Software\\Classes\\{protocol}\\shell\\open\\command", true);
+                    unleashedmmKey.SetValue(string.Empty, string.Empty);
+                    unleashedmmKey.Close();
+                }
+
+                CheckRegistry();
+            } catch {
+                UnifyMessenger.UnifyMessage.ShowDialog("Failed to modify the Windows Registry...",
+                                                       "Registry error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Checks to see if the GameBanana 1-Click registry key is installed.
+        /// </summary>
+        private void CheckRegistry() {
+            RegistryKey key         = Registry.CurrentUser.OpenSubKey($"Software\\Classes\\{protocol}", false), // Open the Sonic '06 Mod Manager protocol key
+                        getLocation = Registry.CurrentUser.OpenSubKey($"Software\\Classes\\{protocol}\\shell\\open\\command", false);
+
+            string command = $"\"{Application.ExecutablePath}\" \"-banana\" \"%1\"";
+
+            // If the key does not exist, keep the checkbox unchecked.
+            if (key == null || getLocation.GetValue(null).ToString() == string.Empty)
+                LinkLabel_1ClickURLHandler.Text = "Install 1-Click URL Handler";
+            else {
+                if (getLocation.GetValue(null).ToString() != command)
+                    LinkLabel_1ClickURLHandler.Text = "Reinstall 1-Click URL Handler";
+                else if (getLocation.GetValue(null).ToString() == command)
+                    LinkLabel_1ClickURLHandler.Text = "Uninstall 1-Click URL Handler";
+            }
         }
 
         /// <summary>
@@ -1913,6 +1965,11 @@ namespace Unleash.Environment3
             else if   (sender == CheckBox_Xenia_Fullscreen) Properties.Settings.Default.Emulator_Fullscreen       = ((CheckBox)sender).Checked;
             else if   (sender == CheckBox_Xenia_DiscordRPC) Properties.Settings.Default.Emulator_DiscordRPC       = ((CheckBox)sender).Checked;
             Properties.Settings.Default.Save();
+        }
+
+        private void LinkLabel_ProtocolManager_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
         }
     }
 }
