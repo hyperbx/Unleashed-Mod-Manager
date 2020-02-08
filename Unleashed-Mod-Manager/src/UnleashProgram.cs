@@ -110,9 +110,6 @@ namespace Unleash.Environment3
                             int modID = 0;
                             int i = 0;
 
-                            foreach (string item2 in getIDs)
-                                MessageBox.Show(item2);
-
                             //Get IDs from URL
                             foreach (string item in getIDs)
                                 if      (i == 0) { int.TryParse(item, out downloadID); { i++; } }
