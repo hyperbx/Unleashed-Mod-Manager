@@ -13,7 +13,7 @@ To manually build the Mod Manager, simply clone this repository to a location on
 If you just wish to use the Mod Manager without touching the code, [simply grab the most recent stable release](https://github.com/HyperPolygon64/Unleashed-Mod-Manager/releases).
 
 # Usage
-When you first run the Mod Manager it will prompt you with the first time setup, these settings be changed at any time. [Please refer to the wiki if you get stuck.](https://github.com/HyperPolygon64/Unleashed-Mod-Manager/wiki)
+When you first run the Mod Manager it will prompt you with the first time setup, these settings be changed at any time. [Please refer to the wiki if you get stuck.](https://github.com/Knuxfan24/Sonic-06-Mod-Manager/wiki)
 
 ## Emulators
 Configure your Game Executable and Emulator Executable locations using the text fields (or browse buttons). The Emulator Executable simply requires you to select your EXE of [Xenia emulator](https://github.com/xenia-project/xenia) or [RPCS3](https://github.com/RPCS3/rpcs3). Then click `Save, install content and launch Unleashed` to automatically copy the mods to your game directory and launch the game in the selected emulator.
