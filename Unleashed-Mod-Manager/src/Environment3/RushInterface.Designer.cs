@@ -186,6 +186,7 @@ namespace Unleash.Environment3
             this.Rush_Section_Emulator = new Unleash.Environment3.SectionButton();
             this.Rush_Section_Mods = new Unleash.Environment3.SectionButton();
             this.Container_Rush = new Unleash.Environment3.UserContainer();
+            this.LinkLabel_Knuxfan24 = new System.Windows.Forms.LinkLabel();
             this.Panel_MainControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_MainControls)).BeginInit();
             this.SplitContainer_MainControls.Panel1.SuspendLayout();
@@ -293,7 +294,7 @@ namespace Unleash.Environment3
             this.SectionButton_LaunchGame.SectionImage = global::Unleash.Properties.Resources.Run_16x;
             this.SectionButton_LaunchGame.SectionText = "Launch Sonic Unleashed";
             this.SectionButton_LaunchGame.SelectedSection = false;
-            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1197, 35);
+            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1203, 35);
             this.SectionButton_LaunchGame.TabIndex = 51;
             this.SectionButton_LaunchGame.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_LaunchGame.Click += new System.EventHandler(this.SectionButton_LaunchGame_Click);
@@ -397,7 +398,7 @@ namespace Unleash.Environment3
             this.SectionButton_RefreshMods.SectionImage = ((System.Drawing.Bitmap)(resources.GetObject("SectionButton_RefreshMods.SectionImage")));
             this.SectionButton_RefreshMods.SectionText = "Refresh mods list";
             this.SectionButton_RefreshMods.SelectedSection = false;
-            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1928, 35);
+            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1934, 35);
             this.SectionButton_RefreshMods.TabIndex = 52;
             this.SectionButton_RefreshMods.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_RefreshMods.Click += new System.EventHandler(this.SectionButton_Refresh_Click);
@@ -1167,7 +1168,7 @@ namespace Unleash.Environment3
             this.Panel_ModUpdateBackdrop.Controls.Add(this.ListView_ModUpdates);
             this.Panel_ModUpdateBackdrop.Location = new System.Drawing.Point(0, 0);
             this.Panel_ModUpdateBackdrop.Name = "Panel_ModUpdateBackdrop";
-            this.Panel_ModUpdateBackdrop.Size = new System.Drawing.Size(223, 388);
+            this.Panel_ModUpdateBackdrop.Size = new System.Drawing.Size(223, 379);
             this.Panel_ModUpdateBackdrop.TabIndex = 1;
             // 
             // ListView_ModUpdates
@@ -1192,7 +1193,7 @@ namespace Unleash.Environment3
             this.ListView_ModUpdates.MultiSelect = false;
             this.ListView_ModUpdates.Name = "ListView_ModUpdates";
             this.ListView_ModUpdates.OwnerDraw = true;
-            this.ListView_ModUpdates.Size = new System.Drawing.Size(221, 403);
+            this.ListView_ModUpdates.Size = new System.Drawing.Size(221, 394);
             this.ListView_ModUpdates.TabIndex = 2;
             this.ListView_ModUpdates.UseCompatibleStateImageBehavior = false;
             this.ListView_ModUpdates.View = System.Windows.Forms.View.Details;
@@ -1218,7 +1219,7 @@ namespace Unleash.Environment3
             this.SectionButton_UpdateMods.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(45)))));
             this.SectionButton_UpdateMods.Enabled = false;
             this.SectionButton_UpdateMods.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SectionButton_UpdateMods.Location = new System.Drawing.Point(1, 394);
+            this.SectionButton_UpdateMods.Location = new System.Drawing.Point(1, 385);
             this.SectionButton_UpdateMods.Name = "SectionButton_UpdateMods";
             this.SectionButton_UpdateMods.SectionImage = global::Unleash.Properties.Resources.Update_4;
             this.SectionButton_UpdateMods.SectionText = "Update selected mods";
@@ -1233,7 +1234,7 @@ namespace Unleash.Environment3
             this.ProgressBar_ModUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ProgressBar_ModUpdate.Enabled = false;
-            this.ProgressBar_ModUpdate.Location = new System.Drawing.Point(2, 394);
+            this.ProgressBar_ModUpdate.Location = new System.Drawing.Point(2, 385);
             this.ProgressBar_ModUpdate.Name = "ProgressBar_ModUpdate";
             this.ProgressBar_ModUpdate.Size = new System.Drawing.Size(329, 35);
             this.ProgressBar_ModUpdate.TabIndex = 94;
@@ -1247,7 +1248,7 @@ namespace Unleash.Environment3
             this.Panel_ModInfoBackdrop.Controls.Add(this.ListBox_UpdateLogs);
             this.Panel_ModInfoBackdrop.Location = new System.Drawing.Point(2, 0);
             this.Panel_ModInfoBackdrop.Name = "Panel_ModInfoBackdrop";
-            this.Panel_ModInfoBackdrop.Size = new System.Drawing.Size(329, 388);
+            this.Panel_ModInfoBackdrop.Size = new System.Drawing.Size(329, 379);
             this.Panel_ModInfoBackdrop.TabIndex = 21;
             // 
             // ListBox_UpdateLogs
@@ -1260,7 +1261,7 @@ namespace Unleash.Environment3
             this.ListBox_UpdateLogs.ItemHeight = 15;
             this.ListBox_UpdateLogs.Location = new System.Drawing.Point(0, 0);
             this.ListBox_UpdateLogs.Name = "ListBox_UpdateLogs";
-            this.ListBox_UpdateLogs.Size = new System.Drawing.Size(327, 386);
+            this.ListBox_UpdateLogs.Size = new System.Drawing.Size(327, 377);
             this.ListBox_UpdateLogs.TabIndex = 1;
             // 
             // Panel_Updates_UICleanSpace
@@ -1958,6 +1959,7 @@ namespace Unleash.Environment3
             // 
             this.Tab_Section_About.AutoScroll = true;
             this.Tab_Section_About.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Tab_Section_About.Controls.Add(this.LinkLabel_Knuxfan24);
             this.Tab_Section_About.Controls.Add(this.LinkLabel_Velcomia);
             this.Tab_Section_About.Controls.Add(this.LinkLabel_CodenameGamma);
             this.Tab_Section_About.Controls.Add(this.LinkLabel_Beatz);
@@ -2192,14 +2194,14 @@ namespace Unleash.Environment3
             this.Label_Testers.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.Label_Testers.Location = new System.Drawing.Point(9, 383);
             this.Label_Testers.Name = "Label_Testers";
-            this.Label_Testers.Size = new System.Drawing.Size(181, 150);
+            this.Label_Testers.Size = new System.Drawing.Size(181, 175);
             this.Label_Testers.TabIndex = 39;
             this.Label_Testers.Text = "► Beatz\r\n► Gotta Play Fast\r\n► ChrisHighwind\r\n► CodenameGamma\r\n► Velcomia\r\n► slash" +
-    "iee";
+    "iee\r\n► Knuxfan24";
             // 
             // Panel_About_UICleanSpace
             // 
-            this.Panel_About_UICleanSpace.Location = new System.Drawing.Point(9, 532);
+            this.Panel_About_UICleanSpace.Location = new System.Drawing.Point(9, 557);
             this.Panel_About_UICleanSpace.Name = "Panel_About_UICleanSpace";
             this.Panel_About_UICleanSpace.Size = new System.Drawing.Size(214, 17);
             this.Panel_About_UICleanSpace.TabIndex = 175;
@@ -2327,6 +2329,21 @@ namespace Unleash.Environment3
             this.Container_Rush.SplitterDistance = 250;
             this.Container_Rush.TabIndex = 17;
             this.Container_Rush.Title = "Mods";
+            // 
+            // LinkLabel_Knuxfan24
+            // 
+            this.LinkLabel_Knuxfan24.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
+            this.LinkLabel_Knuxfan24.AutoSize = true;
+            this.LinkLabel_Knuxfan24.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
+            this.LinkLabel_Knuxfan24.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.LinkLabel_Knuxfan24.LinkColor = System.Drawing.SystemColors.Control;
+            this.LinkLabel_Knuxfan24.Location = new System.Drawing.Point(30, 533);
+            this.LinkLabel_Knuxfan24.Name = "LinkLabel_Knuxfan24";
+            this.LinkLabel_Knuxfan24.Size = new System.Drawing.Size(95, 25);
+            this.LinkLabel_Knuxfan24.TabIndex = 193;
+            this.LinkLabel_Knuxfan24.TabStop = true;
+            this.LinkLabel_Knuxfan24.Text = "Knuxfan24";
+            this.LinkLabel_Knuxfan24.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
             // 
             // RushInterface
             // 
@@ -2542,5 +2559,6 @@ namespace Unleash.Environment3
         private System.Windows.Forms.LinkLabel LinkLabel_CodenameGamma;
         private System.Windows.Forms.LinkLabel LinkLabel_slashiee;
         private System.Windows.Forms.ColumnHeader Column_ModsList_Merge;
+        private System.Windows.Forms.LinkLabel LinkLabel_Knuxfan24;
     }
 }

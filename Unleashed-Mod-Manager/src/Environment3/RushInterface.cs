@@ -1501,16 +1501,17 @@ namespace Unleash.Environment3
         /// Redirects the user to a webpage about the selected contributor.
         /// </summary>
         private void Link_About_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            if     (sender == LinkLabel_HyperPolygon64) Process.Start("https://github.com/HyperPolygon64");
-            else if  (sender == LinkLabel_SuperSonic16) Process.Start("https://github.com/thesupersonic16");
-            else if     (sender == LinkLabel_Microsoft) Process.Start("https://github.com/Microsoft");
-            else if    (sender == LinkLabel_AssemblyPP) Process.Start("https://gamebanana.com/tools/6738");
-            else if  (sender == LinkLabel_SEGACarnival) Process.Start("https://www.segacarnival.com/forum/index.php");
-            else if         (sender == LinkLabel_Beatz) Process.Start("https://www.youtube.com/channel/UCEjwges-3BTaWsMwOGJDoGQ");
-            else if           (sender == LinkLabel_GPF) Process.Start("https://www.youtube.com/channel/UCZfOGBkXRKICFozWU5bE0Xg");
-            else if (sender == LinkLabel_CodenameGamma) Process.Start("https://www.youtube.com/user/codenamegamma");
-            else if      (sender == LinkLabel_Velcomia) Process.Start("https://twitter.com/Velcomia");
-            else if      (sender == LinkLabel_slashiee) Process.Start("https://github.com/slashiee");
+            if      (sender == LinkLabel_HyperPolygon64) Process.Start("https://github.com/HyperPolygon64");
+            else if   (sender == LinkLabel_SuperSonic16) Process.Start("https://github.com/thesupersonic16");
+            else if      (sender == LinkLabel_Microsoft) Process.Start("https://github.com/Microsoft");
+            else if     (sender == LinkLabel_AssemblyPP) Process.Start("https://gamebanana.com/tools/6738");
+            else if   (sender == LinkLabel_SEGACarnival) Process.Start("https://www.segacarnival.com/forum/index.php");
+            else if          (sender == LinkLabel_Beatz) Process.Start("https://www.youtube.com/channel/UCEjwges-3BTaWsMwOGJDoGQ");
+            else if            (sender == LinkLabel_GPF) Process.Start("https://www.youtube.com/channel/UCZfOGBkXRKICFozWU5bE0Xg");
+            else if  (sender == LinkLabel_CodenameGamma) Process.Start("https://www.youtube.com/user/codenamegamma");
+            else if       (sender == LinkLabel_Velcomia) Process.Start("https://twitter.com/Velcomia");
+            else if       (sender == LinkLabel_slashiee) Process.Start("https://github.com/slashiee");
+            else if      (sender == LinkLabel_Knuxfan24) Process.Start("https://github.com/Knuxfan24");
         }
 
         /// <summary>
