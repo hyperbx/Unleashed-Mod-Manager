@@ -25,7 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,6 +35,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>res\Icons\logo_main_icon.ico</ApplicationIcon>
@@ -65,12 +66,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="src\Environment3\PatchCreator.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="src\Environment3\PatchCreator.Designer.cs">
-      <DependentUpon>PatchCreator.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -138,6 +133,82 @@
     <Compile Include="src\Environment3\Controls\SectionButton.Designer.cs">
       <DependentUpon>SectionButton.cs</DependentUpon>
     </Compile>
+    <Compile Include="third_party\HedgeLib\Animations\GensAnimation.cs" />
+    <Compile Include="third_party\HedgeLib\Animations\MaterialAnimation.cs" />
+    <Compile Include="third_party\HedgeLib\Animations\UVAnimation.cs" />
+    <Compile Include="third_party\HedgeLib\Animations\VisibilityAnimation.cs" />
+    <Compile Include="third_party\HedgeLib\Archives\Archive.cs" />
+    <Compile Include="third_party\HedgeLib\Archives\ArchiveData.cs" />
+    <Compile Include="third_party\HedgeLib\Archives\ArchiveDirectory.cs" />
+    <Compile Include="third_party\HedgeLib\Archives\ArchiveFile.cs" />
+    <Compile Include="third_party\HedgeLib\Archives\ForcesArchive.cs" />
+    <Compile Include="third_party\HedgeLib\Archives\GensArchive.cs" />
+    <Compile Include="third_party\HedgeLib\Archives\LWArchive.cs" />
+    <Compile Include="third_party\HedgeLib\Archives\ONEArchive.cs" />
+    <Compile Include="third_party\HedgeLib\Archives\S06Archive.cs" />
+    <Compile Include="third_party\HedgeLib\Archives\SBArchive.cs" />
+    <Compile Include="third_party\HedgeLib\Exceptions\InvalidSignatureException.cs" />
+    <Compile Include="third_party\HedgeLib\Half.cs" />
+    <Compile Include="third_party\HedgeLib\HalfHelper.cs" />
+    <Compile Include="third_party\HedgeLib\Havok\HavokFile.cs" />
+    <Compile Include="third_party\HedgeLib\Havok\HavokGenericTypes.cs" />
+    <Compile Include="third_party\HedgeLib\Havok\HavokPackFile.cs" />
+    <Compile Include="third_party\HedgeLib\Havok\HavokTagFile.cs" />
+    <Compile Include="third_party\HedgeLib\Havok\HavokXML.cs" />
+    <Compile Include="third_party\HedgeLib\Headers\BINAHeader.cs" />
+    <Compile Include="third_party\HedgeLib\Headers\BINAv1Header.cs" />
+    <Compile Include="third_party\HedgeLib\Headers\BINAv2Header.cs" />
+    <Compile Include="third_party\HedgeLib\Headers\GensHeader.cs" />
+    <Compile Include="third_party\HedgeLib\Headers\HedgehogEngineHeader.cs" />
+    <Compile Include="third_party\HedgeLib\Headers\IHeader.cs" />
+    <Compile Include="third_party\HedgeLib\Headers\MirageHeader.cs" />
+    <Compile Include="third_party\HedgeLib\Headers\PACxHeader.cs" />
+    <Compile Include="third_party\HedgeLib\Helpers.cs" />
+    <Compile Include="third_party\HedgeLib\IO\BINA.cs" />
+    <Compile Include="third_party\HedgeLib\IO\ExtendedBinary.cs" />
+    <Compile Include="third_party\HedgeLib\IO\FileBase.cs" />
+    <Compile Include="third_party\HedgeLib\IO\Gens.cs" />
+    <Compile Include="third_party\HedgeLib\Lights\GensLightList.cs" />
+    <Compile Include="third_party\HedgeLib\Lights\Light.cs" />
+    <Compile Include="third_party\HedgeLib\Materials\GensMaterial.cs" />
+    <Compile Include="third_party\HedgeLib\Math\AABB.cs" />
+    <Compile Include="third_party\HedgeLib\Misc\ForcesGISM.cs" />
+    <Compile Include="third_party\HedgeLib\Misc\ForcesText.cs" />
+    <Compile Include="third_party\HedgeLib\Misc\FXCol.cs" />
+    <Compile Include="third_party\HedgeLib\Misc\GensPFI.cs" />
+    <Compile Include="third_party\HedgeLib\Misc\GensStageXML.cs" />
+    <Compile Include="third_party\HedgeLib\Misc\LWGism.cs" />
+    <Compile Include="third_party\HedgeLib\Models\GensModel.cs" />
+    <Compile Include="third_party\HedgeLib\Models\Mesh.cs" />
+    <Compile Include="third_party\HedgeLib\Models\Model.cs" />
+    <Compile Include="third_party\HedgeLib\Quaternion.cs" />
+    <Compile Include="third_party\HedgeLib\RFL\ForcesCaptionParam.cs" />
+    <Compile Include="third_party\HedgeLib\RFL\ForcesDLCParam.cs" />
+    <Compile Include="third_party\HedgeLib\RFL\ForcesRFL.cs" />
+    <Compile Include="third_party\HedgeLib\RFL\ForcesStageScore.cs" />
+    <Compile Include="third_party\HedgeLib\RFL\ForcesWorldmapDiscuss.cs" />
+    <Compile Include="third_party\HedgeLib\Sets\ColorsSetData.cs" />
+    <Compile Include="third_party\HedgeLib\Sets\ForcesSetData.cs" />
+    <Compile Include="third_party\HedgeLib\Sets\GensSetData.cs" />
+    <Compile Include="third_party\HedgeLib\Sets\HeroesSetData.cs" />
+    <Compile Include="third_party\HedgeLib\Sets\LWSetData.cs" />
+    <Compile Include="third_party\HedgeLib\Sets\S06SetData.cs" />
+    <Compile Include="third_party\HedgeLib\Sets\SetData.cs" />
+    <Compile Include="third_party\HedgeLib\Sets\SetObject.cs" />
+    <Compile Include="third_party\HedgeLib\Sets\SetObjectType.cs" />
+    <Compile Include="third_party\HedgeLib\Sets\SOBJ.cs" />
+    <Compile Include="third_party\HedgeLib\Sound\ColorsSNDL.cs" />
+    <Compile Include="third_party\HedgeLib\Sprites\ManiaSprite.cs" />
+    <Compile Include="third_party\HedgeLib\Terrain\GensTerrainGroup.cs" />
+    <Compile Include="third_party\HedgeLib\Terrain\GensTerrainInstanceInfo.cs" />
+    <Compile Include="third_party\HedgeLib\Terrain\GensTerrainList.cs" />
+    <Compile Include="third_party\HedgeLib\Textures\DDS.cs" />
+    <Compile Include="third_party\HedgeLib\Textures\GensTexset.cs" />
+    <Compile Include="third_party\HedgeLib\Textures\GensTexture.cs" />
+    <Compile Include="third_party\HedgeLib\Textures\Texture.cs" />
+    <Compile Include="third_party\HedgeLib\Types.cs" />
+    <Compile Include="third_party\HedgeLib\Vector.cs" />
+    <Compile Include="third_party\HedgeLib\XMLHelpers.cs" />
     <Compile Include="third_party\Ookii.Dialogs\AdditionalVisualStyleElements.cs" />
     <Compile Include="third_party\Ookii.Dialogs\AnimationResource.cs" />
     <Compile Include="third_party\Ookii.Dialogs\ButtonType.cs" />
@@ -214,9 +285,7 @@
       <DependentUpon>UnleashSetup.cs</DependentUpon>
     </Compile>
     <Compile Include="src\UnleashDialogs.cs" />
-    <EmbeddedResource Include="src\Environment3\PatchCreator.resx">
-      <DependentUpon>PatchCreator.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="src\UnleashCompression.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
@@ -261,24 +330,14 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="res\Applications\data\keys" />
-    <None Include="res\Applications\data\ldr_curves" />
-    <None Include="res\Applications\data\vsh_curves" />
-    <None Include="res\Scripts\optimised_render_main.lub" />
-    <None Include="res\Scripts\render_cheap.lub" />
-    <None Include="res\Scripts\vulkan_render_gamemode.lub" />
-    <None Include="res\Scripts\vulkan_render_main.lub" />
-    <None Include="res\Scripts\vulkan_render_title.lub" />
+    <None Include="res\Scripts\arcsys.bms" />
+    <None Include="res\Scripts\xcompress_file.bms" />
     <None Include="third_party\Ookii.Dialogs\ookii.snk" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="license.txt" />
     <Content Include="res\Applications\7z.exe" />
-    <Content Include="res\Applications\make_fself.exe" />
-    <Content Include="res\Applications\Protocol Manager.exe" />
-    <Content Include="res\Applications\scetool.exe" />
-    <Content Include="res\Applications\xextool.exe" />
-    <Content Include="res\Applications\zlib1.dll" />
+    <Content Include="res\Applications\quickbms.exe" />
     <Content Include="res\Icons\error.ico" />
     <Content Include="res\Icons\logo_main_icon.ico" />
     <Content Include="res\Images\Cancel_16x.png" />

@@ -53,6 +53,7 @@ namespace Unleash.Environment3
             this.Column_ModsList_Version = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Column_ModsList_Author = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Column_ModsList_System = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.Column_ModsList_Merge = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Column_ModsList_Blank = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Tab_Section_Emulator = new System.Windows.Forms.TabPage();
             this.label1 = new System.Windows.Forms.Label();
@@ -90,30 +91,11 @@ namespace Unleash.Environment3
             this.Label_EmulatorExecutable = new System.Windows.Forms.Label();
             this.Label_SaveData = new System.Windows.Forms.Label();
             this.Label_Optional_SaveData = new System.Windows.Forms.Label();
-            this.Tab_Section_Patches = new System.Windows.Forms.TabPage();
-            this.SplitContainer_PatchesControls = new System.Windows.Forms.SplitContainer();
-            this.Button_Patches_SelectAll = new System.Windows.Forms.Button();
-            this.SectionButton_SaveCheckedPatches = new Unleash.Environment3.SectionButton();
-            this.Button_Patches_DeselectAll = new System.Windows.Forms.Button();
-            this.SectionButton_RefreshPatches = new Unleash.Environment3.SectionButton();
-            this.Panel_PatchBackdrop = new System.Windows.Forms.Panel();
-            this.ListView_PatchesList = new System.Windows.Forms.ListView();
-            this.Column_PatchesList_Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Column_PatchesList_Author = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Column_PatchesList_System = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Column_PatchesList_Blurb = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Column_PatchesList_Blank = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Tab_Section_Debug = new System.Windows.Forms.TabPage();
             this.Panel_DebugControls = new System.Windows.Forms.Panel();
             this.SectionButton_ClearLog = new Unleash.Environment3.SectionButton();
             this.ListBox_Debug = new System.Windows.Forms.ListBox();
             this.Tab_Section_Updates = new System.Windows.Forms.TabPage();
-            this.Panel_Updates_UICleanSpace = new System.Windows.Forms.Panel();
-            this.SectionButton_FetchPatches = new Unleash.Environment3.SectionButton();
-            this.Label_LastPatchUpdate = new System.Windows.Forms.Label();
-            this.Label_LastModUpdate = new System.Windows.Forms.Label();
-            this.SectionButton_CheckForModUpdates = new Unleash.Environment3.SectionButton();
-            this.Label_LastSoftwareUpdate = new System.Windows.Forms.Label();
             this.SplitContainer_ModUpdate = new System.Windows.Forms.SplitContainer();
             this.Panel_ModUpdateBackdrop = new System.Windows.Forms.Panel();
             this.ListView_ModUpdates = new System.Windows.Forms.ListView();
@@ -123,6 +105,10 @@ namespace Unleash.Environment3
             this.ProgressBar_ModUpdate = new System.Windows.Forms.ProgressBar();
             this.Panel_ModInfoBackdrop = new System.Windows.Forms.Panel();
             this.ListBox_UpdateLogs = new System.Windows.Forms.ListBox();
+            this.Panel_Updates_UICleanSpace = new System.Windows.Forms.Panel();
+            this.Label_LastModUpdate = new System.Windows.Forms.Label();
+            this.SectionButton_CheckForModUpdates = new Unleash.Environment3.SectionButton();
+            this.Label_LastSoftwareUpdate = new System.Windows.Forms.Label();
             this.Label_Title_ModsAndPatches = new System.Windows.Forms.Label();
             this.Label_Subtitle_Changelogs = new System.Windows.Forms.Label();
             this.Label_UpdaterStatus = new System.Windows.Forms.Label();
@@ -188,15 +174,14 @@ namespace Unleash.Environment3
             this.Title_SpecialThanks = new System.Windows.Forms.Label();
             this.Label_Contributors = new System.Windows.Forms.Label();
             this.Title_Contributors = new System.Windows.Forms.Label();
-            this.Label_Version = new System.Windows.Forms.Label();
             this.LinkLabel_GPF = new System.Windows.Forms.LinkLabel();
             this.LinkLabel_slashiee = new System.Windows.Forms.LinkLabel();
             this.Label_Testers = new System.Windows.Forms.Label();
             this.Panel_About_UICleanSpace = new System.Windows.Forms.Panel();
+            this.Label_Version = new System.Windows.Forms.Label();
             this.Rush_Section_Debug = new Unleash.Environment3.SectionButton();
             this.Rush_Section_Updates = new Unleash.Environment3.SectionButton();
             this.Rush_Section_Settings = new Unleash.Environment3.SectionButton();
-            this.Rush_Section_Patches = new Unleash.Environment3.SectionButton();
             this.Rush_Section_About = new Unleash.Environment3.SectionButton();
             this.Rush_Section_Emulator = new Unleash.Environment3.SectionButton();
             this.Rush_Section_Mods = new Unleash.Environment3.SectionButton();
@@ -214,12 +199,6 @@ namespace Unleash.Environment3
             this.SplitContainer_ModsControls.SuspendLayout();
             this.Panel_ModBackdrop.SuspendLayout();
             this.Tab_Section_Emulator.SuspendLayout();
-            this.Tab_Section_Patches.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_PatchesControls)).BeginInit();
-            this.SplitContainer_PatchesControls.Panel1.SuspendLayout();
-            this.SplitContainer_PatchesControls.Panel2.SuspendLayout();
-            this.SplitContainer_PatchesControls.SuspendLayout();
-            this.Panel_PatchBackdrop.SuspendLayout();
             this.Tab_Section_Debug.SuspendLayout();
             this.Panel_DebugControls.SuspendLayout();
             this.Tab_Section_Updates.SuspendLayout();
@@ -314,7 +293,7 @@ namespace Unleash.Environment3
             this.SectionButton_LaunchGame.SectionImage = global::Unleash.Properties.Resources.Run_16x;
             this.SectionButton_LaunchGame.SectionText = "Launch Sonic Unleashed";
             this.SectionButton_LaunchGame.SelectedSection = false;
-            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1185, 35);
+            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1197, 35);
             this.SectionButton_LaunchGame.TabIndex = 51;
             this.SectionButton_LaunchGame.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_LaunchGame.Click += new System.EventHandler(this.SectionButton_LaunchGame_Click);
@@ -333,7 +312,6 @@ namespace Unleash.Environment3
             this.TabControl_Rush.ClosingMessage = null;
             this.TabControl_Rush.Controls.Add(this.Tab_Section_Mods);
             this.TabControl_Rush.Controls.Add(this.Tab_Section_Emulator);
-            this.TabControl_Rush.Controls.Add(this.Tab_Section_Patches);
             this.TabControl_Rush.Controls.Add(this.Tab_Section_Debug);
             this.TabControl_Rush.Controls.Add(this.Tab_Section_Updates);
             this.TabControl_Rush.Controls.Add(this.Tab_Section_Settings);
@@ -419,7 +397,7 @@ namespace Unleash.Environment3
             this.SectionButton_RefreshMods.SectionImage = ((System.Drawing.Bitmap)(resources.GetObject("SectionButton_RefreshMods.SectionImage")));
             this.SectionButton_RefreshMods.SectionText = "Refresh mods list";
             this.SectionButton_RefreshMods.SelectedSection = false;
-            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1913, 35);
+            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1928, 35);
             this.SectionButton_RefreshMods.TabIndex = 52;
             this.SectionButton_RefreshMods.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_RefreshMods.Click += new System.EventHandler(this.SectionButton_Refresh_Click);
@@ -532,6 +510,7 @@ namespace Unleash.Environment3
             this.Column_ModsList_Version,
             this.Column_ModsList_Author,
             this.Column_ModsList_System,
+            this.Column_ModsList_Merge,
             this.Column_ModsList_Blank});
             this.ListView_ModsList.ForeColor = System.Drawing.SystemColors.Control;
             this.ListView_ModsList.FullRowSelect = true;
@@ -556,25 +535,30 @@ namespace Unleash.Environment3
             // Column_ModsList_Title
             // 
             this.Column_ModsList_Title.Text = "Title";
-            this.Column_ModsList_Title.Width = 279;
+            this.Column_ModsList_Title.Width = 242;
             // 
             // Column_ModsList_Version
             // 
             this.Column_ModsList_Version.Text = "Version";
             this.Column_ModsList_Version.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Column_ModsList_Version.Width = 52;
+            this.Column_ModsList_Version.Width = 71;
             // 
             // Column_ModsList_Author
             // 
             this.Column_ModsList_Author.Text = "Author";
             this.Column_ModsList_Author.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Column_ModsList_Author.Width = 163;
+            this.Column_ModsList_Author.Width = 126;
             // 
             // Column_ModsList_System
             // 
             this.Column_ModsList_System.Text = "System";
             this.Column_ModsList_System.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Column_ModsList_System.Width = 87;
+            // 
+            // Column_ModsList_Merge
+            // 
+            this.Column_ModsList_Merge.Text = "Merge";
+            this.Column_ModsList_Merge.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Column_ModsList_Blank
             // 
@@ -1070,181 +1054,6 @@ namespace Unleash.Environment3
             this.Label_Optional_SaveData.TabIndex = 68;
             this.Label_Optional_SaveData.Text = "(optional)";
             // 
-            // Tab_Section_Patches
-            // 
-            this.Tab_Section_Patches.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.Tab_Section_Patches.Controls.Add(this.SplitContainer_PatchesControls);
-            this.Tab_Section_Patches.Controls.Add(this.Panel_PatchBackdrop);
-            this.Tab_Section_Patches.Location = new System.Drawing.Point(4, 20);
-            this.Tab_Section_Patches.Name = "Tab_Section_Patches";
-            this.Tab_Section_Patches.Size = new System.Drawing.Size(591, 1013);
-            this.Tab_Section_Patches.TabIndex = 2;
-            this.Tab_Section_Patches.Text = "Patches";
-            this.Tab_Section_Patches.Visible = false;
-            // 
-            // SplitContainer_PatchesControls
-            // 
-            this.SplitContainer_PatchesControls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SplitContainer_PatchesControls.IsSplitterFixed = true;
-            this.SplitContainer_PatchesControls.Location = new System.Drawing.Point(1, 949);
-            this.SplitContainer_PatchesControls.Name = "SplitContainer_PatchesControls";
-            // 
-            // SplitContainer_PatchesControls.Panel1
-            // 
-            this.SplitContainer_PatchesControls.Panel1.Controls.Add(this.Button_Patches_SelectAll);
-            this.SplitContainer_PatchesControls.Panel1.Controls.Add(this.SectionButton_SaveCheckedPatches);
-            // 
-            // SplitContainer_PatchesControls.Panel2
-            // 
-            this.SplitContainer_PatchesControls.Panel2.Controls.Add(this.Button_Patches_DeselectAll);
-            this.SplitContainer_PatchesControls.Panel2.Controls.Add(this.SectionButton_RefreshPatches);
-            this.SplitContainer_PatchesControls.Size = new System.Drawing.Size(586, 64);
-            this.SplitContainer_PatchesControls.SplitterDistance = 292;
-            this.SplitContainer_PatchesControls.SplitterWidth = 1;
-            this.SplitContainer_PatchesControls.TabIndex = 53;
-            // 
-            // Button_Patches_SelectAll
-            // 
-            this.Button_Patches_SelectAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Patches_SelectAll.BackColor = System.Drawing.Color.SkyBlue;
-            this.Button_Patches_SelectAll.FlatAppearance.BorderSize = 0;
-            this.Button_Patches_SelectAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button_Patches_SelectAll.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Button_Patches_SelectAll.Location = new System.Drawing.Point(2, 0);
-            this.Button_Patches_SelectAll.Name = "Button_Patches_SelectAll";
-            this.Button_Patches_SelectAll.Size = new System.Drawing.Size(288, 23);
-            this.Button_Patches_SelectAll.TabIndex = 47;
-            this.Button_Patches_SelectAll.Text = "Select All";
-            this.Button_Patches_SelectAll.UseVisualStyleBackColor = false;
-            this.Button_Patches_SelectAll.Click += new System.EventHandler(this.Button_Mods_Selection_Click);
-            // 
-            // SectionButton_SaveCheckedPatches
-            // 
-            this.SectionButton_SaveCheckedPatches.AccentColour = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.SectionButton_SaveCheckedPatches.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SectionButton_SaveCheckedPatches.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(45)))));
-            this.SectionButton_SaveCheckedPatches.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SectionButton_SaveCheckedPatches.Location = new System.Drawing.Point(2, 29);
-            this.SectionButton_SaveCheckedPatches.Name = "SectionButton_SaveCheckedPatches";
-            this.SectionButton_SaveCheckedPatches.SectionImage = global::Unleash.Properties.Resources.CheckBox_16x_24;
-            this.SectionButton_SaveCheckedPatches.SectionText = "Save checked patches";
-            this.SectionButton_SaveCheckedPatches.SelectedSection = false;
-            this.SectionButton_SaveCheckedPatches.Size = new System.Drawing.Size(398, 35);
-            this.SectionButton_SaveCheckedPatches.TabIndex = 52;
-            this.SectionButton_SaveCheckedPatches.TextColour = System.Drawing.SystemColors.Control;
-            this.SectionButton_SaveCheckedPatches.Click += new System.EventHandler(this.SectionButton_SaveChecks_Click);
-            // 
-            // Button_Patches_DeselectAll
-            // 
-            this.Button_Patches_DeselectAll.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Patches_DeselectAll.BackColor = System.Drawing.Color.Tomato;
-            this.Button_Patches_DeselectAll.FlatAppearance.BorderSize = 0;
-            this.Button_Patches_DeselectAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Button_Patches_DeselectAll.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Button_Patches_DeselectAll.Location = new System.Drawing.Point(3, 0);
-            this.Button_Patches_DeselectAll.Name = "Button_Patches_DeselectAll";
-            this.Button_Patches_DeselectAll.Size = new System.Drawing.Size(291, 23);
-            this.Button_Patches_DeselectAll.TabIndex = 48;
-            this.Button_Patches_DeselectAll.Text = "Deselect All";
-            this.Button_Patches_DeselectAll.UseVisualStyleBackColor = false;
-            this.Button_Patches_DeselectAll.Click += new System.EventHandler(this.Button_Mods_Selection_Click);
-            // 
-            // SectionButton_RefreshPatches
-            // 
-            this.SectionButton_RefreshPatches.AccentColour = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.SectionButton_RefreshPatches.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SectionButton_RefreshPatches.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(45)))));
-            this.SectionButton_RefreshPatches.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SectionButton_RefreshPatches.Location = new System.Drawing.Point(0, 29);
-            this.SectionButton_RefreshPatches.Name = "SectionButton_RefreshPatches";
-            this.SectionButton_RefreshPatches.SectionImage = ((System.Drawing.Bitmap)(resources.GetObject("SectionButton_RefreshPatches.SectionImage")));
-            this.SectionButton_RefreshPatches.SectionText = "Refresh patches list";
-            this.SectionButton_RefreshPatches.SelectedSection = false;
-            this.SectionButton_RefreshPatches.Size = new System.Drawing.Size(1310, 35);
-            this.SectionButton_RefreshPatches.TabIndex = 52;
-            this.SectionButton_RefreshPatches.TextColour = System.Drawing.SystemColors.Control;
-            this.SectionButton_RefreshPatches.Click += new System.EventHandler(this.SectionButton_Refresh_Click);
-            // 
-            // Panel_PatchBackdrop
-            // 
-            this.Panel_PatchBackdrop.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Panel_PatchBackdrop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.Panel_PatchBackdrop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Panel_PatchBackdrop.Controls.Add(this.ListView_PatchesList);
-            this.Panel_PatchBackdrop.Location = new System.Drawing.Point(3, 4);
-            this.Panel_PatchBackdrop.Name = "Panel_PatchBackdrop";
-            this.Panel_PatchBackdrop.Size = new System.Drawing.Size(585, 939);
-            this.Panel_PatchBackdrop.TabIndex = 45;
-            // 
-            // ListView_PatchesList
-            // 
-            this.ListView_PatchesList.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.ListView_PatchesList.AllowDrop = true;
-            this.ListView_PatchesList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListView_PatchesList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.ListView_PatchesList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ListView_PatchesList.CheckBoxes = true;
-            this.ListView_PatchesList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Column_PatchesList_Title,
-            this.Column_PatchesList_Author,
-            this.Column_PatchesList_System,
-            this.Column_PatchesList_Blurb,
-            this.Column_PatchesList_Blank});
-            this.ListView_PatchesList.ForeColor = System.Drawing.SystemColors.Control;
-            this.ListView_PatchesList.FullRowSelect = true;
-            this.ListView_PatchesList.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.ListView_PatchesList.HideSelection = false;
-            this.ListView_PatchesList.Location = new System.Drawing.Point(0, 0);
-            this.ListView_PatchesList.MultiSelect = false;
-            this.ListView_PatchesList.Name = "ListView_PatchesList";
-            this.ListView_PatchesList.OwnerDraw = true;
-            this.ListView_PatchesList.Size = new System.Drawing.Size(583, 954);
-            this.ListView_PatchesList.TabIndex = 1;
-            this.ListView_PatchesList.UseCompatibleStateImageBehavior = false;
-            this.ListView_PatchesList.View = System.Windows.Forms.View.Details;
-            this.ListView_PatchesList.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.ListView_DrawColumnHeader);
-            this.ListView_PatchesList.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.ListView_DrawItem);
-            this.ListView_PatchesList.DragDrop += new System.Windows.Forms.DragEventHandler(this.ListView_DragDrop);
-            this.ListView_PatchesList.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListView_DragEnter);
-            this.ListView_PatchesList.MouseClick += new System.Windows.Forms.MouseEventHandler(this.ListView_MouseClick);
-            this.ListView_PatchesList.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ListView_MouseUp);
-            // 
-            // Column_PatchesList_Title
-            // 
-            this.Column_PatchesList_Title.Text = "Title";
-            this.Column_PatchesList_Title.Width = 159;
-            // 
-            // Column_PatchesList_Author
-            // 
-            this.Column_PatchesList_Author.Text = "Author";
-            this.Column_PatchesList_Author.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Column_PatchesList_Author.Width = 90;
-            // 
-            // Column_PatchesList_System
-            // 
-            this.Column_PatchesList_System.Text = "System";
-            this.Column_PatchesList_System.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Column_PatchesList_System.Width = 90;
-            // 
-            // Column_PatchesList_Blurb
-            // 
-            this.Column_PatchesList_Blurb.Text = "Blurb";
-            this.Column_PatchesList_Blurb.Width = 243;
-            // 
-            // Column_PatchesList_Blank
-            // 
-            this.Column_PatchesList_Blank.Text = "";
-            this.Column_PatchesList_Blank.Width = 904;
-            // 
             // Tab_Section_Debug
             // 
             this.Tab_Section_Debug.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
@@ -1303,13 +1112,11 @@ namespace Unleash.Environment3
             // 
             this.Tab_Section_Updates.AutoScroll = true;
             this.Tab_Section_Updates.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Tab_Section_Updates.Controls.Add(this.SplitContainer_ModUpdate);
             this.Tab_Section_Updates.Controls.Add(this.Panel_Updates_UICleanSpace);
-            this.Tab_Section_Updates.Controls.Add(this.SectionButton_FetchPatches);
-            this.Tab_Section_Updates.Controls.Add(this.Label_LastPatchUpdate);
             this.Tab_Section_Updates.Controls.Add(this.Label_LastModUpdate);
             this.Tab_Section_Updates.Controls.Add(this.SectionButton_CheckForModUpdates);
             this.Tab_Section_Updates.Controls.Add(this.Label_LastSoftwareUpdate);
-            this.Tab_Section_Updates.Controls.Add(this.SplitContainer_ModUpdate);
             this.Tab_Section_Updates.Controls.Add(this.Label_Title_ModsAndPatches);
             this.Tab_Section_Updates.Controls.Add(this.Label_Subtitle_Changelogs);
             this.Tab_Section_Updates.Controls.Add(this.Label_UpdaterStatus);
@@ -1326,37 +1133,142 @@ namespace Unleash.Environment3
             this.Tab_Section_Updates.Tag = "HideControls";
             this.Tab_Section_Updates.Text = "Updates";
             // 
+            // SplitContainer_ModUpdate
+            // 
+            this.SplitContainer_ModUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SplitContainer_ModUpdate.Location = new System.Drawing.Point(14, 573);
+            this.SplitContainer_ModUpdate.Name = "SplitContainer_ModUpdate";
+            // 
+            // SplitContainer_ModUpdate.Panel1
+            // 
+            this.SplitContainer_ModUpdate.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.SplitContainer_ModUpdate.Panel1.Controls.Add(this.Panel_ModUpdateBackdrop);
+            this.SplitContainer_ModUpdate.Panel1.Controls.Add(this.SectionButton_UpdateMods);
+            this.SplitContainer_ModUpdate.Panel1MinSize = 201;
+            // 
+            // SplitContainer_ModUpdate.Panel2
+            // 
+            this.SplitContainer_ModUpdate.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.SplitContainer_ModUpdate.Panel2.Controls.Add(this.ProgressBar_ModUpdate);
+            this.SplitContainer_ModUpdate.Panel2.Controls.Add(this.Panel_ModInfoBackdrop);
+            this.SplitContainer_ModUpdate.Panel2MinSize = 300;
+            this.SplitContainer_ModUpdate.Size = new System.Drawing.Size(561, 421);
+            this.SplitContainer_ModUpdate.SplitterDistance = 225;
+            this.SplitContainer_ModUpdate.TabIndex = 44;
+            this.SplitContainer_ModUpdate.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.SplitContainer_ModUpdate_SplitterMoved);
+            // 
+            // Panel_ModUpdateBackdrop
+            // 
+            this.Panel_ModUpdateBackdrop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Panel_ModUpdateBackdrop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Panel_ModUpdateBackdrop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Panel_ModUpdateBackdrop.Controls.Add(this.ListView_ModUpdates);
+            this.Panel_ModUpdateBackdrop.Location = new System.Drawing.Point(0, 0);
+            this.Panel_ModUpdateBackdrop.Name = "Panel_ModUpdateBackdrop";
+            this.Panel_ModUpdateBackdrop.Size = new System.Drawing.Size(223, 388);
+            this.Panel_ModUpdateBackdrop.TabIndex = 1;
+            // 
+            // ListView_ModUpdates
+            // 
+            this.ListView_ModUpdates.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.ListView_ModUpdates.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ListView_ModUpdates.AutoArrange = false;
+            this.ListView_ModUpdates.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.ListView_ModUpdates.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ListView_ModUpdates.CheckBoxes = true;
+            this.ListView_ModUpdates.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.Column_Updates_Title,
+            this.Column_Updates_Blank});
+            this.ListView_ModUpdates.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.ListView_ModUpdates.ForeColor = System.Drawing.SystemColors.Control;
+            this.ListView_ModUpdates.FullRowSelect = true;
+            this.ListView_ModUpdates.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.ListView_ModUpdates.HideSelection = false;
+            this.ListView_ModUpdates.Location = new System.Drawing.Point(0, 0);
+            this.ListView_ModUpdates.MultiSelect = false;
+            this.ListView_ModUpdates.Name = "ListView_ModUpdates";
+            this.ListView_ModUpdates.OwnerDraw = true;
+            this.ListView_ModUpdates.Size = new System.Drawing.Size(221, 403);
+            this.ListView_ModUpdates.TabIndex = 2;
+            this.ListView_ModUpdates.UseCompatibleStateImageBehavior = false;
+            this.ListView_ModUpdates.View = System.Windows.Forms.View.Details;
+            this.ListView_ModUpdates.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.ListView_DrawColumnHeader);
+            this.ListView_ModUpdates.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.ListView_DrawItem);
+            this.ListView_ModUpdates.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.ListView_ModUpdates_ItemChecked);
+            // 
+            // Column_Updates_Title
+            // 
+            this.Column_Updates_Title.Text = "Title";
+            this.Column_Updates_Title.Width = 197;
+            // 
+            // Column_Updates_Blank
+            // 
+            this.Column_Updates_Blank.Text = "";
+            this.Column_Updates_Blank.Width = 1000;
+            // 
+            // SectionButton_UpdateMods
+            // 
+            this.SectionButton_UpdateMods.AccentColour = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.SectionButton_UpdateMods.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SectionButton_UpdateMods.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(45)))));
+            this.SectionButton_UpdateMods.Enabled = false;
+            this.SectionButton_UpdateMods.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SectionButton_UpdateMods.Location = new System.Drawing.Point(1, 394);
+            this.SectionButton_UpdateMods.Name = "SectionButton_UpdateMods";
+            this.SectionButton_UpdateMods.SectionImage = global::Unleash.Properties.Resources.Update_4;
+            this.SectionButton_UpdateMods.SectionText = "Update selected mods";
+            this.SectionButton_UpdateMods.SelectedSection = false;
+            this.SectionButton_UpdateMods.Size = new System.Drawing.Size(223, 35);
+            this.SectionButton_UpdateMods.TabIndex = 45;
+            this.SectionButton_UpdateMods.TextColour = System.Drawing.SystemColors.GrayText;
+            this.SectionButton_UpdateMods.Click += new System.EventHandler(this.SectionButton_Updates_Click);
+            // 
+            // ProgressBar_ModUpdate
+            // 
+            this.ProgressBar_ModUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ProgressBar_ModUpdate.Enabled = false;
+            this.ProgressBar_ModUpdate.Location = new System.Drawing.Point(2, 394);
+            this.ProgressBar_ModUpdate.Name = "ProgressBar_ModUpdate";
+            this.ProgressBar_ModUpdate.Size = new System.Drawing.Size(329, 35);
+            this.ProgressBar_ModUpdate.TabIndex = 94;
+            // 
+            // Panel_ModInfoBackdrop
+            // 
+            this.Panel_ModInfoBackdrop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Panel_ModInfoBackdrop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.Panel_ModInfoBackdrop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Panel_ModInfoBackdrop.Controls.Add(this.ListBox_UpdateLogs);
+            this.Panel_ModInfoBackdrop.Location = new System.Drawing.Point(2, 0);
+            this.Panel_ModInfoBackdrop.Name = "Panel_ModInfoBackdrop";
+            this.Panel_ModInfoBackdrop.Size = new System.Drawing.Size(329, 388);
+            this.Panel_ModInfoBackdrop.TabIndex = 21;
+            // 
+            // ListBox_UpdateLogs
+            // 
+            this.ListBox_UpdateLogs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.ListBox_UpdateLogs.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ListBox_UpdateLogs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ListBox_UpdateLogs.ForeColor = System.Drawing.SystemColors.Control;
+            this.ListBox_UpdateLogs.FormattingEnabled = true;
+            this.ListBox_UpdateLogs.ItemHeight = 15;
+            this.ListBox_UpdateLogs.Location = new System.Drawing.Point(0, 0);
+            this.ListBox_UpdateLogs.Name = "ListBox_UpdateLogs";
+            this.ListBox_UpdateLogs.Size = new System.Drawing.Size(327, 386);
+            this.ListBox_UpdateLogs.TabIndex = 1;
+            // 
             // Panel_Updates_UICleanSpace
             // 
             this.Panel_Updates_UICleanSpace.Location = new System.Drawing.Point(14, 993);
             this.Panel_Updates_UICleanSpace.Name = "Panel_Updates_UICleanSpace";
             this.Panel_Updates_UICleanSpace.Size = new System.Drawing.Size(214, 8);
             this.Panel_Updates_UICleanSpace.TabIndex = 176;
-            // 
-            // SectionButton_FetchPatches
-            // 
-            this.SectionButton_FetchPatches.AccentColour = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.SectionButton_FetchPatches.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(45)))));
-            this.SectionButton_FetchPatches.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SectionButton_FetchPatches.Location = new System.Drawing.Point(14, 564);
-            this.SectionButton_FetchPatches.Name = "SectionButton_FetchPatches";
-            this.SectionButton_FetchPatches.SectionImage = global::Unleash.Properties.Resources.InstallMods;
-            this.SectionButton_FetchPatches.SectionText = "Fetch latest patches";
-            this.SectionButton_FetchPatches.SelectedSection = false;
-            this.SectionButton_FetchPatches.Size = new System.Drawing.Size(233, 35);
-            this.SectionButton_FetchPatches.TabIndex = 149;
-            this.SectionButton_FetchPatches.TextColour = System.Drawing.SystemColors.Control;
-            this.SectionButton_FetchPatches.Click += new System.EventHandler(this.SectionButton_Updates_Click);
-            // 
-            // Label_LastPatchUpdate
-            // 
-            this.Label_LastPatchUpdate.AutoSize = true;
-            this.Label_LastPatchUpdate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_LastPatchUpdate.Location = new System.Drawing.Point(256, 573);
-            this.Label_LastPatchUpdate.Name = "Label_LastPatchUpdate";
-            this.Label_LastPatchUpdate.Size = new System.Drawing.Size(218, 17);
-            this.Label_LastPatchUpdate.TabIndex = 151;
-            this.Label_LastPatchUpdate.Text = "Last updated: 21/01/2020, 08:59 PM";
             // 
             // Label_LastModUpdate
             // 
@@ -1392,136 +1304,6 @@ namespace Unleash.Environment3
             this.Label_LastSoftwareUpdate.Size = new System.Drawing.Size(216, 17);
             this.Label_LastSoftwareUpdate.TabIndex = 147;
             this.Label_LastSoftwareUpdate.Text = "Last checked: 21/01/2020, 08:59 PM";
-            // 
-            // SplitContainer_ModUpdate
-            // 
-            this.SplitContainer_ModUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SplitContainer_ModUpdate.Location = new System.Drawing.Point(14, 614);
-            this.SplitContainer_ModUpdate.Name = "SplitContainer_ModUpdate";
-            // 
-            // SplitContainer_ModUpdate.Panel1
-            // 
-            this.SplitContainer_ModUpdate.Panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.SplitContainer_ModUpdate.Panel1.Controls.Add(this.Panel_ModUpdateBackdrop);
-            this.SplitContainer_ModUpdate.Panel1.Controls.Add(this.SectionButton_UpdateMods);
-            this.SplitContainer_ModUpdate.Panel1MinSize = 201;
-            // 
-            // SplitContainer_ModUpdate.Panel2
-            // 
-            this.SplitContainer_ModUpdate.Panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
-            this.SplitContainer_ModUpdate.Panel2.Controls.Add(this.ProgressBar_ModUpdate);
-            this.SplitContainer_ModUpdate.Panel2.Controls.Add(this.Panel_ModInfoBackdrop);
-            this.SplitContainer_ModUpdate.Panel2MinSize = 300;
-            this.SplitContainer_ModUpdate.Size = new System.Drawing.Size(561, 380);
-            this.SplitContainer_ModUpdate.SplitterDistance = 225;
-            this.SplitContainer_ModUpdate.TabIndex = 44;
-            this.SplitContainer_ModUpdate.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.SplitContainer_ModUpdate_SplitterMoved);
-            // 
-            // Panel_ModUpdateBackdrop
-            // 
-            this.Panel_ModUpdateBackdrop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Panel_ModUpdateBackdrop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.Panel_ModUpdateBackdrop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Panel_ModUpdateBackdrop.Controls.Add(this.ListView_ModUpdates);
-            this.Panel_ModUpdateBackdrop.Location = new System.Drawing.Point(0, 0);
-            this.Panel_ModUpdateBackdrop.Name = "Panel_ModUpdateBackdrop";
-            this.Panel_ModUpdateBackdrop.Size = new System.Drawing.Size(223, 337);
-            this.Panel_ModUpdateBackdrop.TabIndex = 1;
-            // 
-            // ListView_ModUpdates
-            // 
-            this.ListView_ModUpdates.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.ListView_ModUpdates.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListView_ModUpdates.AutoArrange = false;
-            this.ListView_ModUpdates.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.ListView_ModUpdates.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ListView_ModUpdates.CheckBoxes = true;
-            this.ListView_ModUpdates.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Column_Updates_Title,
-            this.Column_Updates_Blank});
-            this.ListView_ModUpdates.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.ListView_ModUpdates.ForeColor = System.Drawing.SystemColors.Control;
-            this.ListView_ModUpdates.FullRowSelect = true;
-            this.ListView_ModUpdates.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.ListView_ModUpdates.HideSelection = false;
-            this.ListView_ModUpdates.Location = new System.Drawing.Point(0, 0);
-            this.ListView_ModUpdates.MultiSelect = false;
-            this.ListView_ModUpdates.Name = "ListView_ModUpdates";
-            this.ListView_ModUpdates.OwnerDraw = true;
-            this.ListView_ModUpdates.Size = new System.Drawing.Size(221, 352);
-            this.ListView_ModUpdates.TabIndex = 2;
-            this.ListView_ModUpdates.UseCompatibleStateImageBehavior = false;
-            this.ListView_ModUpdates.View = System.Windows.Forms.View.Details;
-            this.ListView_ModUpdates.DrawColumnHeader += new System.Windows.Forms.DrawListViewColumnHeaderEventHandler(this.ListView_DrawColumnHeader);
-            this.ListView_ModUpdates.DrawItem += new System.Windows.Forms.DrawListViewItemEventHandler(this.ListView_DrawItem);
-            this.ListView_ModUpdates.ItemChecked += new System.Windows.Forms.ItemCheckedEventHandler(this.ListView_ModUpdates_ItemChecked);
-            // 
-            // Column_Updates_Title
-            // 
-            this.Column_Updates_Title.Text = "Title";
-            this.Column_Updates_Title.Width = 197;
-            // 
-            // Column_Updates_Blank
-            // 
-            this.Column_Updates_Blank.Text = "";
-            this.Column_Updates_Blank.Width = 1000;
-            // 
-            // SectionButton_UpdateMods
-            // 
-            this.SectionButton_UpdateMods.AccentColour = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.SectionButton_UpdateMods.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.SectionButton_UpdateMods.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(45)))));
-            this.SectionButton_UpdateMods.Enabled = false;
-            this.SectionButton_UpdateMods.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SectionButton_UpdateMods.Location = new System.Drawing.Point(1, 343);
-            this.SectionButton_UpdateMods.Name = "SectionButton_UpdateMods";
-            this.SectionButton_UpdateMods.SectionImage = global::Unleash.Properties.Resources.Update_4;
-            this.SectionButton_UpdateMods.SectionText = "Update selected mods";
-            this.SectionButton_UpdateMods.SelectedSection = false;
-            this.SectionButton_UpdateMods.Size = new System.Drawing.Size(223, 35);
-            this.SectionButton_UpdateMods.TabIndex = 45;
-            this.SectionButton_UpdateMods.TextColour = System.Drawing.SystemColors.GrayText;
-            this.SectionButton_UpdateMods.Click += new System.EventHandler(this.SectionButton_Updates_Click);
-            // 
-            // ProgressBar_ModUpdate
-            // 
-            this.ProgressBar_ModUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProgressBar_ModUpdate.Enabled = false;
-            this.ProgressBar_ModUpdate.Location = new System.Drawing.Point(2, 343);
-            this.ProgressBar_ModUpdate.Name = "ProgressBar_ModUpdate";
-            this.ProgressBar_ModUpdate.Size = new System.Drawing.Size(329, 35);
-            this.ProgressBar_ModUpdate.TabIndex = 94;
-            // 
-            // Panel_ModInfoBackdrop
-            // 
-            this.Panel_ModInfoBackdrop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Panel_ModInfoBackdrop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.Panel_ModInfoBackdrop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Panel_ModInfoBackdrop.Controls.Add(this.ListBox_UpdateLogs);
-            this.Panel_ModInfoBackdrop.Location = new System.Drawing.Point(2, 0);
-            this.Panel_ModInfoBackdrop.Name = "Panel_ModInfoBackdrop";
-            this.Panel_ModInfoBackdrop.Size = new System.Drawing.Size(329, 337);
-            this.Panel_ModInfoBackdrop.TabIndex = 21;
-            // 
-            // ListBox_UpdateLogs
-            // 
-            this.ListBox_UpdateLogs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.ListBox_UpdateLogs.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ListBox_UpdateLogs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ListBox_UpdateLogs.ForeColor = System.Drawing.SystemColors.Control;
-            this.ListBox_UpdateLogs.FormattingEnabled = true;
-            this.ListBox_UpdateLogs.ItemHeight = 15;
-            this.ListBox_UpdateLogs.Location = new System.Drawing.Point(0, 0);
-            this.ListBox_UpdateLogs.Name = "ListBox_UpdateLogs";
-            this.ListBox_UpdateLogs.Size = new System.Drawing.Size(327, 335);
-            this.ListBox_UpdateLogs.TabIndex = 1;
             // 
             // Label_Title_ModsAndPatches
             // 
@@ -2374,19 +2156,6 @@ namespace Unleash.Environment3
             this.Title_Contributors.TabIndex = 34;
             this.Title_Contributors.Text = "Contributors";
             // 
-            // Label_Version
-            // 
-            this.Label_Version.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Version.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Version.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.Label_Version.Location = new System.Drawing.Point(2, 982);
-            this.Label_Version.Name = "Label_Version";
-            this.Label_Version.Size = new System.Drawing.Size(582, 25);
-            this.Label_Version.TabIndex = 0;
-            this.Label_Version.Text = "Unleash 1.0";
-            this.Label_Version.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // LinkLabel_GPF
             // 
             this.LinkLabel_GPF.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
@@ -2434,6 +2203,19 @@ namespace Unleash.Environment3
             this.Panel_About_UICleanSpace.Name = "Panel_About_UICleanSpace";
             this.Panel_About_UICleanSpace.Size = new System.Drawing.Size(214, 17);
             this.Panel_About_UICleanSpace.TabIndex = 175;
+            // 
+            // Label_Version
+            // 
+            this.Label_Version.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Version.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Version.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.Label_Version.Location = new System.Drawing.Point(2, 982);
+            this.Label_Version.Name = "Label_Version";
+            this.Label_Version.Size = new System.Drawing.Size(582, 25);
+            this.Label_Version.TabIndex = 0;
+            this.Label_Version.Text = "Unleash 1.0";
+            this.Label_Version.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // Rush_Section_Debug
             // 
@@ -2483,21 +2265,6 @@ namespace Unleash.Environment3
             this.Rush_Section_Settings.TabIndex = 23;
             this.Rush_Section_Settings.TextColour = System.Drawing.SystemColors.Control;
             this.Rush_Section_Settings.Click += new System.EventHandler(this.Rush_Section_Click);
-            // 
-            // Rush_Section_Patches
-            // 
-            this.Rush_Section_Patches.AccentColour = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Rush_Section_Patches.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(45)))));
-            this.Rush_Section_Patches.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Rush_Section_Patches.Location = new System.Drawing.Point(0, 135);
-            this.Rush_Section_Patches.Name = "Rush_Section_Patches";
-            this.Rush_Section_Patches.SectionImage = global::Unleash.Properties.Resources.PatchPackage_16x;
-            this.Rush_Section_Patches.SectionText = "Patches";
-            this.Rush_Section_Patches.SelectedSection = false;
-            this.Rush_Section_Patches.Size = new System.Drawing.Size(250, 35);
-            this.Rush_Section_Patches.TabIndex = 22;
-            this.Rush_Section_Patches.TextColour = System.Drawing.SystemColors.Control;
-            this.Rush_Section_Patches.Click += new System.EventHandler(this.Rush_Section_Click);
             // 
             // Rush_Section_About
             // 
@@ -2573,7 +2340,6 @@ namespace Unleash.Environment3
             this.Controls.Add(this.Rush_Section_Debug);
             this.Controls.Add(this.Rush_Section_Updates);
             this.Controls.Add(this.Rush_Section_Settings);
-            this.Controls.Add(this.Rush_Section_Patches);
             this.Controls.Add(this.Rush_Section_About);
             this.Controls.Add(this.Rush_Section_Emulator);
             this.Controls.Add(this.Rush_Section_Mods);
@@ -2599,12 +2365,6 @@ namespace Unleash.Environment3
             this.Panel_ModBackdrop.ResumeLayout(false);
             this.Tab_Section_Emulator.ResumeLayout(false);
             this.Tab_Section_Emulator.PerformLayout();
-            this.Tab_Section_Patches.ResumeLayout(false);
-            this.SplitContainer_PatchesControls.Panel1.ResumeLayout(false);
-            this.SplitContainer_PatchesControls.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_PatchesControls)).EndInit();
-            this.SplitContainer_PatchesControls.ResumeLayout(false);
-            this.Panel_PatchBackdrop.ResumeLayout(false);
             this.Tab_Section_Debug.ResumeLayout(false);
             this.Panel_DebugControls.ResumeLayout(false);
             this.Tab_Section_Updates.ResumeLayout(false);
@@ -2631,11 +2391,9 @@ namespace Unleash.Environment3
         private SectionButton Rush_Section_About;
         private SectionButton Rush_Section_Emulator;
         private SectionButton Rush_Section_Mods;
-        private SectionButton Rush_Section_Patches;
         private SectionButton Rush_Section_Settings;
         private System.Windows.Forms.TabPage Tab_Section_Mods;
         private System.Windows.Forms.TabPage Tab_Section_Emulator;
-        private System.Windows.Forms.TabPage Tab_Section_Patches;
         private WindowsColourPicker WindowsColourPicker_AccentColour;
         private System.Windows.Forms.TextBox TextBox_GameDirectory;
         private System.Windows.Forms.Label Label_Title_Appearance;
@@ -2700,15 +2458,6 @@ namespace Unleash.Environment3
         private System.Windows.Forms.Label Label_RPCS3Warning;
         private System.Windows.Forms.CheckBox CheckBox_Xenia_DiscordRPC;
         private System.Windows.Forms.CheckBox CheckBox_Xenia_Fullscreen;
-        private System.Windows.Forms.Panel Panel_PatchBackdrop;
-        private System.Windows.Forms.ListView ListView_PatchesList;
-        private System.Windows.Forms.ColumnHeader Column_PatchesList_Title;
-        private System.Windows.Forms.ColumnHeader Column_PatchesList_Author;
-        private System.Windows.Forms.ColumnHeader Column_PatchesList_System;
-        private System.Windows.Forms.ColumnHeader Column_PatchesList_Blank;
-        private System.Windows.Forms.ColumnHeader Column_PatchesList_Blurb;
-        private System.Windows.Forms.Button Button_Patches_DeselectAll;
-        private System.Windows.Forms.Button Button_Patches_SelectAll;
         private SectionButton Rush_Section_Updates;
         private System.Windows.Forms.TabPage Tab_Section_Updates;
         private System.Windows.Forms.Label Label_Version;
@@ -2751,9 +2500,7 @@ namespace Unleash.Environment3
         private System.Windows.Forms.ColumnHeader Column_Updates_Title;
         private System.Windows.Forms.ListBox ListBox_UpdateLogs;
         private System.Windows.Forms.ColumnHeader Column_Updates_Blank;
-        private System.Windows.Forms.Label Label_LastPatchUpdate;
         private System.Windows.Forms.Label Label_LastModUpdate;
-        private SectionButton SectionButton_FetchPatches;
         private System.Windows.Forms.Label Label_Description_1ClickURLHandler;
         private System.Windows.Forms.LinkLabel LinkLabel_1ClickURLHandler;
         private System.Windows.Forms.Label Label_Warning_ModsDirectoryInvalid;
@@ -2764,9 +2511,6 @@ namespace Unleash.Environment3
         private System.Windows.Forms.Label Title_SpecialThanks;
         private System.Windows.Forms.Label Label_Contributors;
         private System.Windows.Forms.Label Title_Contributors;
-        private SectionButton SectionButton_RefreshPatches;
-        private System.Windows.Forms.SplitContainer SplitContainer_PatchesControls;
-        private SectionButton SectionButton_SaveCheckedPatches;
         private System.Windows.Forms.Panel Panel_About_UICleanSpace;
         private System.Windows.Forms.LinkLabel LinkLabel_AssemblyPP;
         private System.Windows.Forms.LinkLabel LinkLabel_Microsoft;
@@ -2797,5 +2541,6 @@ namespace Unleash.Environment3
         private System.Windows.Forms.LinkLabel LinkLabel_Velcomia;
         private System.Windows.Forms.LinkLabel LinkLabel_CodenameGamma;
         private System.Windows.Forms.LinkLabel LinkLabel_slashiee;
+        private System.Windows.Forms.ColumnHeader Column_ModsList_Merge;
     }
 }

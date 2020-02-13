@@ -64,17 +64,6 @@ namespace Unleash.Environment3
                     Properties.Settings.Default.Path_ModsDirectory == string.Empty)
                         new UnifySetup().ShowDialog();
 
-                if (Paths.IsDirectoryEmpty(Program.Patches)) {
-                    Properties.Settings.Default.General_LastPatchUpdate = DateTime.Now.Ticks;
-                    // Update patches synchronously
-                    Task.Run(() => UpdatePatches()).GetAwaiter().GetResult();
-
-                    // Reset update button for future checking
-                    SectionButton_FetchPatches.Enabled = true;
-                    SectionButton_FetchPatches.Refresh();
-                    RefreshLists();
-                }
-
                 LoadSettings(); // Load user settings
 
                 // Check registry for 1-Click Install registry key
@@ -85,7 +74,7 @@ namespace Unleash.Environment3
                 TabControl_Rush.Height += 23; // Increase height on load to accommodate for lack of tabs in the section controller
 
                 // Force splitter widths - because WinForms is dumb and ignores it at design time
-                SplitContainer_ModsControls.SplitterWidth = SplitContainer_PatchesControls.SplitterWidth = SplitContainer_MainControls.SplitterWidth = 1;
+                SplitContainer_ModsControls.SplitterWidth = SplitContainer_MainControls.SplitterWidth = 1;
                 SplitContainer_ModUpdate.SplitterWidth = 2;
 #if DEBUG
                 // If the application is a debug build, force debug mode on
@@ -100,20 +89,12 @@ namespace Unleash.Environment3
             set { Label_Status.Text = value; }
         }
 
-        public ListView.ListViewItemCollection ModsList {
-            get { return ListView_ModsList.Items; }
-        }
-
-        public ListView.ListViewItemCollection PatchesList {
-            get { return ListView_PatchesList.Items; }
-        }
-
         /// <summary>
         /// Performs actions on launch.
         /// </summary>
         private void RushInterface_Load(object sender, EventArgs e) {
             RefreshLists(); // Refresh mods list
-            if (Paths.CheckLegitimacy(Properties.Settings.Default.Path_GameDirectory) && 
+            if (Paths.CheckFileLegitimacy(Properties.Settings.Default.Path_GameDirectory) && 
                 Properties.Settings.Default.General_AutoUninstall) UninstallThread(); // Uninstall everything
         }
 
@@ -132,7 +113,6 @@ namespace Unleash.Environment3
                 #region Restore label strings
                 Label_LastSoftwareUpdate.Text = Literal.Date("Last checked", Properties.Settings.Default.General_LastSoftwareUpdate);
                 Label_LastModUpdate.Text      = Literal.Date("Last checked", Properties.Settings.Default.General_LastModUpdate);
-                Label_LastPatchUpdate.Text    = Literal.Date("Last updated", Properties.Settings.Default.General_LastPatchUpdate);
                 #endregion
 
                 #region Restore text fields
@@ -350,9 +330,7 @@ namespace Unleash.Environment3
         /// </summary>
         private void RefreshLists() {
             DeserialiseMods(); // Refresh mods list
-            DeserialisePatches(); // Refresh patches list
             CheckDeserialisedMods(); // Check saved mods
-            CheckDeserialisedPatches(); // Check saved patches
         }
 
         /// <summary>
@@ -422,7 +400,6 @@ namespace Unleash.Environment3
             SectionButton_DeselectAll();
             if          (sender == Rush_Section_Mods) TabControl_Rush.SelectedTab = Tab_Section_Mods;     // Set tab to Mods
             else if (sender == Rush_Section_Emulator) TabControl_Rush.SelectedTab = Tab_Section_Emulator; // Set tab to Emulator
-            else if  (sender == Rush_Section_Patches) TabControl_Rush.SelectedTab = Tab_Section_Patches;  // Set tab to Patches
             else if (sender == Rush_Section_Settings) TabControl_Rush.SelectedTab = Tab_Section_Settings; // Set tab to Settings
             else if    (sender == Rush_Section_Debug) TabControl_Rush.SelectedTab = Tab_Section_Debug;    // Set tab to Debug
             else if  (sender == Rush_Section_Updates) TabControl_Rush.SelectedTab = Tab_Section_Updates;  // Set tab to Updates
@@ -676,21 +653,6 @@ namespace Unleash.Environment3
                         });
                         menuDark.Show(Cursor.Position);
                     }
-                } else if (sender == ListView_PatchesList) {
-                    if (ListView_PatchesList.FocusedItem.Bounds.Contains(e.Location)) {
-                        menuDark.Items.Clear();
-                        menuDark.Items.AddRange(new ToolStripMenuItem[] {
-                            new ToolStripMenuItem("Patch Information", Properties.Resources.InformationSymbol_16x, ContextMenu_PatchMenu_Items_Click),
-                            new ToolStripMenuItem("Open Folder",       Properties.Resources.Open_grey_16x,         ContextMenu_PatchMenu_Items_Click)
-                        });
-                        menuDark.Items.Add(new ToolStripSeparator());
-                        menuDark.Items.AddRange(new ToolStripMenuItem[] {
-                            new ToolStripMenuItem("Create Patch",      Properties.Resources.NewPatchPackage_16x,   ContextMenu_PatchMenu_Items_Click),
-                            new ToolStripMenuItem("Edit Patch",        Properties.Resources.EditPage_16x,          ContextMenu_PatchMenu_Items_Click),
-                            new ToolStripMenuItem("Delete Patch",      Properties.Resources.Cancel_16x,            ContextMenu_PatchMenu_Items_Click)
-                        });
-                        menuDark.Show(Cursor.Position);
-                    }
                 }
             }
         }
@@ -701,10 +663,10 @@ namespace Unleash.Environment3
         private async void ContextMenu_ModMenu_Items_Click(object sender, EventArgs e) {
             switch (((ToolStripMenuItem)sender).ToString()) {
                 case "Mod Information":
-                    new ModInfo(ListView_ModsList.FocusedItem.SubItems[5].Text).ShowDialog();
+                    new ModInfo(ListView_ModsList.FocusedItem.SubItems[6].Text).ShowDialog();
                     break;
                 case "Open Folder":
-                    try { Process.Start(Path.GetDirectoryName(ListView_ModsList.FocusedItem.SubItems[5].Text)); }
+                    try { Process.Start(Path.GetDirectoryName(ListView_ModsList.FocusedItem.SubItems[6].Text)); }
                     catch {
                         UnifyMessenger.UnifyMessage.ShowDialog("Unable to locate the selected mod. It may have been removed from the mods directory. Removing from list...",
                                                                "Unable to find mod...", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -719,7 +681,7 @@ namespace Unleash.Environment3
                     TabControl_Rush.SelectedTab.ScrollControlIntoView(Panel_Updates_UICleanSpace);
 
                     // Check for updates...
-                    await CheckForModUpdates(ListView_ModsList.FocusedItem.SubItems[5].Text);
+                    await CheckForModUpdates(ListView_ModsList.FocusedItem.SubItems[6].Text);
                     break;
                 case "Create Mod":
                     // Launch Mod Creator
@@ -728,7 +690,7 @@ namespace Unleash.Environment3
                     break;
                 case "Edit Mod":
                     // Launch Mod Editor
-                    new ModCreator(ListView_ModsList.FocusedItem.SubItems[5].Text, true).ShowDialog();
+                    new ModCreator(ListView_ModsList.FocusedItem.SubItems[6].Text, true).ShowDialog();
                     RefreshLists(); // Refresh on Mod Editor exit
                     break;
                 case "Delete Mod":
@@ -737,7 +699,7 @@ namespace Unleash.Environment3
                                                                                            $"Deleting {ListView_ModsList.FocusedItem.Text}...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                         if (confirmation == DialogResult.Yes) {
-                            string modPath = Path.GetDirectoryName(ListView_ModsList.FocusedItem.SubItems[5].Text);
+                            string modPath = Path.GetDirectoryName(ListView_ModsList.FocusedItem.SubItems[6].Text);
                             DirectoryInfo modData = new DirectoryInfo(modPath);
 
                             if (Directory.Exists(modPath)) {
@@ -749,62 +711,6 @@ namespace Unleash.Environment3
                         }
                     } catch {
                         UnifyMessenger.UnifyMessage.ShowDialog("Failed to delete the data for the requested mod.",
-                                                               "I/O Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// Event handler for the right-click menu items by index.
-        /// </summary>
-        private void ContextMenu_PatchMenu_Items_Click(object sender, EventArgs e) {
-            switch (((ToolStripMenuItem)sender).ToString()) {
-                case "Patch Information":
-                    string patch = ListView_PatchesList.FocusedItem.SubItems[5].Text,
-                           blurb = Lua.DeserialiseParameter("Blurb", patch, true), // Deserialise 'Blurb' parameter
-                           description = Lua.DeserialiseParameter("Description", patch, true), // Deserialise 'Description' parameter
-                           patchInfo = string.Empty;
-
-                    if (description == string.Empty) patchInfo = blurb.Replace(@"\n", " ");
-                    else if  (blurb == string.Empty) patchInfo = description.Replace(@"\n", Environment.NewLine);
-                    else                             patchInfo = description.Replace(@"\n", Environment.NewLine);
-
-                    UnifyMessenger.UnifyMessage.ShowDialog(patchInfo, ListView_PatchesList.FocusedItem.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    break;
-                case "Open Folder":
-                    try { Process.Start(Program.Patches); }
-                    catch {
-                        UnifyMessenger.UnifyMessage.ShowDialog("The patches directory is missing... Please restart Unleashed Mod Manager.",
-                                                               "Unable to locate patches...", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        RefreshLists(); // Refresh patches list
-                    }
-                    break;
-                case "Create Patch":
-                    // Launch Patch Creator
-                    new PatchCreator(string.Empty, false).ShowDialog();
-                    RefreshLists(); // Refresh on Patch Creator exit
-                    break;
-                case "Edit Patch":
-                    // Launch Patch Editor
-                    new PatchCreator(ListView_PatchesList.FocusedItem.SubItems[5].Text, true).ShowDialog();
-                    RefreshLists(); // Refresh on Patch Editor exit
-                    break;
-                case "Delete Patch":
-                    try {
-                        DialogResult confirmation = UnifyMessenger.UnifyMessage.ShowDialog($"Are you sure you want to delete {ListView_PatchesList.FocusedItem.Text}?",
-                                                                                           $"Deleting {ListView_PatchesList.FocusedItem.Text}...", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        if (confirmation == DialogResult.Yes) {
-                            string patchPath = ListView_PatchesList.FocusedItem.SubItems[5].Text;
-
-                            if (File.Exists(patchPath)) {
-                                File.Delete(patchPath);
-                                RefreshLists();
-                            }
-                        }
-                    } catch {
-                        UnifyMessenger.UnifyMessage.ShowDialog("Failed to delete the data for the requested patch.",
                                                                "I/O Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     break;
@@ -851,44 +757,11 @@ namespace Unleash.Environment3
                                                       INI.DeserialiseKey("Version", mod), // Deserialise 'Version' key
                                                       INI.DeserialiseKey("Author", mod), // Deserialise 'Author' key
                                                       INI.DeserialiseKey("Platform", mod), // Deserialise 'Platform' key
+                                                      Literal.Bool(INI.DeserialiseKey("Merge", mod)), // Translates 'True' to 'Yes' and 'False' to 'No'
                                                       string.Empty,
                                                       mod
                                                   });
                             ListView_ModsList.Items.Add(config);
-                        }
-                    } catch { }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Deserialises all patches in the patches directory.
-        /// </summary>
-        private void DeserialisePatches() {
-            if (Directory.Exists(Program.Patches)) {
-                ListView_PatchesList.Items.Clear(); // Clears the patches list
-                foreach (string patch in Directory.GetFiles(Program.Patches, "*.mlua", SearchOption.AllDirectories)) {
-                    try {
-                        string title       = Lua.DeserialiseParameter("Title", patch, true), // Deserialise 'Title' parameter
-                               blurb       = Lua.DeserialiseParameter("Blurb", patch, true), // Deserialise 'Blurb' parameter
-                               description = Lua.DeserialiseParameter("Description", patch, true), // Deserialise 'Description' parameter
-                               patchInfo   = string.Empty;
-
-                        if (description == string.Empty) patchInfo = blurb.Replace(@"\n", " ");
-                        else if  (blurb == string.Empty) patchInfo = description.Replace(@"\n", Environment.NewLine);
-                        else                             patchInfo = blurb.Replace(@"\n", " ");
-
-                        if (title != string.Empty) {
-                            //Add mod to list, getting information from its mod.ini file
-                            ListViewItem script = new ListViewItem(new[] {
-                                                      title,
-                                                      Lua.DeserialiseParameter("Author", patch, true), // Deserialise 'Author' parameter
-                                                      Lua.DeserialiseParameter("Platform", patch, true), // Deserialise 'Platform' parameter
-                                                      patchInfo,
-                                                      string.Empty,
-                                                      patch
-                                                  });
-                            ListView_PatchesList.Items.Add(script);
                         }
                     } catch { }
                 }
@@ -911,7 +784,7 @@ namespace Unleash.Environment3
                             if (Directory.Exists(Path.Combine(Properties.Settings.Default.Path_ModsDirectory, line))) {
                                 // If the item exists, shift it to the top of the list and check it
                                 for (int i = 0; i <= ListView_ModsList.Items.Count - 1; i++)
-                                    if (Paths.GetContainingFolder(ListView_ModsList.Items[i].SubItems[5].Text) == line) {
+                                    if (Paths.GetContainingFolder(ListView_ModsList.Items[i].SubItems[6].Text) == line) {
                                         // Store original list item before shifting it in the list
                                         ListViewItem shiftItem = ListView_ModsList.Items[i];
 
@@ -922,34 +795,6 @@ namespace Unleash.Environment3
                                         ListView_ModsList.Items.Insert(0, shiftItem).Checked = true;
                                         break;
                                     }
-                            }
-                        } catch { }
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        /// Restore checked items from 'patches.ini'
-        /// </summary>
-        private void CheckDeserialisedPatches() {
-            string line = string.Empty; // Declare empty string for StreamReader
-            string patchConfig = Path.Combine(Properties.Settings.Default.Path_ModsDirectory, "patches.ini");
-
-            if (File.Exists(patchConfig)) {
-                // Read 'patches.ini'
-                using (StreamReader patches = new StreamReader(patchConfig)) {
-                    patches.ReadLine(); // Skip [Main] line
-                    while ((line = patches.ReadLine()) != null) { // Read all lines until null
-                        try {
-                            if (File.Exists(Path.Combine(Program.Patches, line))) {
-                                // If the item exists, check it
-                                for (int i = 0; i <= ListView_PatchesList.Items.Count - 1; i++)
-                                    foreach (ListViewItem.ListViewSubItem subitem in ListView_PatchesList.Items[i].SubItems)
-                                        if (Path.GetFileName(subitem.Text) == line) {
-                                            ListView_PatchesList.Items[i].Checked = true;
-                                            break;
-                                        }
                             }
                         } catch { }
                     }
@@ -974,22 +819,8 @@ namespace Unleash.Environment3
                 if (ListView_ModsList.Items[i].Checked) // Get checked state
                     using (StreamWriter sw = File.AppendText(modCheckList))
                         // Write mod name by folder name to prevent duplicate mod names conflicting
-                        sw.WriteLine(Path.GetFileName(Path.GetDirectoryName(ListView_ModsList.Items[i].SubItems[5].Text)));
+                        sw.WriteLine(Path.GetFileName(Path.GetDirectoryName(ListView_ModsList.Items[i].SubItems[6].Text)));
             }
-
-            // Create 'patches.ini'
-            try {
-                using (StreamWriter sw = File.CreateText(patchCheckList))
-                    sw.WriteLine("[Main]"); // [Main] specification
-
-                // Writes in reverse so the patches list writes it in it's preferred order
-                for (int i = ListView_PatchesList.Items.Count - 1; i >= 0; i--) {
-                    if (ListView_PatchesList.Items[i].Checked) // Get checked state
-                        using (StreamWriter sw = File.AppendText(patchCheckList))
-                            // Write patch name by file name to prevent duplicate patch names conflicting
-                            sw.WriteLine(Path.GetFileName(ListView_PatchesList.Items[i].SubItems[5].Text));
-                }
-            } catch { }
         }
 
         /// <summary>
@@ -1023,7 +854,9 @@ namespace Unleash.Environment3
                                 Label_Status.Text = $"Installing {ListView_ModsList.Items[i].Text}...";
 
                                 // Install the specified mod
-                                try { ModEngine.InstallMods(ListView_ModsList.Items[i].SubItems[5].Text, ListView_ModsList.Items[i].Text); }
+                                try { 
+                                    ModEngine.InstallMods(ListView_ModsList.Items[i].SubItems[6].Text, ListView_ModsList.Items[i].Text); 
+                                }
                                 catch (Exception ex) {
                                     UnifyMessenger.UnifyMessage.ShowDialog($"An error occurred whilst installing your mods...\n\n{ex}",
                                                                            "Installation failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1032,7 +865,7 @@ namespace Unleash.Environment3
 
                                 if (Properties.Settings.Default.General_SaveFileRedirection)
                                     // Redirect save data from the specified mod
-                                    RedirectSaves(ListView_ModsList.Items[i].SubItems[5].Text, ListView_ModsList.Items[i].Text);
+                                    RedirectSaves(ListView_ModsList.Items[i].SubItems[6].Text, ListView_ModsList.Items[i].Text);
                             }
 
                     //Bottom to Top Priority
@@ -1042,23 +875,12 @@ namespace Unleash.Environment3
                                 Label_Status.Text = $"Installing {mod.Text}...";
 
                                 // Install the specified mod
-                                ModEngine.InstallMods(mod.SubItems[5].Text, mod.Text);
+                                ModEngine.InstallMods(mod.SubItems[6].Text, mod.Text);
 
                                 if (Properties.Settings.Default.General_SaveFileRedirection)
                                     // Redirect save data from the specified mod
-                                    RedirectSaves(mod.SubItems[5].Text, mod.Text);
+                                    RedirectSaves(mod.SubItems[6].Text, mod.Text);
                             }
-                    }
-                    
-                    try {
-                        // Begin patch installation
-                        InstallPatches();
-                    }
-                    catch (Exception ex) {
-                        if (_debug) Console.WriteLine(ex.ToString());
-                        UnifyMessenger.UnifyMessage.ShowDialog($"An error occurred whilst installing your patches and tweaks...\n\n{ex}",
-                                                                "Installation failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
                     }
 
                     if (Literal.System(Properties.Settings.Default.Path_GameDirectory) == "PlayStation 3") {
@@ -1088,19 +910,6 @@ namespace Unleash.Environment3
                     Properties.Settings.Default.Save();
                 } else return;
             }
-        }
-
-        /// <summary>
-        /// Begins the patch installation process.
-        /// </summary>
-        private void InstallPatches() {
-            foreach (ListViewItem patch in ListView_PatchesList.CheckedItems)
-                if (ListView_PatchesList.Items[ListView_PatchesList.Items.IndexOf(patch)].Checked) {
-                    Label_Status.Text = $"Patching {patch.Text}...";
-
-                    // Install the specified patch
-                    PatchEngine.InstallPatches(patch.SubItems[5].Text, patch.Text);
-                }
         }
 
         /// <summary>
@@ -1152,6 +961,7 @@ namespace Unleash.Environment3
             Label_Status.Text = "Removing modified game data...";
             try {
                 ModEngine.UninstallMods(); // Uninstalls all mods.
+                ModEngine.UninstallCustomFilesystem(ListView_ModsList.Items); // Uninstalls user-made filesystems.
                 ModEngine.UninstallSaves(ListView_ModsList.Items); // Removes redirected save data. 
             } catch (Exception ex) {
                 UnifyMessenger.UnifyMessage.ShowDialog($"Failed to uninstall modified game data...\n\n{ex}",
@@ -1260,13 +1070,6 @@ namespace Unleash.Environment3
             else if (sender == Button_Mods_DeselectAll) { // Deselect All
                 foreach (ListViewItem item in ListView_ModsList.Items) item.Checked = false;
                 ListView_ModsList.SelectedItems.Clear();
-            }
-
-            // Patches List
-            else if (sender == Button_Patches_SelectAll) ListView_PatchesList.Items.Cast<ListViewItem>().All(i => i.Checked = true); // Select All
-            else if (sender == Button_Patches_DeselectAll) { // Deselect All
-                foreach (ListViewItem item in ListView_PatchesList.Items) item.Checked = false;
-                ListView_PatchesList.SelectedItems.Clear();
             }
         }
 
@@ -1381,35 +1184,6 @@ namespace Unleash.Environment3
         }
 
         /// <summary>
-        /// Update community patches via requested server.
-        /// </summary>
-        private async Task UpdatePatches() {
-            // Set controls enabled and visibility state
-            SectionButton_FetchPatches.Enabled = false;
-            TabControl_Rush.SelectedTab.ScrollControlIntoView(Panel_Updates_UICleanSpace);
-
-            try {
-                //Clone Unleashed Mod Manager Patches repository from GitHub
-                string getRepoContents = await Client.RequestString(Properties.Resources.PatchURI_GitHub);
-                string[] repoLinks = getRepoContents.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-
-                for (int i = 0; i < repoLinks.Length; i++)
-                    using (WebClient client = new WebClient())
-                        if (repoLinks[i] != string.Empty)
-                            // Download scripts from update servers
-                            client.DownloadFileAsync(new Uri(repoLinks[i]), Path.Combine(Program.Patches, Path.GetFileName(repoLinks[i])));
-
-                //Feedback
-                UnifyMessenger.UnifyMessage.ShowDialog("The latest patches have been downloaded!",
-                                                       "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } catch (Exception ex) {
-                if (_debug) Console.WriteLine(ex.ToString()); // Write exception to debug log
-                UnifyMessenger.UnifyMessage.ShowDialog("Failed to update patches...",
-                                                       "Update failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        /// <summary>
         /// Refreshes the lists.
         /// </summary>
         private void SectionButton_Refresh_Click(object sender, EventArgs e) { RefreshLists(); }
@@ -1445,18 +1219,6 @@ namespace Unleash.Environment3
                 Properties.Settings.Default.General_LastModUpdate = DateTime.Now.Ticks;
                 await CheckForModUpdates(string.Empty);
                 Properties.Settings.Default.Save();
-            }
-
-            // Fetch latest patches is clicked
-            else if (sender == SectionButton_FetchPatches) {
-                Properties.Settings.Default.General_LastPatchUpdate = DateTime.Now.Ticks;
-                await UpdatePatches();
-                Properties.Settings.Default.Save();
-
-                // Reset update button for future checking
-                SectionButton_FetchPatches.Enabled = true;
-                SectionButton_FetchPatches.Refresh();
-                RefreshLists();
             }
 
             // Update mods is clicked
@@ -1579,18 +1341,12 @@ namespace Unleash.Environment3
         private void SizeLastColumn(ListView lv) {
             if (lv == ListView_ModsList) {
                 int x = lv.Width / 15 == 0 ? 1 : lv.Width / 15;
-                lv.Columns[0].Width = (x * 8) + 25;
+                lv.Columns[0].Width = (x * 7) - 7;
                 lv.Columns[1].Width = (x * 2) - 20;
-                lv.Columns[2].Width = (x * 2) + 30;
+                lv.Columns[2].Width = (x * 2) + 20;
                 lv.Columns[3].Width = (x * 2) + 10;
-                lv.Columns[4].Width = x * 100;
-            } else if (lv == ListView_PatchesList) {
-                int x = lv.Width / 15 == 0 ? 1 : lv.Width / 15;
-                lv.Columns[0].Width = (x * 5) - 5;
-                lv.Columns[1].Width = (x * 2) + 20;
-                lv.Columns[3].Width = (x * 2) + 10;
-                lv.Columns[3].Width = (x * 6) - 30;
-                lv.Columns[4].Width = x * 100;
+                lv.Columns[4].Width = (x * 2) - 9;
+                lv.Columns[5].Width = x * 100;
             } else if (lv == ListView_ModUpdates) {
                 int x = lv.Width / 15 == 0 ? 1 : lv.Width / 15;
                 lv.Columns[0].Width = Panel_ModUpdateBackdrop.Width;
@@ -1604,7 +1360,6 @@ namespace Unleash.Environment3
         /// </summary>
         private void RefreshColumnSize() {
             SizeLastColumn(ListView_ModsList);
-            SizeLastColumn(ListView_PatchesList);
             SizeLastColumn(ListView_ModUpdates);
         }
 
@@ -1739,62 +1494,6 @@ namespace Unleash.Environment3
                         Label_Status.Text = "Ready.";
                     }
                 }
-
-            // Patches DragDrop event
-            } else if (sender == ListView_PatchesList) {
-                if (droppedFiles.Length == 1) {
-                    // File is an archive
-                    if (Path.GetExtension(droppedFiles[0]) == ".zip" || Path.GetExtension(droppedFiles[0]) == ".7z" || Path.GetExtension(droppedFiles[0]) == ".rar") {
-                        DialogResult confirmation = UnifyMessenger.UnifyMessage.ShowDialog($"Do you want to add '{Path.GetFileName(droppedFiles[0])}' as a patch?",
-                                                                                           "Add patch?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        if (confirmation == DialogResult.Yes) {
-                            byte[] bytes = File.ReadAllBytes(droppedFiles[0]).Take(2).ToArray();
-                            string hexString = BitConverter.ToString(bytes);
-
-                            if (hexString == "50-4B") ZIP.InstallFromZip(droppedFiles[0], Program.Patches);
-                            else ZIP.InstallFromCustomArchive(droppedFiles[0], Program.Patches);
-
-                            RefreshLists();
-                        }
-
-                        // File is a MLUA
-                    } else if (Path.GetExtension(droppedFiles[0]) == ".mlua") {
-                        DialogResult confirmation = UnifyMessenger.UnifyMessage.ShowDialog($"Do you want to add '{Path.GetFileName(droppedFiles[0])}' as a patch?",
-                                                                                           "Add patch?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                        if (confirmation == DialogResult.Yes) {
-                            File.Copy(droppedFiles[0], Path.Combine(Program.Patches, Path.GetFileName(droppedFiles[0])));
-                            RefreshLists();
-                        }
-                    }
-                } else {
-                    DialogResult confirmation = UnifyMessenger.UnifyMessage.ShowDialog($"Do you want to add all {droppedFiles.Length} items as patches?",
-                                                                                       "Add patches?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                    if (confirmation == DialogResult.Yes) {
-                        Label_Status.Text = $"Adding {droppedFiles.Length} patches...";
-
-                        // Install
-                        foreach (string item in droppedFiles) {
-                            byte[] bytes = File.ReadAllBytes(item).Take(2).ToArray();
-                            string hexString = BitConverter.ToString(bytes);
-
-                            // File is an archive
-                            if (Path.GetExtension(item) == ".zip" || Path.GetExtension(item) == ".7z" || Path.GetExtension(item) == ".rar")
-                                if (hexString == "50-4B") ZIP.InstallFromZip(item, Program.Patches);
-                                else ZIP.InstallFromCustomArchive(item, Program.Patches);
-
-                            // File is a MLUA
-                            else if (Path.GetExtension(item) == ".mlua")
-                                File.Copy(item, Path.Combine(Program.Patches, Path.GetFileName(item)));
-
-                            RefreshLists(); // Refresh on completion
-                        }
-
-                        Label_Status.Text = "Ready.";
-                    }
-                }
             }
         }
 
@@ -1841,12 +1540,6 @@ namespace Unleash.Environment3
                     if (ListView_ModsList.SelectedItems.Count == 0) {
                         menuDark.Items.Clear();
                         menuDark.Items.Add(new ToolStripMenuItem("Create Mod", Properties.Resources.NewFileCollection_16x, ContextMenu_ModMenu_Items_Click));
-                        menuDark.Show(Cursor.Position);
-                    }
-                } else if (sender == ListView_PatchesList) {
-                    if (ListView_PatchesList.SelectedItems.Count == 0) {
-                        menuDark.Items.Clear();
-                        menuDark.Items.Add(new ToolStripMenuItem("Create Patch", Properties.Resources.NewPatchPackage_16x, ContextMenu_PatchMenu_Items_Click));
                         menuDark.Show(Cursor.Position);
                     }
                 }
@@ -1915,13 +1608,6 @@ namespace Unleash.Environment3
                             sw.WriteLine("\nMods:");
                             foreach (object mod in ListView_ModsList.CheckedItems)
                                 sw.WriteLine(mod);
-                        }
-
-                        // Print list of checked patches
-                        if (ListView_PatchesList.CheckedItems.Count != 0) {
-                            sw.WriteLine("\nPatches:");
-                            foreach (object patch in ListView_PatchesList.CheckedItems)
-                                sw.WriteLine(patch);
                         }
 
                         // Print list of current settings

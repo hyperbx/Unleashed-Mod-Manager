@@ -80,8 +80,18 @@ namespace Unleash.Environment3
                             break;
                     }
 
-                    tb_Description.Text += INI.DeserialiseKey("Description", mod).Replace(@"\n", Environment.NewLine);
+                    try {
+                        if (check_Merge.Checked = bool.Parse(INI.DeserialiseKey("Merge", mod))) {
+                            text_ReadOnly.Enabled = true;
+                            btn_ReadOnlyBrowser.Enabled = true;
+                            lbl_ReadOnly.ForeColor = SystemColors.Control;
+                        }
+                    } catch { /* ignored */ }
+
+                    text_ReadOnly.Text = INI.DeserialiseKey("Read-only", mod);
+                    text_Custom.Text = INI.DeserialiseKey("Custom", mod);
                     text_Save.Text = INI.DeserialiseKey("Save", mod);
+                    tb_Description.Text += INI.DeserialiseKey("Description", mod).Replace(@"\n", Environment.NewLine);
                     text_Server.Text += INI.DeserialiseKey("Metadata", mod).Replace(@"\n", Environment.NewLine);
                     text_Data.Text += INI.DeserialiseKey("Data", mod);
                 }
@@ -150,11 +160,14 @@ namespace Unleash.Environment3
                                 configInfo.WriteLine($"Description=\"{descriptionText}\"");
                             }
 
+                                                                    configInfo.WriteLine("\n[Filesystem]");
+                                                                    configInfo.WriteLine($"Merge=\"{check_Merge.Checked.ToString()}\"");
+                            if (text_Custom.Text != string.Empty)   configInfo.WriteLine($"Custom=\"{text_Custom.Text}\"");
+                            if (text_ReadOnly.Text != string.Empty) configInfo.WriteLine($"Read-only=\"{text_ReadOnly.Text}\"");
+
                             if (text_Save.Text != string.Empty && combo_System.SelectedIndex == 0) {
-                                configInfo.WriteLine("\n[Filesystem]");
                                 configInfo.WriteLine($"Save=\"savedata.360\"");
                             } else if (text_Save.Text != string.Empty && combo_System.SelectedIndex == 1) {
-                                configInfo.WriteLine("\n[Filesystem]");
                                 configInfo.WriteLine($"Save=\"savedata.ps3\"");
                             }
 
@@ -326,6 +339,61 @@ namespace Unleash.Environment3
 
         private void unifytb_ModCreator_SelectedIndexChanged(object sender, EventArgs e) {
             unifytb_ModCreator.Refresh(); //Refresh user control to remove software rendering leftovers.
+        }
+
+        private void Check_Merge_CheckedChanged(object sender, EventArgs e) {
+            if (check_Merge.Checked) {
+                text_ReadOnly.Enabled = true;
+                btn_ReadOnlyBrowser.Enabled = true;
+                lbl_ReadOnly.ForeColor = SystemColors.Control;
+            } else {
+                text_ReadOnly.Enabled = false;
+                btn_ReadOnlyBrowser.Enabled = false;
+                lbl_ReadOnly.ForeColor = SystemColors.GrayText;
+            }
+        }
+
+        private void btn_ReadOnlyBrowser_Click(object sender, EventArgs e) {
+            string csvList = string.Empty;
+
+            OpenFileDialog readonlyARC = new OpenFileDialog {
+                Title = "Please select files to make read-only...",
+                Filter = "ARC files (*.arc)|*.arc",
+                Multiselect = true
+            };
+
+            if (readonlyARC.ShowDialog() == DialogResult.OK)
+                foreach (string name in readonlyARC.FileNames)
+                    csvList += $"{Path.GetFileName(name)},";
+
+            if (csvList != string.Empty) {
+                if (text_ReadOnly.Text != string.Empty && !text_ReadOnly.Text.EndsWith(","))
+                    text_ReadOnly.Text += $",{csvList.Substring(0, csvList.Length - 1)}";
+                else
+                    text_ReadOnly.Text += csvList.Substring(0, csvList.Length - 1);
+            }
+        }
+
+        private void btn_Custom_Click(object sender, EventArgs e) {
+            string csvList = string.Empty;
+
+            //Select ARCs for Read-only parameters and save.
+            OpenFileDialog customData = new OpenFileDialog {
+                Title = "Please select your custom data...",
+                Filter = "All files (*.*)|*.*",
+                Multiselect = true
+            };
+
+            if (customData.ShowDialog() == DialogResult.OK)
+                foreach (string name in customData.FileNames)
+                    csvList += $"{Path.GetFileName(name)},";
+
+            if (csvList != string.Empty) {
+                if (text_Custom.Text != string.Empty && !text_Custom.Text.EndsWith(","))
+                    text_Custom.Text += $",{csvList.Substring(0, csvList.Length - 1)}";
+                else
+                    text_Custom.Text += csvList.Substring(0, csvList.Length - 1);
+            }
         }
     }
 }

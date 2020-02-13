@@ -54,12 +54,12 @@ namespace Unleash.Serialisers
 
     class Verification
     {
-        public static bool ARL(string file) {
+        /// <summary>
+        /// Returns if the file is compressed.
+        /// </summary>
+        public static bool Decompressed(string file) {
             string hexString = BitConverter.ToString(File.ReadAllBytes(file).Take(4).ToArray()).Replace("-", " ");
-
-            if      (hexString == "0F F5 12 EE") return false;
-            else if (hexString == "41 52 4C 32") return true;
-            else return false;
+            if (hexString == "0F F5 12 EE" || hexString == "73 65 67 73") return true; else return false;
         }
     }
 
@@ -178,8 +178,16 @@ namespace Unleash.Serialisers
         /// <summary>
         /// Checks if the path is valid and exists.
         /// </summary>
-        public static bool CheckLegitimacy(string path) {
+        public static bool CheckPathLegitimacy(string path) {
             if (Directory.Exists(path) && path != string.Empty) return true;
+            else return false;
+        }
+
+        /// <summary>
+        /// Checks if the path is valid and exists.
+        /// </summary>
+        public static bool CheckFileLegitimacy(string path) {
+            if (File.Exists(path) && path != string.Empty) return true;
             else return false;
         }
 

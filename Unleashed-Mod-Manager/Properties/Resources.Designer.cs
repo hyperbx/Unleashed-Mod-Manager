@@ -71,6 +71,16 @@ namespace Unleash.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] arcsys {
+            get {
+                object obj = ResourceManager.GetObject("arcsys", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Cancel_16x {
@@ -295,26 +305,6 @@ namespace Unleash.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] keys {
-            get {
-                object obj = ResourceManager.GetObject("keys", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] ldr_curves {
-            get {
-                object obj = ResourceManager.GetObject("ldr_curves", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Logo {
@@ -331,16 +321,6 @@ namespace Unleash.Properties {
             get {
                 object obj = ResourceManager.GetObject("logo_main_icon", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] make_fself {
-            get {
-                object obj = ResourceManager.GetObject("make_fself", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         
@@ -395,16 +375,6 @@ namespace Unleash.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] optimised_render_main {
-            get {
-                object obj = ResourceManager.GetObject("optimised_render_main", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap PaintBrush_16x {
@@ -425,20 +395,11 @@ namespace Unleash.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to https://raw.githubusercontent.com/HyperPolygon64/Unleashed-Mod-Manager-Patches/master/.git-repo.
-        /// </summary>
-        internal static string PatchURI_GitHub {
-            get {
-                return ResourceManager.GetString("PatchURI_GitHub", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] Protocol_Manager {
+        internal static byte[] quickbms {
             get {
-                object obj = ResourceManager.GetObject("Protocol_Manager", resourceCulture);
+                object obj = ResourceManager.GetObject("quickbms", resourceCulture);
                 return ((byte[])(obj));
             }
         }
@@ -454,32 +415,12 @@ namespace Unleash.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] render_cheap {
-            get {
-                object obj = ResourceManager.GetObject("render_cheap", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Run_16x {
             get {
                 object obj = ResourceManager.GetObject("Run_16x", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] scetool {
-            get {
-                object obj = ResourceManager.GetObject("scetool", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         
@@ -514,59 +455,9 @@ namespace Unleash.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Byte[].
         /// </summary>
-        internal static byte[] vsh_curves {
+        internal static byte[] xcompress_file {
             get {
-                object obj = ResourceManager.GetObject("vsh_curves", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] vulkan_render_gamemode {
-            get {
-                object obj = ResourceManager.GetObject("vulkan_render_gamemode", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] vulkan_render_main {
-            get {
-                object obj = ResourceManager.GetObject("vulkan_render_main", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] vulkan_render_title {
-            get {
-                object obj = ResourceManager.GetObject("vulkan_render_title", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] xextool {
-            get {
-                object obj = ResourceManager.GetObject("xextool", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] zlib1 {
-            get {
-                object obj = ResourceManager.GetObject("zlib1", resourceCulture);
+                object obj = ResourceManager.GetObject("xcompress_file", resourceCulture);
                 return ((byte[])(obj));
             }
         }

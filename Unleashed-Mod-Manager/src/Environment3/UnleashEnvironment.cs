@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using Unleash.Compression;
+using System.Windows.Forms;
 
 // Unleashed Mod Manager is licensed under the MIT License:
 /*

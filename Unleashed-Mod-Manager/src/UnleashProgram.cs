@@ -37,20 +37,14 @@ namespace Unleash.Environment3
 {
     static class Program
     {
-        public static readonly string VersionNumber    = "Version 1.03",
-                                      VersionNumberDev = $"Version 1.03-indev-{DateTime.Now.ToString("ddMMyy")}r5";
+        public static readonly string VersionNumberDev = "Version 1.04",
+                                      VersionNumber    = $"Version 1.04-indev-{DateTime.Now.ToString("ddMMyy")}r1";
 
         public static string ApplicationData    = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                              _7Zip              = $"{ApplicationData}\\Unleash\\Tools\\7z.exe",
-                             XexTool            = $"{ApplicationData}\\Unleash\\Tools\\xextool.exe",
-                             Patches            = $"{ApplicationData}\\Unleash\\Patches\\",
-                             ProtocolManager    = $"{ApplicationData}\\Unleash\\Tools\\Protocol Manager.exe",
-                             scetool            = $"{ApplicationData}\\Unleash\\Tools\\scetool.exe",
-                             zlib               = $"{ApplicationData}\\Unleash\\Tools\\zlib1.dll",
-                             make_fself         = $"{ApplicationData}\\Unleash\\Tools\\make_fself.exe",
-                             scetool_keys       = $"{ApplicationData}\\Unleash\\Tools\\data\\keys",
-                             scetool_ldr_curves = $"{ApplicationData}\\Unleash\\Tools\\data\\ldr_curves",
-                             scetool_vsh_curves = $"{ApplicationData}\\Unleash\\Tools\\data\\vsh_curves";
+                             quickbms           = $"{ApplicationData}\\Unleash\\Tools\\quickbms.exe",
+                             xcompress_file     = $"{ApplicationData}\\Unleash\\Tools\\Scripts\\xcompress_file.bms",
+                             arcsys             = $"{ApplicationData}\\Unleash\\Tools\\Scripts\\arcsys.bms";
 
         [STAThread]
 
@@ -60,38 +54,20 @@ namespace Unleash.Environment3
             if (!Directory.Exists($"{ApplicationData}\\Unleash\\Tools\\"))
                 Directory.CreateDirectory($"{ApplicationData}\\Unleash\\Tools\\");
 
-            if (!Directory.Exists($"{ApplicationData}\\Unleash\\Tools\\data\\"))
-                Directory.CreateDirectory($"{ApplicationData}\\Unleash\\Tools\\data\\");
-
-            if (!Directory.Exists(Patches))
-                Directory.CreateDirectory(Patches);
+            if (!Directory.Exists($"{ApplicationData}\\Unleash\\Tools\\Scripts\\"))
+                Directory.CreateDirectory($"{ApplicationData}\\Unleash\\Tools\\Scripts\\");
 
             if (!File.Exists(_7Zip))
                 File.WriteAllBytes(_7Zip, Properties.Resources._7z);
 
-            if (!File.Exists(XexTool))
-                File.WriteAllBytes(XexTool, Properties.Resources.xextool);
+            if (!File.Exists(quickbms))
+                File.WriteAllBytes(quickbms, Properties.Resources.quickbms);
 
-            if (!File.Exists(ProtocolManager))
-                File.WriteAllBytes(ProtocolManager, Properties.Resources.Protocol_Manager);
+            if (!File.Exists(xcompress_file))
+                File.WriteAllBytes(xcompress_file, Properties.Resources.xcompress_file);
 
-            if (!File.Exists(scetool))
-                File.WriteAllBytes(scetool, Properties.Resources.scetool);
-
-            if (!File.Exists(zlib))
-                File.WriteAllBytes(zlib, Properties.Resources.zlib1);
-
-            if (!File.Exists(make_fself))
-                File.WriteAllBytes(make_fself, Properties.Resources.make_fself);
-
-            if (!File.Exists(scetool_keys))
-                File.WriteAllBytes(scetool_keys, Properties.Resources.keys);
-
-            if (!File.Exists(scetool_ldr_curves))
-                File.WriteAllBytes(scetool_ldr_curves, Properties.Resources.ldr_curves);
-
-            if (!File.Exists(scetool_vsh_curves))
-                File.WriteAllBytes(scetool_vsh_curves, Properties.Resources.vsh_curves);
+            if (!File.Exists(arcsys))
+                File.WriteAllBytes(arcsys, Properties.Resources.arcsys);
             #endregion
 
             Application.EnableVisualStyles();

@@ -38,7 +38,7 @@ namespace Unleash.Globalisation
         public static string Bool(string value) {
             if (value == "True") return "Yes";
             else if (value == "False") return "No";
-            else return "N/A";
+            else return "No";
         }
 
         /// <summary>

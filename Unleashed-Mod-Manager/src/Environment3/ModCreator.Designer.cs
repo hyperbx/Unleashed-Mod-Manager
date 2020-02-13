@@ -51,10 +51,14 @@
             this.tb_Description = new System.Windows.Forms.RichTextBox();
             this.unifytb_Tab_Filesystem = new System.Windows.Forms.TabPage();
             this.group_Options = new System.Windows.Forms.GroupBox();
+            this.check_Merge = new System.Windows.Forms.CheckBox();
             this.check_GenerateFilesystem = new System.Windows.Forms.CheckBox();
             this.lbl_Save = new System.Windows.Forms.Label();
             this.btn_SaveBrowser = new System.Windows.Forms.Button();
             this.text_Save = new System.Windows.Forms.TextBox();
+            this.lbl_ReadOnly = new System.Windows.Forms.Label();
+            this.text_ReadOnly = new System.Windows.Forms.TextBox();
+            this.btn_ReadOnlyBrowser = new System.Windows.Forms.Button();
             this.unifytb_Tab_Networking = new System.Windows.Forms.TabPage();
             this.btn_TestConnection = new System.Windows.Forms.Button();
             this.lbl_Data = new System.Windows.Forms.Label();
@@ -63,6 +67,9 @@
             this.text_Server = new System.Windows.Forms.TextBox();
             this.text_Data = new System.Windows.Forms.TextBox();
             this.lbl_Server = new System.Windows.Forms.Label();
+            this.btn_Custom = new System.Windows.Forms.Button();
+            this.lbl_Custom = new System.Windows.Forms.Label();
+            this.text_Custom = new System.Windows.Forms.TextBox();
             this.unifytb_ModCreator.SuspendLayout();
             this.unifytb_Tab_Details.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Thumbnail)).BeginInit();
@@ -364,6 +371,12 @@
             this.unifytb_Tab_Filesystem.Controls.Add(this.lbl_Save);
             this.unifytb_Tab_Filesystem.Controls.Add(this.btn_SaveBrowser);
             this.unifytb_Tab_Filesystem.Controls.Add(this.text_Save);
+            this.unifytb_Tab_Filesystem.Controls.Add(this.lbl_ReadOnly);
+            this.unifytb_Tab_Filesystem.Controls.Add(this.text_ReadOnly);
+            this.unifytb_Tab_Filesystem.Controls.Add(this.btn_ReadOnlyBrowser);
+            this.unifytb_Tab_Filesystem.Controls.Add(this.btn_Custom);
+            this.unifytb_Tab_Filesystem.Controls.Add(this.lbl_Custom);
+            this.unifytb_Tab_Filesystem.Controls.Add(this.text_Custom);
             this.unifytb_Tab_Filesystem.Location = new System.Drawing.Point(4, 20);
             this.unifytb_Tab_Filesystem.Name = "unifytb_Tab_Filesystem";
             this.unifytb_Tab_Filesystem.Size = new System.Drawing.Size(373, 397);
@@ -375,20 +388,33 @@
             this.group_Options.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.group_Options.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.group_Options.Controls.Add(this.check_Merge);
             this.group_Options.Controls.Add(this.check_GenerateFilesystem);
             this.group_Options.ForeColor = System.Drawing.SystemColors.Control;
-            this.group_Options.Location = new System.Drawing.Point(7, 39);
+            this.group_Options.Location = new System.Drawing.Point(7, 98);
             this.group_Options.Name = "group_Options";
-            this.group_Options.Size = new System.Drawing.Size(359, 57);
-            this.group_Options.TabIndex = 103;
+            this.group_Options.Size = new System.Drawing.Size(359, 78);
+            this.group_Options.TabIndex = 110;
             this.group_Options.TabStop = false;
             this.group_Options.Text = "Options";
+            // 
+            // check_Merge
+            // 
+            this.check_Merge.AutoSize = true;
+            this.check_Merge.ForeColor = System.Drawing.SystemColors.Control;
+            this.check_Merge.Location = new System.Drawing.Point(13, 24);
+            this.check_Merge.Name = "check_Merge";
+            this.check_Merge.Size = new System.Drawing.Size(172, 19);
+            this.check_Merge.TabIndex = 95;
+            this.check_Merge.Text = "Mergeable with other mods";
+            this.check_Merge.UseVisualStyleBackColor = true;
+            this.check_Merge.CheckedChanged += new System.EventHandler(this.Check_Merge_CheckedChanged);
             // 
             // check_GenerateFilesystem
             // 
             this.check_GenerateFilesystem.AutoSize = true;
             this.check_GenerateFilesystem.ForeColor = System.Drawing.SystemColors.Control;
-            this.check_GenerateFilesystem.Location = new System.Drawing.Point(13, 25);
+            this.check_GenerateFilesystem.Location = new System.Drawing.Point(13, 47);
             this.check_GenerateFilesystem.Name = "check_GenerateFilesystem";
             this.check_GenerateFilesystem.Size = new System.Drawing.Size(169, 19);
             this.check_GenerateFilesystem.TabIndex = 102;
@@ -399,10 +425,10 @@
             // 
             this.lbl_Save.AutoSize = true;
             this.lbl_Save.ForeColor = System.Drawing.SystemColors.Control;
-            this.lbl_Save.Location = new System.Drawing.Point(7, 14);
+            this.lbl_Save.Location = new System.Drawing.Point(35, 70);
             this.lbl_Save.Name = "lbl_Save";
             this.lbl_Save.Size = new System.Drawing.Size(34, 15);
-            this.lbl_Save.TabIndex = 100;
+            this.lbl_Save.TabIndex = 108;
             this.lbl_Save.Text = "Save:";
             // 
             // btn_SaveBrowser
@@ -412,10 +438,10 @@
             this.btn_SaveBrowser.FlatAppearance.BorderSize = 0;
             this.btn_SaveBrowser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_SaveBrowser.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_SaveBrowser.Location = new System.Drawing.Point(343, 10);
+            this.btn_SaveBrowser.Location = new System.Drawing.Point(345, 66);
             this.btn_SaveBrowser.Name = "btn_SaveBrowser";
             this.btn_SaveBrowser.Size = new System.Drawing.Size(22, 23);
-            this.btn_SaveBrowser.TabIndex = 99;
+            this.btn_SaveBrowser.TabIndex = 107;
             this.btn_SaveBrowser.Text = "...";
             this.btn_SaveBrowser.UseVisualStyleBackColor = false;
             this.btn_SaveBrowser.Click += new System.EventHandler(this.Btn_SaveBrowser_Click);
@@ -427,10 +453,49 @@
             this.text_Save.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.text_Save.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.text_Save.ForeColor = System.Drawing.SystemColors.Control;
-            this.text_Save.Location = new System.Drawing.Point(47, 10);
+            this.text_Save.Location = new System.Drawing.Point(75, 66);
             this.text_Save.Name = "text_Save";
-            this.text_Save.Size = new System.Drawing.Size(291, 23);
-            this.text_Save.TabIndex = 98;
+            this.text_Save.Size = new System.Drawing.Size(265, 23);
+            this.text_Save.TabIndex = 106;
+            // 
+            // lbl_ReadOnly
+            // 
+            this.lbl_ReadOnly.AutoSize = true;
+            this.lbl_ReadOnly.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lbl_ReadOnly.Location = new System.Drawing.Point(5, 14);
+            this.lbl_ReadOnly.Name = "lbl_ReadOnly";
+            this.lbl_ReadOnly.Size = new System.Drawing.Size(64, 15);
+            this.lbl_ReadOnly.TabIndex = 105;
+            this.lbl_ReadOnly.Text = "Read-only:";
+            // 
+            // text_ReadOnly
+            // 
+            this.text_ReadOnly.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.text_ReadOnly.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.text_ReadOnly.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.text_ReadOnly.Enabled = false;
+            this.text_ReadOnly.ForeColor = System.Drawing.SystemColors.Control;
+            this.text_ReadOnly.Location = new System.Drawing.Point(75, 10);
+            this.text_ReadOnly.Name = "text_ReadOnly";
+            this.text_ReadOnly.Size = new System.Drawing.Size(265, 23);
+            this.text_ReadOnly.TabIndex = 104;
+            // 
+            // btn_ReadOnlyBrowser
+            // 
+            this.btn_ReadOnlyBrowser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_ReadOnlyBrowser.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btn_ReadOnlyBrowser.Enabled = false;
+            this.btn_ReadOnlyBrowser.FlatAppearance.BorderSize = 0;
+            this.btn_ReadOnlyBrowser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_ReadOnlyBrowser.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ReadOnlyBrowser.Location = new System.Drawing.Point(345, 10);
+            this.btn_ReadOnlyBrowser.Name = "btn_ReadOnlyBrowser";
+            this.btn_ReadOnlyBrowser.Size = new System.Drawing.Size(22, 23);
+            this.btn_ReadOnlyBrowser.TabIndex = 109;
+            this.btn_ReadOnlyBrowser.Text = "...";
+            this.btn_ReadOnlyBrowser.UseVisualStyleBackColor = false;
+            this.btn_ReadOnlyBrowser.Click += new System.EventHandler(this.btn_ReadOnlyBrowser_Click);
             // 
             // unifytb_Tab_Networking
             // 
@@ -536,6 +601,43 @@
             this.lbl_Server.TabIndex = 95;
             this.lbl_Server.Text = "Server:";
             // 
+            // btn_Custom
+            // 
+            this.btn_Custom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Custom.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btn_Custom.FlatAppearance.BorderSize = 0;
+            this.btn_Custom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Custom.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Custom.Location = new System.Drawing.Point(345, 38);
+            this.btn_Custom.Name = "btn_Custom";
+            this.btn_Custom.Size = new System.Drawing.Size(22, 23);
+            this.btn_Custom.TabIndex = 113;
+            this.btn_Custom.Text = "...";
+            this.btn_Custom.UseVisualStyleBackColor = false;
+            this.btn_Custom.Click += new System.EventHandler(this.btn_Custom_Click);
+            // 
+            // lbl_Custom
+            // 
+            this.lbl_Custom.AutoSize = true;
+            this.lbl_Custom.ForeColor = System.Drawing.SystemColors.Control;
+            this.lbl_Custom.Location = new System.Drawing.Point(17, 42);
+            this.lbl_Custom.Name = "lbl_Custom";
+            this.lbl_Custom.Size = new System.Drawing.Size(52, 15);
+            this.lbl_Custom.TabIndex = 112;
+            this.lbl_Custom.Text = "Custom:";
+            // 
+            // text_Custom
+            // 
+            this.text_Custom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.text_Custom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.text_Custom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.text_Custom.ForeColor = System.Drawing.SystemColors.Control;
+            this.text_Custom.Location = new System.Drawing.Point(75, 38);
+            this.text_Custom.Name = "text_Custom";
+            this.text_Custom.Size = new System.Drawing.Size(265, 23);
+            this.text_Custom.TabIndex = 111;
+            // 
             // ModCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -601,10 +703,17 @@
         private System.Windows.Forms.TabPage unifytb_Tab_Networking;
         private System.Windows.Forms.TabPage unifytb_Tab_Description;
         private System.Windows.Forms.TabPage unifytb_Tab_Filesystem;
+        private System.Windows.Forms.GroupBox group_Options;
+        private System.Windows.Forms.CheckBox check_Merge;
+        private System.Windows.Forms.CheckBox check_GenerateFilesystem;
+        private System.Windows.Forms.Button btn_ReadOnlyBrowser;
         private System.Windows.Forms.Label lbl_Save;
         private System.Windows.Forms.Button btn_SaveBrowser;
         private System.Windows.Forms.TextBox text_Save;
-        private System.Windows.Forms.GroupBox group_Options;
-        private System.Windows.Forms.CheckBox check_GenerateFilesystem;
+        private System.Windows.Forms.Label lbl_ReadOnly;
+        private System.Windows.Forms.TextBox text_ReadOnly;
+        private System.Windows.Forms.Button btn_Custom;
+        private System.Windows.Forms.Label lbl_Custom;
+        private System.Windows.Forms.TextBox text_Custom;
     }
 }
