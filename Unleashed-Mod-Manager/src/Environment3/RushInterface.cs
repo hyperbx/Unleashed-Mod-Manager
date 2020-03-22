@@ -53,6 +53,7 @@ namespace Unleash.Environment3
         public static bool _debug = false;
         private bool _isPathInvalid = false;
         private static string protocol = "unleashedmm";
+        private bool _useBackupServer = false;
 
         public RushInterface() {
             InitializeComponent(); // Designer support
@@ -356,22 +357,35 @@ namespace Unleash.Environment3
             try {
                 string latestVersion = await Client.RequestString(versionURI), // Request version number
                        changelogs = await Client.RequestString(changelogsURI);
-                if (Program.VersionNumber != latestVersion) // New update available!
+
+                // New update available!
+                if (Program.VersionNumber != latestVersion && latestVersion.StartsWith("Version"))
                     if (InvokeRequired)
                         Invoke(new MethodInvoker(delegate { OnCheckForUpdates(latestVersion, changelogs); }));
                     else
                         OnCheckForUpdates(latestVersion, changelogs);
-            } catch (Exception ex) {
-                Label_UpdaterStatus.Text = "Connection error";
-                PictureBox_UpdaterIcon.BackgroundImage = Properties.Resources.Exception_Logo;
 
-                // Reset update button for future checking
-                SectionButton_CheckForSoftwareUpdates.SectionText = "Check for software updates";
-                SectionButton_CheckForSoftwareUpdates.Refresh();
+                // String was downloaded, but invalid
+                else if (!latestVersion.StartsWith("Version"))
+                    throw new WebException();
+            } catch {
+                try {
+                    // Check for updates via GitHub
+                    CheckForUpdates(Properties.Resources.VersionURI_GitHub, Properties.Resources.ChangelogsURI_GitHub);
+                    Properties.Settings.Default.General_LastSoftwareUpdate = DateTime.Now.Ticks;
+                    _useBackupServer = true;
+                } catch (Exception ex) {
+                    Label_UpdaterStatus.Text = "Connection error";
+                    PictureBox_UpdaterIcon.BackgroundImage = Properties.Resources.Exception_Logo;
 
-                // Write exception to logs
-                RichTextBox_Changelogs.Text = $"Failed to request changelogs...\n\n{ex}";
-                if (_debug) Console.WriteLine(ex.ToString());
+                    // Reset update button for future checking
+                    SectionButton_CheckForSoftwareUpdates.SectionText = "Check for software updates";
+                    SectionButton_CheckForSoftwareUpdates.Refresh();
+
+                    // Write exception to logs
+                    RichTextBox_Changelogs.Text = $"Failed to request changelogs...\n\n{ex}";
+                    if (_debug) Console.WriteLine(ex.ToString());
+                }
             }
 
             // Feedback
@@ -1145,6 +1159,8 @@ namespace Unleash.Environment3
                 Uri serverUri = new Uri(Properties.Resources.DataURI_SEGACarnival);
                 if (useBackupServer) serverUri = new Uri(Properties.Resources.DataURI_GitHub);
 
+                MessageBox.Show(serverUri.ToString());
+
                 using (WebClient client = new WebClient()) {
                     client.DownloadProgressChanged += (s, clientEventArgs) => { ProgressBar_SoftwareUpdate.Value = clientEventArgs.ProgressPercentage; };
                     client.DownloadFileAsync(serverUri, $"{Application.ExecutablePath}.pak"); // Download archive from update servers
@@ -1153,7 +1169,7 @@ namespace Unleash.Environment3
                             // Extract and overwrite all with ZIP contents
                             ZIP.ExtractToDirectory(archive, Application.StartupPath, true);
 
-                            //Overwrite 'Unleashed Mod Manager.exe' with the newly extracted build
+                            // Overwrite 'Unleashed Mod Manager.exe' with the newly extracted build
                             File.Replace($"{Application.ExecutablePath}.new", Application.ExecutablePath, $"{Application.ExecutablePath}.bak");
 
                             UnifyMessenger.UnifyMessage.ShowDialog("Update complete! Restarting Unleashed Mod Manager...",
@@ -1203,17 +1219,10 @@ namespace Unleash.Environment3
         private async void SectionButton_Updates_Click(object sender, EventArgs e) {
             // Check for software updates is clicked
             if (sender == SectionButton_CheckForSoftwareUpdates) {
-                try {
-                    // Check for updates via SEGA Carnival
-                    CheckForUpdates(Properties.Resources.VersionURI_SEGACarnival, Properties.Resources.ChangelogsURI_SEGACarnival);
-                    Properties.Settings.Default.General_LastSoftwareUpdate = DateTime.Now.Ticks;
-                    if (((SectionButton)sender).SectionText == "Fetch the latest version") UpdateVersion(false); // Update if prompted
-                } catch { // SEGA Carnival timed out...
-                    // Check for updates via GitHub
-                    CheckForUpdates(Properties.Resources.VersionURI_GitHub, Properties.Resources.ChangelogsURI_GitHub);
-                    Properties.Settings.Default.General_LastSoftwareUpdate = DateTime.Now.Ticks;
-                    if (((SectionButton)sender).SectionText == "Fetch the latest version") UpdateVersion(true); // Update if prompted
-                }
+                // Check for updates via SEGA Carnival
+                CheckForUpdates(Properties.Resources.VersionURI_SEGACarnival, Properties.Resources.ChangelogsURI_SEGACarnival);
+                Properties.Settings.Default.General_LastSoftwareUpdate = DateTime.Now.Ticks;
+                if (((SectionButton)sender).SectionText == "Fetch the latest version") UpdateVersion(_useBackupServer); // Update if prompted
                 Properties.Settings.Default.Save();
 
             // Check for mod updates is clicked
