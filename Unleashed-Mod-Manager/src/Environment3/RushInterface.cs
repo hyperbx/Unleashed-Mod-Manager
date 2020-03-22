@@ -1159,8 +1159,6 @@ namespace Unleash.Environment3
                 Uri serverUri = new Uri(Properties.Resources.DataURI_SEGACarnival);
                 if (useBackupServer) serverUri = new Uri(Properties.Resources.DataURI_GitHub);
 
-                MessageBox.Show(serverUri.ToString());
-
                 using (WebClient client = new WebClient()) {
                     client.DownloadProgressChanged += (s, clientEventArgs) => { ProgressBar_SoftwareUpdate.Value = clientEventArgs.ProgressPercentage; };
                     client.DownloadFileAsync(serverUri, $"{Application.ExecutablePath}.pak"); // Download archive from update servers
