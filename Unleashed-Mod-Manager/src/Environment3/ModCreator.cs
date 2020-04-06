@@ -358,7 +358,7 @@ namespace Unleash.Environment3
 
             OpenFileDialog readonlyARC = new OpenFileDialog {
                 Title = "Please select files to make read-only...",
-                Filter = "ARC files (*.arc)|*.arc",
+                Filter = "AR files (*.ar*)|*.ar*",
                 Multiselect = true
             };
 

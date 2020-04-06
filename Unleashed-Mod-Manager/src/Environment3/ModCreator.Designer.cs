@@ -59,6 +59,9 @@
             this.lbl_ReadOnly = new System.Windows.Forms.Label();
             this.text_ReadOnly = new System.Windows.Forms.TextBox();
             this.btn_ReadOnlyBrowser = new System.Windows.Forms.Button();
+            this.btn_Custom = new System.Windows.Forms.Button();
+            this.lbl_Custom = new System.Windows.Forms.Label();
+            this.text_Custom = new System.Windows.Forms.TextBox();
             this.unifytb_Tab_Networking = new System.Windows.Forms.TabPage();
             this.btn_TestConnection = new System.Windows.Forms.Button();
             this.lbl_Data = new System.Windows.Forms.Label();
@@ -67,9 +70,6 @@
             this.text_Server = new System.Windows.Forms.TextBox();
             this.text_Data = new System.Windows.Forms.TextBox();
             this.lbl_Server = new System.Windows.Forms.Label();
-            this.btn_Custom = new System.Windows.Forms.Button();
-            this.lbl_Custom = new System.Windows.Forms.Label();
-            this.text_Custom = new System.Windows.Forms.TextBox();
             this.unifytb_ModCreator.SuspendLayout();
             this.unifytb_Tab_Details.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Thumbnail)).BeginInit();
@@ -497,6 +497,43 @@
             this.btn_ReadOnlyBrowser.UseVisualStyleBackColor = false;
             this.btn_ReadOnlyBrowser.Click += new System.EventHandler(this.btn_ReadOnlyBrowser_Click);
             // 
+            // btn_Custom
+            // 
+            this.btn_Custom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_Custom.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btn_Custom.FlatAppearance.BorderSize = 0;
+            this.btn_Custom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Custom.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Custom.Location = new System.Drawing.Point(345, 38);
+            this.btn_Custom.Name = "btn_Custom";
+            this.btn_Custom.Size = new System.Drawing.Size(22, 23);
+            this.btn_Custom.TabIndex = 113;
+            this.btn_Custom.Text = "...";
+            this.btn_Custom.UseVisualStyleBackColor = false;
+            this.btn_Custom.Click += new System.EventHandler(this.btn_Custom_Click);
+            // 
+            // lbl_Custom
+            // 
+            this.lbl_Custom.AutoSize = true;
+            this.lbl_Custom.ForeColor = System.Drawing.SystemColors.Control;
+            this.lbl_Custom.Location = new System.Drawing.Point(17, 42);
+            this.lbl_Custom.Name = "lbl_Custom";
+            this.lbl_Custom.Size = new System.Drawing.Size(52, 15);
+            this.lbl_Custom.TabIndex = 112;
+            this.lbl_Custom.Text = "Custom:";
+            // 
+            // text_Custom
+            // 
+            this.text_Custom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.text_Custom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.text_Custom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.text_Custom.ForeColor = System.Drawing.SystemColors.Control;
+            this.text_Custom.Location = new System.Drawing.Point(75, 38);
+            this.text_Custom.Name = "text_Custom";
+            this.text_Custom.Size = new System.Drawing.Size(265, 23);
+            this.text_Custom.TabIndex = 111;
+            // 
             // unifytb_Tab_Networking
             // 
             this.unifytb_Tab_Networking.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
@@ -600,43 +637,6 @@
             this.lbl_Server.Size = new System.Drawing.Size(42, 15);
             this.lbl_Server.TabIndex = 95;
             this.lbl_Server.Text = "Server:";
-            // 
-            // btn_Custom
-            // 
-            this.btn_Custom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_Custom.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_Custom.FlatAppearance.BorderSize = 0;
-            this.btn_Custom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Custom.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Custom.Location = new System.Drawing.Point(345, 38);
-            this.btn_Custom.Name = "btn_Custom";
-            this.btn_Custom.Size = new System.Drawing.Size(22, 23);
-            this.btn_Custom.TabIndex = 113;
-            this.btn_Custom.Text = "...";
-            this.btn_Custom.UseVisualStyleBackColor = false;
-            this.btn_Custom.Click += new System.EventHandler(this.btn_Custom_Click);
-            // 
-            // lbl_Custom
-            // 
-            this.lbl_Custom.AutoSize = true;
-            this.lbl_Custom.ForeColor = System.Drawing.SystemColors.Control;
-            this.lbl_Custom.Location = new System.Drawing.Point(17, 42);
-            this.lbl_Custom.Name = "lbl_Custom";
-            this.lbl_Custom.Size = new System.Drawing.Size(52, 15);
-            this.lbl_Custom.TabIndex = 112;
-            this.lbl_Custom.Text = "Custom:";
-            // 
-            // text_Custom
-            // 
-            this.text_Custom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.text_Custom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.text_Custom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.text_Custom.ForeColor = System.Drawing.SystemColors.Control;
-            this.text_Custom.Location = new System.Drawing.Point(75, 38);
-            this.text_Custom.Name = "text_Custom";
-            this.text_Custom.Size = new System.Drawing.Size(265, 23);
-            this.text_Custom.TabIndex = 111;
             // 
             // ModCreator
             // 
