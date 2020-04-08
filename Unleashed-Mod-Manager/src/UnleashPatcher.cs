@@ -67,7 +67,7 @@ namespace Unleash.Patcher
 
             // Search for all files with specified LINQ filters
             List<string> files = Directory.GetFiles(Path.GetDirectoryName(mod), "*.*", SearchOption.AllDirectories)
-                                .Where(s => s.Contains(".ar.")        ||
+                                .Where(s => s.Contains(".ar")        ||
                                             s.EndsWith(".arl")        ||
                                             s.EndsWith(".dds")        ||
                                             s.EndsWith("default.xex") ||
@@ -93,7 +93,7 @@ namespace Unleash.Patcher
                     if (Path.GetExtension(vanillaFilePath) == ".arl") Decompress.DecompressBySystem(targetFilePath);
 
                     // Merge modified data
-                    if (Path.GetFileName(file).Contains(".ar.") && merge && !read_only.Contains(Path.GetFileName(file))) {
+                    if (Path.GetFileName(file).Contains(".ar") && merge && !read_only.Contains(Path.GetFileName(file))) {
                         if (RushInterface._debug) Console.WriteLine($"Merging: {file}");
                         Content.Merge(vanillaFilePath, file);
 
