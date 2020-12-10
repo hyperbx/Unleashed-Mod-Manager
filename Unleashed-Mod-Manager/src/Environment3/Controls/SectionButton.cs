@@ -9,7 +9,7 @@ using System.Drawing.Drawing2D;
 /*
  * MIT License
 
- * Copyright (c) 2020 Gabriel (HyperPolygon64)
+ * Copyright (c) 2020 HyperBE32
  * Copyright (c) 2017 thesupersonic16
 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
