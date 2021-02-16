@@ -261,24 +261,10 @@ namespace Unleash.Environment3
             OpenFileDialog save;
 
             switch (combo_System.SelectedIndex) {
-                case 0:
-                    save = new OpenFileDialog {
-                        Title = $"Please select Sonic '06 save data for the Xbox 360...",
-                        Filter = "Xbox 360 Save File (SonicNextSaveData.bin)|SonicNextSaveData.bin",
-                        Multiselect = true
-                    };
-                    break;
-                case 1:
-                    save = new OpenFileDialog {
-                        Title = $"Please select Sonic '06 save data for the PlayStation 3...",
-                        Filter = "PlayStation 3 Save File (SYS-DATA)|SYS-DATA",
-                        Multiselect = true
-                    };
-                    break;
                 default:
                     save = new OpenFileDialog {
-                        Title = $"Please select Sonic '06 save data...",
-                        Filter = "Xbox 360 Save File (SonicNextSaveData.bin)|SonicNextSaveData.bin|PlayStation 3 Save File (SYS-DATA)|SYS-DATA",
+                        Title = $"Please select Sonic Unleashed save data...",
+                        Filter = "Save Data|SYS-DATA",
                         Multiselect = true
                     };
                     break;
