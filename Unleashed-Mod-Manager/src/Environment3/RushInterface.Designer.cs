@@ -105,20 +105,9 @@ namespace Unleash.Environment3
             this.ProgressBar_ModUpdate = new System.Windows.Forms.ProgressBar();
             this.Panel_ModInfoBackdrop = new System.Windows.Forms.Panel();
             this.ListBox_UpdateLogs = new System.Windows.Forms.ListBox();
-            this.Panel_Updates_UICleanSpace = new System.Windows.Forms.Panel();
             this.Label_LastModUpdate = new System.Windows.Forms.Label();
             this.SectionButton_CheckForModUpdates = new Unleash.Environment3.SectionButton();
-            this.Label_LastSoftwareUpdate = new System.Windows.Forms.Label();
             this.Label_Title_ModsAndPatches = new System.Windows.Forms.Label();
-            this.Label_Subtitle_Changelogs = new System.Windows.Forms.Label();
-            this.Label_UpdaterStatus = new System.Windows.Forms.Label();
-            this.Panel_ChangelogsBackdrop = new System.Windows.Forms.Panel();
-            this.RichTextBox_Changelogs = new System.Windows.Forms.RichTextBox();
-            this.Label_Title_Software = new System.Windows.Forms.Label();
-            this.CheckBox_CheckUpdatesOnLaunch = new System.Windows.Forms.CheckBox();
-            this.PictureBox_UpdaterIcon = new System.Windows.Forms.PictureBox();
-            this.SectionButton_CheckForSoftwareUpdates = new Unleash.Environment3.SectionButton();
-            this.ProgressBar_SoftwareUpdate = new System.Windows.Forms.ProgressBar();
             this.Tab_Section_Settings = new System.Windows.Forms.TabPage();
             this.LinkLabel_Snapshot = new System.Windows.Forms.LinkLabel();
             this.Label_Description_UninstallOnLaunch = new System.Windows.Forms.Label();
@@ -161,23 +150,18 @@ namespace Unleash.Environment3
             this.Label_Description_ModsDirectory = new System.Windows.Forms.Label();
             this.Label_Description_Snapshot = new System.Windows.Forms.Label();
             this.Tab_Section_About = new System.Windows.Forms.TabPage();
+            this.LinkLabel_Knuxfan24 = new System.Windows.Forms.LinkLabel();
             this.LinkLabel_Velcomia = new System.Windows.Forms.LinkLabel();
             this.LinkLabel_CodenameGamma = new System.Windows.Forms.LinkLabel();
             this.LinkLabel_Beatz = new System.Windows.Forms.LinkLabel();
-            this.LinkLabel_SEGACarnival = new System.Windows.Forms.LinkLabel();
-            this.LinkLabel_AssemblyPP = new System.Windows.Forms.LinkLabel();
-            this.LinkLabel_Microsoft = new System.Windows.Forms.LinkLabel();
             this.LinkLabel_SuperSonic16 = new System.Windows.Forms.LinkLabel();
-            this.LinkLabel_HyperPolygon64 = new System.Windows.Forms.LinkLabel();
+            this.LinkLabel_HyperBE32 = new System.Windows.Forms.LinkLabel();
             this.Title_Testers = new System.Windows.Forms.Label();
-            this.Label_SpecialThanks = new System.Windows.Forms.Label();
-            this.Title_SpecialThanks = new System.Windows.Forms.Label();
             this.Label_Contributors = new System.Windows.Forms.Label();
             this.Title_Contributors = new System.Windows.Forms.Label();
             this.LinkLabel_GPF = new System.Windows.Forms.LinkLabel();
             this.LinkLabel_slashiee = new System.Windows.Forms.LinkLabel();
             this.Label_Testers = new System.Windows.Forms.Label();
-            this.Panel_About_UICleanSpace = new System.Windows.Forms.Panel();
             this.Label_Version = new System.Windows.Forms.Label();
             this.Rush_Section_Debug = new Unleash.Environment3.SectionButton();
             this.Rush_Section_Updates = new Unleash.Environment3.SectionButton();
@@ -186,7 +170,6 @@ namespace Unleash.Environment3
             this.Rush_Section_Emulator = new Unleash.Environment3.SectionButton();
             this.Rush_Section_Mods = new Unleash.Environment3.SectionButton();
             this.Container_Rush = new Unleash.Environment3.UserContainer();
-            this.LinkLabel_Knuxfan24 = new System.Windows.Forms.LinkLabel();
             this.Panel_MainControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SplitContainer_MainControls)).BeginInit();
             this.SplitContainer_MainControls.Panel1.SuspendLayout();
@@ -209,8 +192,6 @@ namespace Unleash.Environment3
             this.SplitContainer_ModUpdate.SuspendLayout();
             this.Panel_ModUpdateBackdrop.SuspendLayout();
             this.Panel_ModInfoBackdrop.SuspendLayout();
-            this.Panel_ChangelogsBackdrop.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_UpdaterIcon)).BeginInit();
             this.Tab_Section_Settings.SuspendLayout();
             this.Tab_Section_About.SuspendLayout();
             this.SuspendLayout();
@@ -294,7 +275,7 @@ namespace Unleash.Environment3
             this.SectionButton_LaunchGame.SectionImage = global::Unleash.Properties.Resources.Run_16x;
             this.SectionButton_LaunchGame.SectionText = "Launch Sonic Unleashed";
             this.SectionButton_LaunchGame.SelectedSection = false;
-            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1203, 35);
+            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1206, 35);
             this.SectionButton_LaunchGame.TabIndex = 51;
             this.SectionButton_LaunchGame.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_LaunchGame.Click += new System.EventHandler(this.SectionButton_LaunchGame_Click);
@@ -398,7 +379,7 @@ namespace Unleash.Environment3
             this.SectionButton_RefreshMods.SectionImage = ((System.Drawing.Bitmap)(resources.GetObject("SectionButton_RefreshMods.SectionImage")));
             this.SectionButton_RefreshMods.SectionText = "Refresh mods list";
             this.SectionButton_RefreshMods.SelectedSection = false;
-            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1934, 35);
+            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1937, 35);
             this.SectionButton_RefreshMods.TabIndex = 52;
             this.SectionButton_RefreshMods.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_RefreshMods.Click += new System.EventHandler(this.SectionButton_Refresh_Click);
@@ -1114,19 +1095,9 @@ namespace Unleash.Environment3
             this.Tab_Section_Updates.AutoScroll = true;
             this.Tab_Section_Updates.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
             this.Tab_Section_Updates.Controls.Add(this.SplitContainer_ModUpdate);
-            this.Tab_Section_Updates.Controls.Add(this.Panel_Updates_UICleanSpace);
             this.Tab_Section_Updates.Controls.Add(this.Label_LastModUpdate);
             this.Tab_Section_Updates.Controls.Add(this.SectionButton_CheckForModUpdates);
-            this.Tab_Section_Updates.Controls.Add(this.Label_LastSoftwareUpdate);
             this.Tab_Section_Updates.Controls.Add(this.Label_Title_ModsAndPatches);
-            this.Tab_Section_Updates.Controls.Add(this.Label_Subtitle_Changelogs);
-            this.Tab_Section_Updates.Controls.Add(this.Label_UpdaterStatus);
-            this.Tab_Section_Updates.Controls.Add(this.Panel_ChangelogsBackdrop);
-            this.Tab_Section_Updates.Controls.Add(this.Label_Title_Software);
-            this.Tab_Section_Updates.Controls.Add(this.CheckBox_CheckUpdatesOnLaunch);
-            this.Tab_Section_Updates.Controls.Add(this.PictureBox_UpdaterIcon);
-            this.Tab_Section_Updates.Controls.Add(this.SectionButton_CheckForSoftwareUpdates);
-            this.Tab_Section_Updates.Controls.Add(this.ProgressBar_SoftwareUpdate);
             this.Tab_Section_Updates.Location = new System.Drawing.Point(4, 20);
             this.Tab_Section_Updates.Name = "Tab_Section_Updates";
             this.Tab_Section_Updates.Size = new System.Drawing.Size(591, 1013);
@@ -1138,7 +1109,7 @@ namespace Unleash.Environment3
             // 
             this.SplitContainer_ModUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SplitContainer_ModUpdate.Location = new System.Drawing.Point(14, 573);
+            this.SplitContainer_ModUpdate.Location = new System.Drawing.Point(14, 113);
             this.SplitContainer_ModUpdate.Name = "SplitContainer_ModUpdate";
             // 
             // SplitContainer_ModUpdate.Panel1
@@ -1264,18 +1235,11 @@ namespace Unleash.Environment3
             this.ListBox_UpdateLogs.Size = new System.Drawing.Size(327, 377);
             this.ListBox_UpdateLogs.TabIndex = 1;
             // 
-            // Panel_Updates_UICleanSpace
-            // 
-            this.Panel_Updates_UICleanSpace.Location = new System.Drawing.Point(14, 993);
-            this.Panel_Updates_UICleanSpace.Name = "Panel_Updates_UICleanSpace";
-            this.Panel_Updates_UICleanSpace.Size = new System.Drawing.Size(214, 8);
-            this.Panel_Updates_UICleanSpace.TabIndex = 176;
-            // 
             // Label_LastModUpdate
             // 
             this.Label_LastModUpdate.AutoSize = true;
             this.Label_LastModUpdate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_LastModUpdate.Location = new System.Drawing.Point(256, 532);
+            this.Label_LastModUpdate.Location = new System.Drawing.Point(256, 72);
             this.Label_LastModUpdate.Name = "Label_LastModUpdate";
             this.Label_LastModUpdate.Size = new System.Drawing.Size(216, 17);
             this.Label_LastModUpdate.TabIndex = 150;
@@ -1286,7 +1250,7 @@ namespace Unleash.Environment3
             this.SectionButton_CheckForModUpdates.AccentColour = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.SectionButton_CheckForModUpdates.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(45)))));
             this.SectionButton_CheckForModUpdates.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SectionButton_CheckForModUpdates.Location = new System.Drawing.Point(14, 523);
+            this.SectionButton_CheckForModUpdates.Location = new System.Drawing.Point(14, 63);
             this.SectionButton_CheckForModUpdates.Name = "SectionButton_CheckForModUpdates";
             this.SectionButton_CheckForModUpdates.SectionImage = global::Unleash.Properties.Resources.Update_4;
             this.SectionButton_CheckForModUpdates.SectionText = "Check for mod updates";
@@ -1296,127 +1260,15 @@ namespace Unleash.Environment3
             this.SectionButton_CheckForModUpdates.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_CheckForModUpdates.Click += new System.EventHandler(this.SectionButton_Updates_Click);
             // 
-            // Label_LastSoftwareUpdate
-            // 
-            this.Label_LastSoftwareUpdate.AutoSize = true;
-            this.Label_LastSoftwareUpdate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_LastSoftwareUpdate.Location = new System.Drawing.Point(72, 87);
-            this.Label_LastSoftwareUpdate.Name = "Label_LastSoftwareUpdate";
-            this.Label_LastSoftwareUpdate.Size = new System.Drawing.Size(216, 17);
-            this.Label_LastSoftwareUpdate.TabIndex = 147;
-            this.Label_LastSoftwareUpdate.Text = "Last checked: 21/01/2020, 08:59 PM";
-            // 
             // Label_Title_ModsAndPatches
             // 
             this.Label_Title_ModsAndPatches.AutoSize = true;
             this.Label_Title_ModsAndPatches.Font = new System.Drawing.Font("Segoe UI", 24F);
-            this.Label_Title_ModsAndPatches.Location = new System.Drawing.Point(6, 466);
+            this.Label_Title_ModsAndPatches.Location = new System.Drawing.Point(6, 6);
             this.Label_Title_ModsAndPatches.Name = "Label_Title_ModsAndPatches";
             this.Label_Title_ModsAndPatches.Size = new System.Drawing.Size(280, 45);
             this.Label_Title_ModsAndPatches.TabIndex = 43;
             this.Label_Title_ModsAndPatches.Text = "Mods and Patches";
-            // 
-            // Label_Subtitle_Changelogs
-            // 
-            this.Label_Subtitle_Changelogs.AutoSize = true;
-            this.Label_Subtitle_Changelogs.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.Label_Subtitle_Changelogs.Location = new System.Drawing.Point(10, 160);
-            this.Label_Subtitle_Changelogs.Name = "Label_Subtitle_Changelogs";
-            this.Label_Subtitle_Changelogs.Size = new System.Drawing.Size(106, 25);
-            this.Label_Subtitle_Changelogs.TabIndex = 42;
-            this.Label_Subtitle_Changelogs.Text = "Changelogs";
-            // 
-            // Label_UpdaterStatus
-            // 
-            this.Label_UpdaterStatus.AutoSize = true;
-            this.Label_UpdaterStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_UpdaterStatus.Location = new System.Drawing.Point(69, 62);
-            this.Label_UpdaterStatus.Name = "Label_UpdaterStatus";
-            this.Label_UpdaterStatus.Size = new System.Drawing.Size(156, 25);
-            this.Label_UpdaterStatus.TabIndex = 37;
-            this.Label_UpdaterStatus.Text = "You\'re up to date";
-            // 
-            // Panel_ChangelogsBackdrop
-            // 
-            this.Panel_ChangelogsBackdrop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.Panel_ChangelogsBackdrop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Panel_ChangelogsBackdrop.Controls.Add(this.RichTextBox_Changelogs);
-            this.Panel_ChangelogsBackdrop.Location = new System.Drawing.Point(14, 194);
-            this.Panel_ChangelogsBackdrop.Name = "Panel_ChangelogsBackdrop";
-            this.Panel_ChangelogsBackdrop.Size = new System.Drawing.Size(560, 257);
-            this.Panel_ChangelogsBackdrop.TabIndex = 35;
-            // 
-            // RichTextBox_Changelogs
-            // 
-            this.RichTextBox_Changelogs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.RichTextBox_Changelogs.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.RichTextBox_Changelogs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RichTextBox_Changelogs.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.RichTextBox_Changelogs.ForeColor = System.Drawing.SystemColors.Control;
-            this.RichTextBox_Changelogs.Location = new System.Drawing.Point(0, 0);
-            this.RichTextBox_Changelogs.Name = "RichTextBox_Changelogs";
-            this.RichTextBox_Changelogs.ReadOnly = true;
-            this.RichTextBox_Changelogs.Size = new System.Drawing.Size(558, 255);
-            this.RichTextBox_Changelogs.TabIndex = 34;
-            this.RichTextBox_Changelogs.Text = "";
-            // 
-            // Label_Title_Software
-            // 
-            this.Label_Title_Software.AutoSize = true;
-            this.Label_Title_Software.Font = new System.Drawing.Font("Segoe UI", 24F);
-            this.Label_Title_Software.Location = new System.Drawing.Point(6, 6);
-            this.Label_Title_Software.Name = "Label_Title_Software";
-            this.Label_Title_Software.Size = new System.Drawing.Size(144, 45);
-            this.Label_Title_Software.TabIndex = 33;
-            this.Label_Title_Software.Text = "Software";
-            // 
-            // CheckBox_CheckUpdatesOnLaunch
-            // 
-            this.CheckBox_CheckUpdatesOnLaunch.AutoSize = true;
-            this.CheckBox_CheckUpdatesOnLaunch.BackColor = System.Drawing.Color.Transparent;
-            this.CheckBox_CheckUpdatesOnLaunch.Location = new System.Drawing.Point(259, 124);
-            this.CheckBox_CheckUpdatesOnLaunch.Name = "CheckBox_CheckUpdatesOnLaunch";
-            this.CheckBox_CheckUpdatesOnLaunch.Size = new System.Drawing.Size(190, 19);
-            this.CheckBox_CheckUpdatesOnLaunch.TabIndex = 41;
-            this.CheckBox_CheckUpdatesOnLaunch.Text = "Check automatically on launch";
-            this.CheckBox_CheckUpdatesOnLaunch.UseVisualStyleBackColor = false;
-            this.CheckBox_CheckUpdatesOnLaunch.CheckedChanged += new System.EventHandler(this.CheckBox_Settings_CheckedChanged);
-            // 
-            // PictureBox_UpdaterIcon
-            // 
-            this.PictureBox_UpdaterIcon.BackgroundImage = global::Unleash.Properties.Resources.Corner_Logo_Colour;
-            this.PictureBox_UpdaterIcon.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.PictureBox_UpdaterIcon.Location = new System.Drawing.Point(14, 58);
-            this.PictureBox_UpdaterIcon.Name = "PictureBox_UpdaterIcon";
-            this.PictureBox_UpdaterIcon.Size = new System.Drawing.Size(50, 50);
-            this.PictureBox_UpdaterIcon.TabIndex = 38;
-            this.PictureBox_UpdaterIcon.TabStop = false;
-            // 
-            // SectionButton_CheckForSoftwareUpdates
-            // 
-            this.SectionButton_CheckForSoftwareUpdates.AccentColour = System.Drawing.Color.FromArgb(((int)(((byte)(186)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.SectionButton_CheckForSoftwareUpdates.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(45)))));
-            this.SectionButton_CheckForSoftwareUpdates.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SectionButton_CheckForSoftwareUpdates.Location = new System.Drawing.Point(14, 114);
-            this.SectionButton_CheckForSoftwareUpdates.Name = "SectionButton_CheckForSoftwareUpdates";
-            this.SectionButton_CheckForSoftwareUpdates.SectionImage = global::Unleash.Properties.Resources.Update_4;
-            this.SectionButton_CheckForSoftwareUpdates.SectionText = "Check for software updates";
-            this.SectionButton_CheckForSoftwareUpdates.SelectedSection = false;
-            this.SectionButton_CheckForSoftwareUpdates.Size = new System.Drawing.Size(233, 35);
-            this.SectionButton_CheckForSoftwareUpdates.TabIndex = 36;
-            this.SectionButton_CheckForSoftwareUpdates.TextColour = System.Drawing.SystemColors.Control;
-            this.SectionButton_CheckForSoftwareUpdates.Click += new System.EventHandler(this.SectionButton_Updates_Click);
-            // 
-            // ProgressBar_SoftwareUpdate
-            // 
-            this.ProgressBar_SoftwareUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ProgressBar_SoftwareUpdate.Location = new System.Drawing.Point(14, 114);
-            this.ProgressBar_SoftwareUpdate.Name = "ProgressBar_SoftwareUpdate";
-            this.ProgressBar_SoftwareUpdate.Size = new System.Drawing.Size(233, 35);
-            this.ProgressBar_SoftwareUpdate.TabIndex = 148;
-            this.ProgressBar_SoftwareUpdate.Visible = false;
             // 
             // Tab_Section_Settings
             // 
@@ -1963,20 +1815,14 @@ namespace Unleash.Environment3
             this.Tab_Section_About.Controls.Add(this.LinkLabel_Velcomia);
             this.Tab_Section_About.Controls.Add(this.LinkLabel_CodenameGamma);
             this.Tab_Section_About.Controls.Add(this.LinkLabel_Beatz);
-            this.Tab_Section_About.Controls.Add(this.LinkLabel_SEGACarnival);
-            this.Tab_Section_About.Controls.Add(this.LinkLabel_AssemblyPP);
-            this.Tab_Section_About.Controls.Add(this.LinkLabel_Microsoft);
             this.Tab_Section_About.Controls.Add(this.LinkLabel_SuperSonic16);
-            this.Tab_Section_About.Controls.Add(this.LinkLabel_HyperPolygon64);
+            this.Tab_Section_About.Controls.Add(this.LinkLabel_HyperBE32);
             this.Tab_Section_About.Controls.Add(this.Title_Testers);
-            this.Tab_Section_About.Controls.Add(this.Label_SpecialThanks);
-            this.Tab_Section_About.Controls.Add(this.Title_SpecialThanks);
             this.Tab_Section_About.Controls.Add(this.Label_Contributors);
             this.Tab_Section_About.Controls.Add(this.Title_Contributors);
             this.Tab_Section_About.Controls.Add(this.LinkLabel_GPF);
             this.Tab_Section_About.Controls.Add(this.LinkLabel_slashiee);
             this.Tab_Section_About.Controls.Add(this.Label_Testers);
-            this.Tab_Section_About.Controls.Add(this.Panel_About_UICleanSpace);
             this.Tab_Section_About.Controls.Add(this.Label_Version);
             this.Tab_Section_About.Location = new System.Drawing.Point(4, 20);
             this.Tab_Section_About.Name = "Tab_Section_About";
@@ -1986,6 +1832,21 @@ namespace Unleash.Environment3
             this.Tab_Section_About.Text = "About";
             this.Tab_Section_About.Visible = false;
             // 
+            // LinkLabel_Knuxfan24
+            // 
+            this.LinkLabel_Knuxfan24.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
+            this.LinkLabel_Knuxfan24.AutoSize = true;
+            this.LinkLabel_Knuxfan24.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
+            this.LinkLabel_Knuxfan24.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.LinkLabel_Knuxfan24.LinkColor = System.Drawing.SystemColors.Control;
+            this.LinkLabel_Knuxfan24.Location = new System.Drawing.Point(30, 384);
+            this.LinkLabel_Knuxfan24.Name = "LinkLabel_Knuxfan24";
+            this.LinkLabel_Knuxfan24.Size = new System.Drawing.Size(95, 25);
+            this.LinkLabel_Knuxfan24.TabIndex = 193;
+            this.LinkLabel_Knuxfan24.TabStop = true;
+            this.LinkLabel_Knuxfan24.Text = "Knuxfan24";
+            this.LinkLabel_Knuxfan24.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
+            // 
             // LinkLabel_Velcomia
             // 
             this.LinkLabel_Velcomia.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
@@ -1993,7 +1854,7 @@ namespace Unleash.Environment3
             this.LinkLabel_Velcomia.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
             this.LinkLabel_Velcomia.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.LinkLabel_Velcomia.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_Velcomia.Location = new System.Drawing.Point(30, 483);
+            this.LinkLabel_Velcomia.Location = new System.Drawing.Point(30, 334);
             this.LinkLabel_Velcomia.Name = "LinkLabel_Velcomia";
             this.LinkLabel_Velcomia.Size = new System.Drawing.Size(83, 25);
             this.LinkLabel_Velcomia.TabIndex = 191;
@@ -2008,7 +1869,7 @@ namespace Unleash.Environment3
             this.LinkLabel_CodenameGamma.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
             this.LinkLabel_CodenameGamma.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.LinkLabel_CodenameGamma.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_CodenameGamma.Location = new System.Drawing.Point(30, 457);
+            this.LinkLabel_CodenameGamma.Location = new System.Drawing.Point(30, 308);
             this.LinkLabel_CodenameGamma.Name = "LinkLabel_CodenameGamma";
             this.LinkLabel_CodenameGamma.Size = new System.Drawing.Size(160, 25);
             this.LinkLabel_CodenameGamma.TabIndex = 190;
@@ -2023,58 +1884,13 @@ namespace Unleash.Environment3
             this.LinkLabel_Beatz.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
             this.LinkLabel_Beatz.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.LinkLabel_Beatz.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_Beatz.Location = new System.Drawing.Point(30, 383);
+            this.LinkLabel_Beatz.Location = new System.Drawing.Point(30, 234);
             this.LinkLabel_Beatz.Name = "LinkLabel_Beatz";
             this.LinkLabel_Beatz.Size = new System.Drawing.Size(54, 25);
             this.LinkLabel_Beatz.TabIndex = 188;
             this.LinkLabel_Beatz.TabStop = true;
             this.LinkLabel_Beatz.Text = "Beatz";
             this.LinkLabel_Beatz.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
-            // 
-            // LinkLabel_SEGACarnival
-            // 
-            this.LinkLabel_SEGACarnival.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
-            this.LinkLabel_SEGACarnival.AutoSize = true;
-            this.LinkLabel_SEGACarnival.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
-            this.LinkLabel_SEGACarnival.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.LinkLabel_SEGACarnival.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_SEGACarnival.Location = new System.Drawing.Point(30, 284);
-            this.LinkLabel_SEGACarnival.Name = "LinkLabel_SEGACarnival";
-            this.LinkLabel_SEGACarnival.Size = new System.Drawing.Size(122, 25);
-            this.LinkLabel_SEGACarnival.TabIndex = 187;
-            this.LinkLabel_SEGACarnival.TabStop = true;
-            this.LinkLabel_SEGACarnival.Text = "SEGA Carnival";
-            this.LinkLabel_SEGACarnival.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
-            // 
-            // LinkLabel_AssemblyPP
-            // 
-            this.LinkLabel_AssemblyPP.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
-            this.LinkLabel_AssemblyPP.AutoSize = true;
-            this.LinkLabel_AssemblyPP.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
-            this.LinkLabel_AssemblyPP.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.LinkLabel_AssemblyPP.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_AssemblyPP.Location = new System.Drawing.Point(30, 259);
-            this.LinkLabel_AssemblyPP.Name = "LinkLabel_AssemblyPP";
-            this.LinkLabel_AssemblyPP.Size = new System.Drawing.Size(113, 25);
-            this.LinkLabel_AssemblyPP.TabIndex = 182;
-            this.LinkLabel_AssemblyPP.TabStop = true;
-            this.LinkLabel_AssemblyPP.Text = "Assembly++";
-            this.LinkLabel_AssemblyPP.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
-            // 
-            // LinkLabel_Microsoft
-            // 
-            this.LinkLabel_Microsoft.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
-            this.LinkLabel_Microsoft.AutoSize = true;
-            this.LinkLabel_Microsoft.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
-            this.LinkLabel_Microsoft.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.LinkLabel_Microsoft.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_Microsoft.Location = new System.Drawing.Point(30, 234);
-            this.LinkLabel_Microsoft.Name = "LinkLabel_Microsoft";
-            this.LinkLabel_Microsoft.Size = new System.Drawing.Size(88, 25);
-            this.LinkLabel_Microsoft.TabIndex = 181;
-            this.LinkLabel_Microsoft.TabStop = true;
-            this.LinkLabel_Microsoft.Text = "Microsoft";
-            this.LinkLabel_Microsoft.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
             // 
             // LinkLabel_SuperSonic16
             // 
@@ -2091,51 +1907,30 @@ namespace Unleash.Environment3
             this.LinkLabel_SuperSonic16.Text = "SuperSonic16";
             this.LinkLabel_SuperSonic16.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
             // 
-            // LinkLabel_HyperPolygon64
+            // LinkLabel_HyperBE32
             // 
-            this.LinkLabel_HyperPolygon64.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
-            this.LinkLabel_HyperPolygon64.AutoSize = true;
-            this.LinkLabel_HyperPolygon64.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
-            this.LinkLabel_HyperPolygon64.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.LinkLabel_HyperPolygon64.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_HyperPolygon64.Location = new System.Drawing.Point(30, 60);
-            this.LinkLabel_HyperPolygon64.Name = "LinkLabel_HyperPolygon64";
-            this.LinkLabel_HyperPolygon64.Size = new System.Drawing.Size(145, 25);
-            this.LinkLabel_HyperPolygon64.TabIndex = 176;
-            this.LinkLabel_HyperPolygon64.TabStop = true;
-            this.LinkLabel_HyperPolygon64.Text = "HyperPolygon64";
-            this.LinkLabel_HyperPolygon64.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
+            this.LinkLabel_HyperBE32.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
+            this.LinkLabel_HyperBE32.AutoSize = true;
+            this.LinkLabel_HyperBE32.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
+            this.LinkLabel_HyperBE32.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.LinkLabel_HyperBE32.LinkColor = System.Drawing.SystemColors.Control;
+            this.LinkLabel_HyperBE32.Location = new System.Drawing.Point(30, 60);
+            this.LinkLabel_HyperBE32.Name = "LinkLabel_HyperBE32";
+            this.LinkLabel_HyperBE32.Size = new System.Drawing.Size(99, 25);
+            this.LinkLabel_HyperBE32.TabIndex = 176;
+            this.LinkLabel_HyperBE32.TabStop = true;
+            this.LinkLabel_HyperBE32.Text = "HyperBE32";
+            this.LinkLabel_HyperBE32.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
             // 
             // Title_Testers
             // 
             this.Title_Testers.AutoSize = true;
             this.Title_Testers.Font = new System.Drawing.Font("Segoe UI", 24F);
-            this.Title_Testers.Location = new System.Drawing.Point(6, 329);
+            this.Title_Testers.Location = new System.Drawing.Point(6, 180);
             this.Title_Testers.Name = "Title_Testers";
             this.Title_Testers.Size = new System.Drawing.Size(118, 45);
             this.Title_Testers.TabIndex = 38;
             this.Title_Testers.Text = "Testers";
-            // 
-            // Label_SpecialThanks
-            // 
-            this.Label_SpecialThanks.AutoSize = true;
-            this.Label_SpecialThanks.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.Label_SpecialThanks.Location = new System.Drawing.Point(9, 234);
-            this.Label_SpecialThanks.Name = "Label_SpecialThanks";
-            this.Label_SpecialThanks.Size = new System.Drawing.Size(294, 75);
-            this.Label_SpecialThanks.TabIndex = 37;
-            this.Label_SpecialThanks.Text = "► Microsoft - Design inspiration\r\n► Assembly++ - Design inspiration\r\n► SEGA Carni" +
-    "val - Update servers";
-            // 
-            // Title_SpecialThanks
-            // 
-            this.Title_SpecialThanks.AutoSize = true;
-            this.Title_SpecialThanks.Font = new System.Drawing.Font("Segoe UI", 24F);
-            this.Title_SpecialThanks.Location = new System.Drawing.Point(6, 180);
-            this.Title_SpecialThanks.Name = "Title_SpecialThanks";
-            this.Title_SpecialThanks.Size = new System.Drawing.Size(228, 45);
-            this.Title_SpecialThanks.TabIndex = 36;
-            this.Title_SpecialThanks.Text = "Special Thanks";
             // 
             // Label_Contributors
             // 
@@ -2143,10 +1938,10 @@ namespace Unleash.Environment3
             this.Label_Contributors.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.Label_Contributors.Location = new System.Drawing.Point(9, 60);
             this.Label_Contributors.Name = "Label_Contributors";
-            this.Label_Contributors.Size = new System.Drawing.Size(434, 100);
+            this.Label_Contributors.Size = new System.Drawing.Size(388, 100);
             this.Label_Contributors.TabIndex = 35;
-            this.Label_Contributors.Text = "► HyperPolygon64 - Lead programmer and designer\r\n► SuperSonic16 - GameBanana API " +
-    "Handler\r\n► xorloser - XexTool\r\n► naehrwert - scetool";
+            this.Label_Contributors.Text = "► HyperBE32 - Lead programmer and designer\r\n► SuperSonic16 - GameBanana API Handl" +
+    "er\r\n► xorloser - XexTool\r\n► naehrwert - scetool";
             // 
             // Title_Contributors
             // 
@@ -2165,7 +1960,7 @@ namespace Unleash.Environment3
             this.LinkLabel_GPF.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
             this.LinkLabel_GPF.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.LinkLabel_GPF.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_GPF.Location = new System.Drawing.Point(30, 408);
+            this.LinkLabel_GPF.Location = new System.Drawing.Point(30, 259);
             this.LinkLabel_GPF.Name = "LinkLabel_GPF";
             this.LinkLabel_GPF.Size = new System.Drawing.Size(129, 25);
             this.LinkLabel_GPF.TabIndex = 189;
@@ -2180,7 +1975,7 @@ namespace Unleash.Environment3
             this.LinkLabel_slashiee.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
             this.LinkLabel_slashiee.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.LinkLabel_slashiee.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_slashiee.Location = new System.Drawing.Point(30, 508);
+            this.LinkLabel_slashiee.Location = new System.Drawing.Point(30, 359);
             this.LinkLabel_slashiee.Name = "LinkLabel_slashiee";
             this.LinkLabel_slashiee.Size = new System.Drawing.Size(73, 25);
             this.LinkLabel_slashiee.TabIndex = 192;
@@ -2192,19 +1987,12 @@ namespace Unleash.Environment3
             // 
             this.Label_Testers.AutoSize = true;
             this.Label_Testers.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.Label_Testers.Location = new System.Drawing.Point(9, 383);
+            this.Label_Testers.Location = new System.Drawing.Point(9, 234);
             this.Label_Testers.Name = "Label_Testers";
             this.Label_Testers.Size = new System.Drawing.Size(181, 175);
             this.Label_Testers.TabIndex = 39;
             this.Label_Testers.Text = "► Beatz\r\n► Gotta Play Fast\r\n► ChrisHighwind\r\n► CodenameGamma\r\n► Velcomia\r\n► slash" +
     "iee\r\n► Knuxfan24";
-            // 
-            // Panel_About_UICleanSpace
-            // 
-            this.Panel_About_UICleanSpace.Location = new System.Drawing.Point(9, 557);
-            this.Panel_About_UICleanSpace.Name = "Panel_About_UICleanSpace";
-            this.Panel_About_UICleanSpace.Size = new System.Drawing.Size(214, 17);
-            this.Panel_About_UICleanSpace.TabIndex = 175;
             // 
             // Label_Version
             // 
@@ -2330,21 +2118,6 @@ namespace Unleash.Environment3
             this.Container_Rush.TabIndex = 17;
             this.Container_Rush.Title = "Mods";
             // 
-            // LinkLabel_Knuxfan24
-            // 
-            this.LinkLabel_Knuxfan24.ActiveLinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(16)))), ((int)(((byte)(111)))));
-            this.LinkLabel_Knuxfan24.AutoSize = true;
-            this.LinkLabel_Knuxfan24.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
-            this.LinkLabel_Knuxfan24.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.LinkLabel_Knuxfan24.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_Knuxfan24.Location = new System.Drawing.Point(30, 533);
-            this.LinkLabel_Knuxfan24.Name = "LinkLabel_Knuxfan24";
-            this.LinkLabel_Knuxfan24.Size = new System.Drawing.Size(95, 25);
-            this.LinkLabel_Knuxfan24.TabIndex = 193;
-            this.LinkLabel_Knuxfan24.TabStop = true;
-            this.LinkLabel_Knuxfan24.Text = "Knuxfan24";
-            this.LinkLabel_Knuxfan24.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Link_About_LinkClicked);
-            // 
             // RushInterface
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -2392,8 +2165,6 @@ namespace Unleash.Environment3
             this.SplitContainer_ModUpdate.ResumeLayout(false);
             this.Panel_ModUpdateBackdrop.ResumeLayout(false);
             this.Panel_ModInfoBackdrop.ResumeLayout(false);
-            this.Panel_ChangelogsBackdrop.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.PictureBox_UpdaterIcon)).EndInit();
             this.Tab_Section_Settings.ResumeLayout(false);
             this.Tab_Section_Settings.PerformLayout();
             this.Tab_Section_About.ResumeLayout(false);
@@ -2430,7 +2201,6 @@ namespace Unleash.Environment3
         private System.Windows.Forms.Button Button_ModsDirectory;
         private SectionButton Section_Appearance_ColourPicker;
         private System.Windows.Forms.TextBox TextBox_ModsDirectory;
-        private System.Windows.Forms.CheckBox CheckBox_CheckUpdatesOnLaunch;
         private System.Windows.Forms.Label Label_ModsDirectory;
         private System.Windows.Forms.TabPage Tab_Section_Settings;
         private System.Windows.Forms.TabPage Tab_Section_About;
@@ -2479,13 +2249,6 @@ namespace Unleash.Environment3
         private System.Windows.Forms.TabPage Tab_Section_Updates;
         private System.Windows.Forms.Label Label_Version;
         private System.Windows.Forms.Label Label_Optional_SaveData;
-        private System.Windows.Forms.Label Label_Title_Software;
-        private System.Windows.Forms.RichTextBox RichTextBox_Changelogs;
-        private System.Windows.Forms.PictureBox PictureBox_UpdaterIcon;
-        private System.Windows.Forms.Label Label_UpdaterStatus;
-        private SectionButton SectionButton_CheckForSoftwareUpdates;
-        private System.Windows.Forms.Panel Panel_ChangelogsBackdrop;
-        private System.Windows.Forms.Label Label_Subtitle_Changelogs;
         private SectionButton SectionButton_UpdateMods;
         private System.Windows.Forms.SplitContainer SplitContainer_ModUpdate;
         private System.Windows.Forms.Panel Panel_ModUpdateBackdrop;
@@ -2508,8 +2271,6 @@ namespace Unleash.Environment3
         private System.Windows.Forms.SplitContainer SplitContainer_ModsControls;
         private System.Windows.Forms.Label Label_Description_Reset;
         private System.Windows.Forms.LinkLabel LinkLabel_Reset;
-        private System.Windows.Forms.Label Label_LastSoftwareUpdate;
-        private System.Windows.Forms.ProgressBar ProgressBar_SoftwareUpdate;
         private System.Windows.Forms.Label Label_Description_API;
         private SectionButton SectionButton_RefreshMods;
         private SectionButton SectionButton_CheckForModUpdates;
@@ -2524,23 +2285,16 @@ namespace Unleash.Environment3
         private System.Windows.Forms.Label Label_Description_ModsDirectory;
         private System.Windows.Forms.Label Label_Testers;
         private System.Windows.Forms.Label Title_Testers;
-        private System.Windows.Forms.Label Label_SpecialThanks;
-        private System.Windows.Forms.Label Title_SpecialThanks;
         private System.Windows.Forms.Label Label_Contributors;
         private System.Windows.Forms.Label Title_Contributors;
-        private System.Windows.Forms.Panel Panel_About_UICleanSpace;
-        private System.Windows.Forms.LinkLabel LinkLabel_AssemblyPP;
-        private System.Windows.Forms.LinkLabel LinkLabel_Microsoft;
         private System.Windows.Forms.LinkLabel LinkLabel_SuperSonic16;
-        private System.Windows.Forms.LinkLabel LinkLabel_HyperPolygon64;
-        private System.Windows.Forms.LinkLabel LinkLabel_SEGACarnival;
+        private System.Windows.Forms.LinkLabel LinkLabel_HyperBE32;
         private System.Windows.Forms.Label Label_Description_UninstallOnLaunch;
         private System.Windows.Forms.CheckBox CheckBox_UninstallOnLaunch;
         private System.Windows.Forms.LinkLabel LinkLabel_Snapshot;
         private System.Windows.Forms.Label Label_Description_Snapshot;
         private System.Windows.Forms.Panel Panel_MainControls;
         private System.Windows.Forms.SplitContainer SplitContainer_MainControls;
-        private System.Windows.Forms.Panel Panel_Updates_UICleanSpace;
         private System.Windows.Forms.Label Label_Description_DiscordRPC;
         private System.Windows.Forms.Label Label_Description_Fullscreen;
         private System.Windows.Forms.Label Label_Description_Gamma;

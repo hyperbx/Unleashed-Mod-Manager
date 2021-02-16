@@ -112,7 +112,6 @@ namespace Unleash.Environment3
             if (!DesignMode) {
 
                 #region Restore label strings
-                Label_LastSoftwareUpdate.Text = Literal.Date("Last checked", Properties.Settings.Default.General_LastSoftwareUpdate);
                 Label_LastModUpdate.Text      = Literal.Date("Last checked", Properties.Settings.Default.General_LastModUpdate);
 
                 if (Properties.Settings.Default.General_Priority)
@@ -179,11 +178,6 @@ namespace Unleash.Environment3
                 } else {
                     SectionButton_InstallMods.SectionText = "Save and install content";
                     SectionButton_InstallMods.Refresh();
-                }
-
-                if (CheckBox_CheckUpdatesOnLaunch.Checked = Properties.Settings.Default.General_CheckUpdatesOnLaunch) {
-                    Properties.Settings.Default.General_LastSoftwareUpdate = DateTime.Now.Ticks;
-                    CheckForUpdates(Properties.Resources.VersionURI_GitHub, Properties.Resources.ChangelogsURI_GitHub);
                 }
 
                 if (CheckBox_SaveFileRedirection.Checked = Properties.Settings.Default.General_SaveFileRedirection) {
@@ -337,71 +331,6 @@ namespace Unleash.Environment3
         private void SectionButton_DeselectAll() {
             foreach (Control control in Controls)
                 if (control is SectionButton) ((SectionButton)control).SelectedSection = false;
-        }
-
-        /// <summary>
-        /// Pings the update servers to check for a new version.
-        /// </summary>
-        private async void CheckForUpdates(string versionURI, string changelogsURI) {
-            // Block controls
-            SectionButton_CheckForSoftwareUpdates.Enabled = false;
-
-            try {
-                string latestVersion = await Client.RequestString(versionURI), // Request version number
-                       changelogs = await Client.RequestString(changelogsURI);
-
-                // New update available!
-                if (Program.VersionNumber != latestVersion && latestVersion.StartsWith("Version"))
-                    if (InvokeRequired)
-                        Invoke(new MethodInvoker(delegate { OnCheckForUpdates(latestVersion, changelogs); }));
-                    else
-                        OnCheckForUpdates(latestVersion, changelogs);
-
-                // String was downloaded, but invalid
-                else if (!latestVersion.StartsWith("Version"))
-                    throw new WebException();
-            } catch {
-                try {
-                    // Check for updates via SEGA Carnival
-                    CheckForUpdates(Properties.Resources.VersionURI_SEGACarnival, Properties.Resources.ChangelogsURI_SEGACarnival);
-                    Properties.Settings.Default.General_LastSoftwareUpdate = DateTime.Now.Ticks;
-                    _useBackupServer = true;
-                } catch (Exception ex) {
-                    Label_UpdaterStatus.Text = "Connection error";
-                    PictureBox_UpdaterIcon.BackgroundImage = Properties.Resources.Exception_Logo;
-
-                    // Reset update button for future checking
-                    SectionButton_CheckForSoftwareUpdates.SectionText = "Check for software updates";
-                    SectionButton_CheckForSoftwareUpdates.Refresh();
-
-                    // Write exception to logs
-                    RichTextBox_Changelogs.Text = $"Failed to request changelogs...\n\n{ex}";
-                    if (_debug) Console.WriteLine(ex.ToString());
-                }
-            }
-
-            // Feedback
-            SectionButton_CheckForSoftwareUpdates.Enabled = true;
-        }
-
-        /// <summary>
-        /// Function called if there's a new version detected - avoids exceptions caused by async calls.
-        /// </summary>
-        private void OnCheckForUpdates(string latestVersion, string changelogs) {
-            // Give feedback on update status
-            Label_UpdaterStatus.Text = "Updates available";
-            Label_Status.Text = "A new version of Unleashed Mod Manager is available!";
-            PictureBox_UpdaterIcon.BackgroundImage = Properties.Resources.Exception_Logo;
-
-            // Request changelogs
-            RichTextBox_Changelogs.Text = $"Unleashed Mod Manager - {latestVersion}\n\n" +
-                                          $"" +
-                                          $"{changelogs}";
-
-            // Defines new appearance for the Check for Updates button
-            SectionButton_CheckForSoftwareUpdates.SectionImage = Properties.Resources.InstallMods;
-            SectionButton_CheckForSoftwareUpdates.SectionText = "Fetch the latest version";
-            SectionButton_CheckForSoftwareUpdates.Refresh(); // Refreshes custom user control to display new properties
         }
 
         /// <summary>
@@ -579,7 +508,6 @@ namespace Unleash.Environment3
             else if (sender == CheckBox_UninstallOnLaunch)    Properties.Settings.Default.General_AutoUninstall    = ((CheckBox)sender).Checked;
             else if (sender == CheckBox_DebugMode)            Properties.Settings.Default.General_Debug                = ((CheckBox)sender).Checked;
             else if (sender == CheckBox_SaveFileRedirection)  Properties.Settings.Default.General_SaveFileRedirection  = ((CheckBox)sender).Checked;
-            else if (sender == CheckBox_CheckUpdatesOnLaunch) Properties.Settings.Default.General_CheckUpdatesOnLaunch = ((CheckBox)sender).Checked;
             else if (sender == CheckBox_LaunchEmulator)       Properties.Settings.Default.General_LaunchEmulator       = ((CheckBox)sender).Checked;
             Properties.Settings.Default.Save();
         }
@@ -689,7 +617,6 @@ namespace Unleash.Environment3
                     SectionButton_DeselectAll();
                     Rush_Section_Updates.SelectedSection = true;
                     TabControl_Rush.SelectedTab = Tab_Section_Updates;
-                    TabControl_Rush.SelectedTab.ScrollControlIntoView(Panel_Updates_UICleanSpace);
 
                     // Check for updates...
                     await CheckForModUpdates(ListView_ModsList.FocusedItem.SubItems[6].Text);
@@ -1138,60 +1065,6 @@ namespace Unleash.Environment3
         }
 
         /// <summary>
-        /// Update Unleashed Mod Manager via requested server.
-        /// </summary>
-        private void UpdateVersion(bool useBackupServer) {
-            // Set controls enabled and visibility state
-            SectionButton_CheckForSoftwareUpdates.Visible = CheckBox_CheckUpdatesOnLaunch.Enabled = false;
-            TabControl_Rush.SelectedTab.VerticalScroll.Value = 0;
-            ProgressBar_SoftwareUpdate.Visible = true;
-
-            try {
-                // If SEGA Carnival is offline, use GitHub
-                Uri serverUri = new Uri(Properties.Resources.DataURI_GitHub);
-                if (useBackupServer) serverUri = new Uri(Properties.Resources.DataURI_SEGACarnival);
-
-                using (WebClient client = new WebClient()) {
-                    client.DownloadProgressChanged += (s, clientEventArgs) => { ProgressBar_SoftwareUpdate.Value = clientEventArgs.ProgressPercentage; };
-                    client.DownloadFileAsync(serverUri, $"{Application.ExecutablePath}.pak"); // Download archive from update servers
-                    client.DownloadFileCompleted += (s, clientEventArgs) => {
-                        using (ZipArchive archive = new ZipArchive(new MemoryStream(File.ReadAllBytes($"{Application.ExecutablePath}.pak")))) {
-                            // Extract and overwrite all with ZIP contents
-                            ZIP.ExtractToDirectory(archive, Application.StartupPath, true);
-
-                            // Overwrite 'Unleashed Mod Manager.exe' with the newly extracted build
-                            File.Replace($"{Application.ExecutablePath}.new", Application.ExecutablePath, $"{Application.ExecutablePath}.bak");
-
-                            UnifyMessenger.UnifyMessage.ShowDialog("Update complete! Restarting Unleashed Mod Manager...",
-                                                                   "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                            // Erase ZIP file
-                            File.Delete($"{Application.ExecutablePath}.pak");
-
-                            Application.Restart();
-                        }
-                    };
-                }
-            } catch (Exception ex) {
-                if (_debug) Console.WriteLine(ex.ToString()); // Write exception to debug log
-                UnifyMessenger.UnifyMessage.ShowDialog("Failed to update Unleashed Mod Manager. Reverting back to the previous version...",
-                                                       "Update failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                // Reset update button for future checking
-                SectionButton_CheckForSoftwareUpdates.Visible = CheckBox_CheckUpdatesOnLaunch.Enabled = true;
-                ProgressBar_SoftwareUpdate.Visible = false;
-                SectionButton_CheckForSoftwareUpdates.SectionText = "Check for updates";
-                SectionButton_CheckForSoftwareUpdates.Refresh();
-
-                // Replace 'Unleashed Mod Manager.exe' with the backup created earlier
-                if (File.Exists($"{Application.ExecutablePath}.bak")) {
-                    File.Replace($"{Application.ExecutablePath}.bak", Application.ExecutablePath, $"{Application.ExecutablePath}.err");
-                    File.Delete($"{Application.ExecutablePath}.err");
-                }
-            }
-        }
-
-        /// <summary>
         /// Refreshes the lists.
         /// </summary>
         private void SectionButton_Refresh_Click(object sender, EventArgs e) { RefreshLists(); }
@@ -1207,16 +1080,8 @@ namespace Unleash.Environment3
         /// Code for all SectionButton controls in the Updates section.
         /// </summary>
         private async void SectionButton_Updates_Click(object sender, EventArgs e) {
-            // Check for software updates is clicked
-            if (sender == SectionButton_CheckForSoftwareUpdates) {
-                // Check for updates via GitHub
-                CheckForUpdates(Properties.Resources.VersionURI_GitHub, Properties.Resources.ChangelogsURI_GitHub);
-                Properties.Settings.Default.General_LastSoftwareUpdate = DateTime.Now.Ticks;
-                if (((SectionButton)sender).SectionText == "Fetch the latest version") UpdateVersion(_useBackupServer); // Update if prompted
-                Properties.Settings.Default.Save();
-
-            // Check for mod updates is clicked
-            } else if (sender == SectionButton_CheckForModUpdates) {
+            // Check if mod updates is clicked
+            if (sender == SectionButton_CheckForModUpdates) {
                 Properties.Settings.Default.General_LastModUpdate = DateTime.Now.Ticks;
                 await CheckForModUpdates(string.Empty);
                 Properties.Settings.Default.Save();
@@ -1502,11 +1367,8 @@ namespace Unleash.Environment3
         /// Redirects the user to a webpage about the selected contributor.
         /// </summary>
         private void Link_About_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
-            if      (sender == LinkLabel_HyperPolygon64) Process.Start("https://github.com/HyperPolygon64");
+            if           (sender == LinkLabel_HyperBE32) Process.Start("https://github.com/HyperBE32");
             else if   (sender == LinkLabel_SuperSonic16) Process.Start("https://github.com/thesupersonic16");
-            else if      (sender == LinkLabel_Microsoft) Process.Start("https://github.com/Microsoft");
-            else if     (sender == LinkLabel_AssemblyPP) Process.Start("https://gamebanana.com/tools/6738");
-            else if   (sender == LinkLabel_SEGACarnival) Process.Start("https://www.segacarnival.com/forum/index.php");
             else if          (sender == LinkLabel_Beatz) Process.Start("https://www.youtube.com/channel/UCEjwges-3BTaWsMwOGJDoGQ");
             else if            (sender == LinkLabel_GPF) Process.Start("https://www.youtube.com/channel/UCZfOGBkXRKICFozWU5bE0Xg");
             else if  (sender == LinkLabel_CodenameGamma) Process.Start("https://www.youtube.com/user/codenamegamma");
