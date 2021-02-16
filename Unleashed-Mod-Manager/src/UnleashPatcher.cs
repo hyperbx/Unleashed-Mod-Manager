@@ -178,7 +178,7 @@ namespace Unleash.Patcher
         public static void UninstallSaves(ListView.ListViewItemCollection listViewItems) {
             if (Properties.Settings.Default.Path_SaveData != string.Empty || File.Exists(Properties.Settings.Default.Path_SaveData)) {
                 foreach (ListViewItem mod in listViewItems) {
-                    // Basically just to check 'SonicNextSaveData.bin' as a directory
+                    // Basically just to check 'SYS-DATA' as a directory
                     string saveLocation = Path.GetDirectoryName(Path.GetDirectoryName(Properties.Settings.Default.Path_SaveData));
 
                     // Deserialise 'Save' key
@@ -189,7 +189,7 @@ namespace Unleash.Patcher
                             string[] saves = Array.Empty<string>();
 
                             // Get all backup directories
-                            if (Directory.Exists(saveLocation)) saves = Directory.GetDirectories(saveLocation, "SonicNextSaveData.bin_back", SearchOption.AllDirectories);
+                            if (Directory.Exists(saveLocation)) saves = Directory.GetDirectories(saveLocation, "SYS-DATA_back", SearchOption.AllDirectories);
 
                             foreach (var dir in saves) {
                                 // Original save data path
