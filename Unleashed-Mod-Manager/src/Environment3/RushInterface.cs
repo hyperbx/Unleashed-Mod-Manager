@@ -1249,7 +1249,7 @@ namespace Unleash.Environment3
                     unleashedmmKey = Registry.CurrentUser.OpenSubKey($"Software\\Classes\\{protocol}", true);
                     if (unleashedmmKey == null)
                         unleashedmmKey = Registry.CurrentUser.CreateSubKey($"Software\\Classes\\{protocol}");
-                    unleashedmmKey.SetValue(string.Empty, "URL:Sonic '06 Mod Manager");
+                    unleashedmmKey.SetValue(string.Empty, "Unleashed Mod Manager");
                     unleashedmmKey.SetValue("URL Protocol", string.Empty);
                     RegistryKey prevkey = unleashedmmKey;
                     unleashedmmKey = unleashedmmKey.OpenSubKey("shell", true);
