@@ -275,7 +275,7 @@ namespace Unleash.Environment3
             this.SectionButton_LaunchGame.SectionImage = global::Unleash.Properties.Resources.Run_16x;
             this.SectionButton_LaunchGame.SectionText = "Launch Sonic Unleashed";
             this.SectionButton_LaunchGame.SelectedSection = false;
-            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1206, 35);
+            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1209, 35);
             this.SectionButton_LaunchGame.TabIndex = 51;
             this.SectionButton_LaunchGame.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_LaunchGame.Click += new System.EventHandler(this.SectionButton_LaunchGame_Click);
@@ -379,7 +379,7 @@ namespace Unleash.Environment3
             this.SectionButton_RefreshMods.SectionImage = ((System.Drawing.Bitmap)(resources.GetObject("SectionButton_RefreshMods.SectionImage")));
             this.SectionButton_RefreshMods.SectionText = "Refresh mods list";
             this.SectionButton_RefreshMods.SelectedSection = false;
-            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1937, 35);
+            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1940, 35);
             this.SectionButton_RefreshMods.TabIndex = 52;
             this.SectionButton_RefreshMods.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_RefreshMods.Click += new System.EventHandler(this.SectionButton_Refresh_Click);
@@ -1839,7 +1839,7 @@ namespace Unleash.Environment3
             this.LinkLabel_Knuxfan24.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
             this.LinkLabel_Knuxfan24.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.LinkLabel_Knuxfan24.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_Knuxfan24.Location = new System.Drawing.Point(30, 384);
+            this.LinkLabel_Knuxfan24.Location = new System.Drawing.Point(30, 333);
             this.LinkLabel_Knuxfan24.Name = "LinkLabel_Knuxfan24";
             this.LinkLabel_Knuxfan24.Size = new System.Drawing.Size(95, 25);
             this.LinkLabel_Knuxfan24.TabIndex = 193;
@@ -1854,7 +1854,7 @@ namespace Unleash.Environment3
             this.LinkLabel_Velcomia.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
             this.LinkLabel_Velcomia.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.LinkLabel_Velcomia.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_Velcomia.Location = new System.Drawing.Point(30, 334);
+            this.LinkLabel_Velcomia.Location = new System.Drawing.Point(30, 283);
             this.LinkLabel_Velcomia.Name = "LinkLabel_Velcomia";
             this.LinkLabel_Velcomia.Size = new System.Drawing.Size(83, 25);
             this.LinkLabel_Velcomia.TabIndex = 191;
@@ -1869,7 +1869,7 @@ namespace Unleash.Environment3
             this.LinkLabel_CodenameGamma.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
             this.LinkLabel_CodenameGamma.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.LinkLabel_CodenameGamma.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_CodenameGamma.Location = new System.Drawing.Point(30, 308);
+            this.LinkLabel_CodenameGamma.Location = new System.Drawing.Point(30, 257);
             this.LinkLabel_CodenameGamma.Name = "LinkLabel_CodenameGamma";
             this.LinkLabel_CodenameGamma.Size = new System.Drawing.Size(160, 25);
             this.LinkLabel_CodenameGamma.TabIndex = 190;
@@ -1884,7 +1884,7 @@ namespace Unleash.Environment3
             this.LinkLabel_Beatz.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
             this.LinkLabel_Beatz.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.LinkLabel_Beatz.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_Beatz.Location = new System.Drawing.Point(30, 234);
+            this.LinkLabel_Beatz.Location = new System.Drawing.Point(30, 183);
             this.LinkLabel_Beatz.Name = "LinkLabel_Beatz";
             this.LinkLabel_Beatz.Size = new System.Drawing.Size(54, 25);
             this.LinkLabel_Beatz.TabIndex = 188;
@@ -1926,7 +1926,7 @@ namespace Unleash.Environment3
             // 
             this.Title_Testers.AutoSize = true;
             this.Title_Testers.Font = new System.Drawing.Font("Segoe UI", 24F);
-            this.Title_Testers.Location = new System.Drawing.Point(6, 180);
+            this.Title_Testers.Location = new System.Drawing.Point(6, 129);
             this.Title_Testers.Name = "Title_Testers";
             this.Title_Testers.Size = new System.Drawing.Size(118, 45);
             this.Title_Testers.TabIndex = 38;
@@ -1938,10 +1938,10 @@ namespace Unleash.Environment3
             this.Label_Contributors.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.Label_Contributors.Location = new System.Drawing.Point(9, 60);
             this.Label_Contributors.Name = "Label_Contributors";
-            this.Label_Contributors.Size = new System.Drawing.Size(388, 100);
+            this.Label_Contributors.Size = new System.Drawing.Size(388, 50);
             this.Label_Contributors.TabIndex = 35;
             this.Label_Contributors.Text = "► HyperBE32 - Lead programmer and designer\r\n► SuperSonic16 - GameBanana API Handl" +
-    "er\r\n► xorloser - XexTool\r\n► naehrwert - scetool";
+    "er\r\n";
             // 
             // Title_Contributors
             // 
@@ -1960,7 +1960,7 @@ namespace Unleash.Environment3
             this.LinkLabel_GPF.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
             this.LinkLabel_GPF.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.LinkLabel_GPF.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_GPF.Location = new System.Drawing.Point(30, 259);
+            this.LinkLabel_GPF.Location = new System.Drawing.Point(30, 208);
             this.LinkLabel_GPF.Name = "LinkLabel_GPF";
             this.LinkLabel_GPF.Size = new System.Drawing.Size(129, 25);
             this.LinkLabel_GPF.TabIndex = 189;
@@ -1975,7 +1975,7 @@ namespace Unleash.Environment3
             this.LinkLabel_slashiee.DisabledLinkColor = System.Drawing.SystemColors.GrayText;
             this.LinkLabel_slashiee.Font = new System.Drawing.Font("Segoe UI", 13F);
             this.LinkLabel_slashiee.LinkColor = System.Drawing.SystemColors.Control;
-            this.LinkLabel_slashiee.Location = new System.Drawing.Point(30, 359);
+            this.LinkLabel_slashiee.Location = new System.Drawing.Point(30, 308);
             this.LinkLabel_slashiee.Name = "LinkLabel_slashiee";
             this.LinkLabel_slashiee.Size = new System.Drawing.Size(73, 25);
             this.LinkLabel_slashiee.TabIndex = 192;
@@ -1987,7 +1987,7 @@ namespace Unleash.Environment3
             // 
             this.Label_Testers.AutoSize = true;
             this.Label_Testers.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.Label_Testers.Location = new System.Drawing.Point(9, 234);
+            this.Label_Testers.Location = new System.Drawing.Point(9, 183);
             this.Label_Testers.Name = "Label_Testers";
             this.Label_Testers.Size = new System.Drawing.Size(181, 175);
             this.Label_Testers.TabIndex = 39;
