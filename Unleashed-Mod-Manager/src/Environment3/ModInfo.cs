@@ -46,6 +46,9 @@ namespace Unleash.Environment3
         public ModInfo(string mod) {
             InitializeComponent();
 
+            // Initialise immersive dark mode.
+            ImmersiveDarkMode.Initialise(Handle, true);
+
             modDirectory = Path.GetDirectoryName(mod);
 
             string[] getThumbnail = Directory.GetFiles(modDirectory, "thumbnail*", SearchOption.TopDirectoryOnly);

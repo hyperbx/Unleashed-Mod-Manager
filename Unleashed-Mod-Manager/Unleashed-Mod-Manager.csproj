@@ -40,6 +40,9 @@
   <PropertyGroup>
     <ApplicationIcon>res\Icons\logo_main_icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -78,6 +81,7 @@
     <Compile Include="src\Environment3\Controls\UnifyMessenger.designer.cs">
       <DependentUpon>UnifyMessenger.cs</DependentUpon>
     </Compile>
+    <Compile Include="src\Environment3\Interop\ImmersiveDarkMode.cs" />
     <Compile Include="src\Environment3\ModCreator.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,6 +330,7 @@
       <DependentUpon>UnleashSetup.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

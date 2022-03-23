@@ -1,5 +1,4 @@
-﻿using Unleash.Compression;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
 
 // Unleashed Mod Manager is licensed under the MIT License:
 /*
@@ -33,6 +32,9 @@ namespace Unleash.Environment3
     {
         public UnifyEnvironment() {
             InitializeComponent(); // Designer support
+
+            // Initialise immersive dark mode.
+            ImmersiveDarkMode.Initialise(Handle, true);
 
             // Sets the text of the title bar to contain the version number
             Text += $" ({Program.VersionNumber})";

@@ -47,6 +47,10 @@ namespace Unleash.Environment3
             InitializeComponent();
             this.mod = mod;
             this.edit = edit;
+
+            // Initialise immersive dark mode.
+            ImmersiveDarkMode.Initialise(Handle, true);
+
             if (!this.edit) {
                 text_Version.Text = "1.0";
                 text_Date.Text = DateTime.Now.ToString("dd/MM/yyyy");
