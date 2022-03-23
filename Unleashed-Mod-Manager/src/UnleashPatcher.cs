@@ -90,7 +90,8 @@ namespace Unleash.Patcher
                 // Proceed with backup
                 if ((targetFilePath = Content.CreateBackup(vanillaFilePath)) != string.Empty) {
                     // Decompress backed up ARL to compare AR count with later
-                    if (Path.GetExtension(vanillaFilePath) == ".arl") Decompress.DecompressBySystem(targetFilePath);
+                    if (Path.GetExtension(vanillaFilePath) == ".arl" && File.Exists(targetFilePath))
+                        Decompress.DecompressBySystem(targetFilePath);
 
                     // Merge modified data
                     if (Path.GetFileName(file).Contains(".ar") && merge && !read_only.Contains(Path.GetFileName(file))) {
