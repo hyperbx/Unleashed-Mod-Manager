@@ -150,14 +150,14 @@ namespace Unleash.Environment3
                 #endregion
 
                 #region Restore combo box states
-                ComboBox_API.SelectedIndex          = Properties.Settings.Default.Emulator_API;
+                ComboBox_API.SelectedIndex = Properties.Settings.Default.Emulator_API;
                 ComboBox_UserLanguage.SelectedIndex = Properties.Settings.Default.Emulator_UserLanguage;
+                ComboBox_Width.SelectedIndex = Properties.Settings.Default.Emulator_Width;
+                ComboBox_Height.SelectedIndex = Properties.Settings.Default.Emulator_Height;
                 #endregion
 
                 #region Restore check box states
                 CheckBox_AutoColour.Checked         = Properties.Settings.Default.General_AutoColour;
-                CheckBox_Xenia_ForceRTV.Checked     = Properties.Settings.Default.Emulator_ForceRTV;
-                CheckBox_Xenia_2xResolution.Checked = Properties.Settings.Default.Emulator_DoubleResolution;
                 CheckBox_Xenia_VerticalSync.Checked = Properties.Settings.Default.Emulator_VerticalSync;
                 CheckBox_Xenia_Gamma.Checked        = Properties.Settings.Default.Emulator_Gamma;
                 CheckBox_Xenia_Fullscreen.Checked   = Properties.Settings.Default.Emulator_Fullscreen;
@@ -173,7 +173,7 @@ namespace Unleash.Environment3
                     Console.SetOut(new ListBoxWriter(ListBox_Debug));
 
                 if (CheckBox_LaunchEmulator.Checked = Properties.Settings.Default.General_LaunchEmulator) {
-                    SectionButton_InstallMods.SectionText = "Save, install content and launch Unleashed";
+                    SectionButton_InstallMods.SectionText = "Save, install content and launch Sonic '06";
                     SectionButton_InstallMods.Refresh();
                 } else {
                     SectionButton_InstallMods.SectionText = "Save and install content";
@@ -221,100 +221,38 @@ namespace Unleash.Environment3
                 #endregion
 
                 #region Set controls depending on emulator
-                if (Literal.Emulator(Properties.Settings.Default.Path_GameDirectory) == "Xenia") {
-                    if (Properties.Settings.Default.Emulator_API != 2)
-                        // Enables most controls in the Emulator UI
-                        EnableEmulatorInterface();
+                if (Literal.Emulator(Properties.Settings.Default.Path_GameDirectory) == "Xenia")
+                {
+                    Panel_Xenia_Options.Visible = true;
+                    Panel_Xenia_API_Options.Visible = Properties.Settings.Default.Emulator_API != 2 ? true : false;
+
+                    // I am in a considerable amount of pain.
+                    if (Properties.Settings.Default.Emulator_API != 0)
+                    {
+                        ComboBox_Width.Enabled = false;
+                        ComboBox_Height.Enabled = false;
+                        Label_Width.ForeColor = SystemColors.GrayText;
+                        Label_Height.ForeColor = SystemColors.GrayText;
+                        Label_Description_Width.ForeColor = SystemColors.GrayText;
+                        Label_Description_Height.ForeColor = SystemColors.GrayText;
+                    }
                     else
-                        // Disables most controls in the Emulator UI
-                        DisableEmulatorInterface();
-
-                    // Set visibility state of controls
-                    Label_RPCS3Warning.Visible = false;
-                } else if (Literal.Emulator(Properties.Settings.Default.Path_GameDirectory) == "RPCS3") {
-                    // Disables most controls in the Emulator UI
-                    DisableEmulatorInterface();
-
-                    ComboBox_API.Enabled = false;
-
-                    Label_Subtitle_Emulator_Options.ForeColor =
-                    Label_API.ForeColor =
-                    Label_Description_API.ForeColor =
-                    SystemColors.GrayText;
-
-                    // Set visibility state of controls
-                    Label_RPCS3Warning.Visible = true;
+                    {
+                        ComboBox_Width.Enabled = true;
+                        ComboBox_Height.Enabled = true;
+                        Label_Width.ForeColor = SystemColors.Control;
+                        Label_Height.ForeColor = SystemColors.Control;
+                        Label_Description_Width.ForeColor = SystemColors.ControlDark;
+                        Label_Description_Height.ForeColor = SystemColors.ControlDark;
+                    }
+                }
+                else if (Literal.Emulator(Properties.Settings.Default.Path_GameDirectory) == "RPCS3")
+                {
+                    Panel_Xenia_Options.Visible = false;
                 }
                 #endregion
 
             }
-        }
-
-        /// <summary>
-        /// Enables most controls in the Emulator UI.
-        /// </summary>
-        private void EnableEmulatorInterface() {
-            #region Enable controls
-            if (Properties.Settings.Default.Emulator_API != 0) {
-                CheckBox_Xenia_ForceRTV.Enabled = CheckBox_Xenia_2xResolution.Enabled = false;
-                Label_Description_ForceRTV.ForeColor = Label_Description_2xResolution.ForeColor = SystemColors.GrayText;
-            } else {
-                CheckBox_Xenia_ForceRTV.Enabled = CheckBox_Xenia_2xResolution.Enabled = true;
-                Label_Description_ForceRTV.ForeColor = Label_Description_2xResolution.ForeColor = SystemColors.ControlDark;
-            }
-
-            // Set text colour to Control
-            Label_Subtitle_Emulator_Options.ForeColor =
-            Label_API.ForeColor =
-            Label_UserLanguage.ForeColor =
-            SystemColors.Control;
-
-            // Set text colour to ControlDark
-            Label_Description_API.ForeColor =
-            Label_Description_UserLanguage.ForeColor =
-            Label_Description_VerticalSync.ForeColor =
-            Label_Description_Gamma.ForeColor =
-            Label_Description_Fullscreen.ForeColor =
-            Label_Description_DiscordRPC.ForeColor =
-            SystemColors.ControlDark;
-
-            // Set enabled state of controls
-            ComboBox_API.Enabled =
-            ComboBox_UserLanguage.Enabled =
-            CheckBox_Xenia_VerticalSync.Enabled =
-            CheckBox_Xenia_Gamma.Enabled =
-            CheckBox_Xenia_Fullscreen.Enabled =
-            CheckBox_Xenia_DiscordRPC.Enabled =
-            true;
-            #endregion
-        }
-
-        /// <summary>
-        /// Disables most controls in the Emulator UI.
-        /// </summary>
-        private void DisableEmulatorInterface() {
-            #region Disable controls
-            // Set text colour to GrayText
-            Label_Description_UserLanguage.ForeColor =
-            Label_Description_ForceRTV.ForeColor =
-            Label_Description_2xResolution.ForeColor =
-            Label_Description_VerticalSync.ForeColor =
-            Label_Description_Gamma.ForeColor =
-            Label_Description_Fullscreen.ForeColor =
-            Label_Description_DiscordRPC.ForeColor =
-            Label_UserLanguage.ForeColor =
-            SystemColors.GrayText;
-
-            // Set enabled state of controls
-            ComboBox_UserLanguage.Enabled =
-            CheckBox_Xenia_ForceRTV.Enabled =
-            CheckBox_Xenia_2xResolution.Enabled =
-            CheckBox_Xenia_VerticalSync.Enabled =
-            CheckBox_Xenia_Gamma.Enabled =
-            CheckBox_Xenia_Fullscreen.Enabled =
-            CheckBox_Xenia_DiscordRPC.Enabled =
-            false;
-            #endregion
         }
 
         /// <summary>
@@ -942,8 +880,8 @@ namespace Unleash.Environment3
                     if (ComboBox_API.SelectedIndex != 2) {
                         if (ComboBox_API.SelectedIndex == 0) {
                             parameters.Add("--gpu=d3d12"); // Use DirectX 12
-                            if (CheckBox_Xenia_ForceRTV.Checked)     parameters.Add("--d3d12_edram_rov=false"); // Force Render Target Views
-                            if (CheckBox_Xenia_2xResolution.Checked) parameters.Add("--d3d12_resolution_scale=2"); // 2x Resolution
+                            parameters.Add($"--draw_resolution_scale_x={ComboBox_Width.SelectedIndex + 1}"); // Width
+                            parameters.Add($"--draw_resolution_scale_y={ComboBox_Height.SelectedIndex + 1}"); // Height
                         } else
                             parameters.Add("--gpu=vulkan"); // Use Vulkan
 
@@ -1490,17 +1428,25 @@ namespace Unleash.Environment3
         /// <summary>
         /// Changed index selection events for the Emulator section.
         /// </summary>
-        private void ComboBox_Emulator_SelectedIndexChanged(object sender, EventArgs e) {
-            if (sender == ComboBox_API) {
-                if ((Properties.Settings.Default.Emulator_API = ((ComboBox)sender).SelectedIndex) != 0) {
-                    CheckBox_Xenia_ForceRTV.Enabled = CheckBox_Xenia_2xResolution.Enabled = false;
-                    Label_Description_ForceRTV.ForeColor = Label_Description_2xResolution.ForeColor = SystemColors.GrayText;
-                } else {
-                    CheckBox_Xenia_ForceRTV.Enabled = CheckBox_Xenia_2xResolution.Enabled = true;
-                    Label_Description_ForceRTV.ForeColor = Label_Description_2xResolution.ForeColor = SystemColors.ControlDark;
-                }
+        private void ComboBox_Emulator_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (sender == ComboBox_API)
+            {
+                Properties.Settings.Default.Emulator_API = ((ComboBox)sender).SelectedIndex;
             }
-            else if (sender == ComboBox_UserLanguage) Properties.Settings.Default.Emulator_UserLanguage = ((ComboBox)sender).SelectedIndex;
+            else if (sender == ComboBox_UserLanguage)
+            {
+                Properties.Settings.Default.Emulator_UserLanguage = ((ComboBox)sender).SelectedIndex;
+            }
+            else if (sender == ComboBox_Width)
+            {
+                Properties.Settings.Default.Emulator_Width = ((ComboBox)sender).SelectedIndex;
+            }
+            else if (sender == ComboBox_Height)
+            {
+                Properties.Settings.Default.Emulator_Height = ((ComboBox)sender).SelectedIndex;
+            }
+
             Properties.Settings.Default.Save();
         }
 
@@ -1516,12 +1462,10 @@ namespace Unleash.Environment3
         /// Save Xenia parameter settings.
         /// </summary>
         private void CheckBox_Xenia_CheckedChanged(object sender, EventArgs e) {
-            if          (sender == CheckBox_Xenia_ForceRTV) Properties.Settings.Default.Emulator_ForceRTV         = ((CheckBox)sender).Checked;
-            else if (sender == CheckBox_Xenia_2xResolution) Properties.Settings.Default.Emulator_DoubleResolution = ((CheckBox)sender).Checked;
-            else if (sender == CheckBox_Xenia_VerticalSync) Properties.Settings.Default.Emulator_VerticalSync     = ((CheckBox)sender).Checked;
-            else if        (sender == CheckBox_Xenia_Gamma) Properties.Settings.Default.Emulator_Gamma            = ((CheckBox)sender).Checked;
-            else if   (sender == CheckBox_Xenia_Fullscreen) Properties.Settings.Default.Emulator_Fullscreen       = ((CheckBox)sender).Checked;
-            else if   (sender == CheckBox_Xenia_DiscordRPC) Properties.Settings.Default.Emulator_DiscordRPC       = ((CheckBox)sender).Checked;
+            if (sender == CheckBox_Xenia_VerticalSync) Properties.Settings.Default.Emulator_VerticalSync = ((CheckBox)sender).Checked;
+            else if        (sender == CheckBox_Xenia_Gamma) Properties.Settings.Default.Emulator_Gamma        = ((CheckBox)sender).Checked;
+            else if   (sender == CheckBox_Xenia_Fullscreen) Properties.Settings.Default.Emulator_Fullscreen   = ((CheckBox)sender).Checked;
+            else if   (sender == CheckBox_Xenia_DiscordRPC) Properties.Settings.Default.Emulator_DiscordRPC   = ((CheckBox)sender).Checked;
             Properties.Settings.Default.Save();
         }
     }

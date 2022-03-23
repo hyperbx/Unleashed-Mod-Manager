@@ -56,31 +56,35 @@ namespace Unleash.Environment3
             this.Column_ModsList_Merge = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Column_ModsList_Blank = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Tab_Section_Emulator = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.TextBox_Arguments = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.Label_Description_UserLanguage = new System.Windows.Forms.Label();
+            this.Panel_Xenia_Options = new System.Windows.Forms.Panel();
+            this.Label_Subtitle_Emulator_Options = new System.Windows.Forms.Label();
+            this.ComboBox_API = new System.Windows.Forms.ComboBox();
+            this.Label_API = new System.Windows.Forms.Label();
+            this.Label_Description_API = new System.Windows.Forms.Label();
+            this.Panel_Xenia_API_Options = new System.Windows.Forms.Panel();
             this.Label_UserLanguage = new System.Windows.Forms.Label();
             this.ComboBox_UserLanguage = new System.Windows.Forms.ComboBox();
             this.Label_Description_DiscordRPC = new System.Windows.Forms.Label();
             this.Label_Description_Fullscreen = new System.Windows.Forms.Label();
+            this.lol = new System.Windows.Forms.SplitContainer();
+            this.Label_Width = new System.Windows.Forms.Label();
+            this.ComboBox_Width = new System.Windows.Forms.ComboBox();
+            this.Label_Description_Width = new System.Windows.Forms.Label();
+            this.ComboBox_Height = new System.Windows.Forms.ComboBox();
+            this.Label_Description_Height = new System.Windows.Forms.Label();
+            this.Label_Height = new System.Windows.Forms.Label();
+            this.Label_Description_UserLanguage = new System.Windows.Forms.Label();
             this.Label_Description_Gamma = new System.Windows.Forms.Label();
+            this.CheckBox_Xenia_VerticalSync = new System.Windows.Forms.CheckBox();
             this.Label_Description_VerticalSync = new System.Windows.Forms.Label();
-            this.Label_Description_2xResolution = new System.Windows.Forms.Label();
-            this.Label_Description_ForceRTV = new System.Windows.Forms.Label();
-            this.Label_Description_API = new System.Windows.Forms.Label();
+            this.CheckBox_Xenia_DiscordRPC = new System.Windows.Forms.CheckBox();
+            this.CheckBox_Xenia_Gamma = new System.Windows.Forms.CheckBox();
+            this.CheckBox_Xenia_Fullscreen = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.TextBox_Arguments = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.Button_Open_SaveData = new System.Windows.Forms.Button();
             this.Button_Open_EmulatorExecutable = new System.Windows.Forms.Button();
-            this.Label_RPCS3Warning = new System.Windows.Forms.Label();
-            this.CheckBox_Xenia_DiscordRPC = new System.Windows.Forms.CheckBox();
-            this.CheckBox_Xenia_Fullscreen = new System.Windows.Forms.CheckBox();
-            this.CheckBox_Xenia_Gamma = new System.Windows.Forms.CheckBox();
-            this.CheckBox_Xenia_VerticalSync = new System.Windows.Forms.CheckBox();
-            this.CheckBox_Xenia_2xResolution = new System.Windows.Forms.CheckBox();
-            this.CheckBox_Xenia_ForceRTV = new System.Windows.Forms.CheckBox();
-            this.Label_API = new System.Windows.Forms.Label();
-            this.ComboBox_API = new System.Windows.Forms.ComboBox();
-            this.Label_Subtitle_Emulator_Options = new System.Windows.Forms.Label();
             this.TextBox_SaveData = new System.Windows.Forms.TextBox();
             this.Label_Description_EmulatorExecutable = new System.Windows.Forms.Label();
             this.Button_SaveData = new System.Windows.Forms.Button();
@@ -183,6 +187,12 @@ namespace Unleash.Environment3
             this.SplitContainer_ModsControls.SuspendLayout();
             this.Panel_ModBackdrop.SuspendLayout();
             this.Tab_Section_Emulator.SuspendLayout();
+            this.Panel_Xenia_Options.SuspendLayout();
+            this.Panel_Xenia_API_Options.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lol)).BeginInit();
+            this.lol.Panel1.SuspendLayout();
+            this.lol.Panel2.SuspendLayout();
+            this.lol.SuspendLayout();
             this.Tab_Section_Debug.SuspendLayout();
             this.Panel_DebugControls.SuspendLayout();
             this.Tab_Section_Updates.SuspendLayout();
@@ -275,7 +285,7 @@ namespace Unleash.Environment3
             this.SectionButton_LaunchGame.SectionImage = global::Unleash.Properties.Resources.Run_16x;
             this.SectionButton_LaunchGame.SectionText = "Launch Sonic Unleashed";
             this.SectionButton_LaunchGame.SelectedSection = false;
-            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1209, 35);
+            this.SectionButton_LaunchGame.Size = new System.Drawing.Size(1212, 35);
             this.SectionButton_LaunchGame.TabIndex = 51;
             this.SectionButton_LaunchGame.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_LaunchGame.Click += new System.EventHandler(this.SectionButton_LaunchGame_Click);
@@ -379,7 +389,7 @@ namespace Unleash.Environment3
             this.SectionButton_RefreshMods.SectionImage = ((System.Drawing.Bitmap)(resources.GetObject("SectionButton_RefreshMods.SectionImage")));
             this.SectionButton_RefreshMods.SectionText = "Refresh mods list";
             this.SectionButton_RefreshMods.SelectedSection = false;
-            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1940, 35);
+            this.SectionButton_RefreshMods.Size = new System.Drawing.Size(1946, 35);
             this.SectionButton_RefreshMods.TabIndex = 52;
             this.SectionButton_RefreshMods.TextColour = System.Drawing.SystemColors.Control;
             this.SectionButton_RefreshMods.Click += new System.EventHandler(this.SectionButton_Refresh_Click);
@@ -550,31 +560,12 @@ namespace Unleash.Environment3
             // Tab_Section_Emulator
             // 
             this.Tab_Section_Emulator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(28)))), ((int)(((byte)(28)))), ((int)(((byte)(28)))));
+            this.Tab_Section_Emulator.Controls.Add(this.Panel_Xenia_Options);
             this.Tab_Section_Emulator.Controls.Add(this.label1);
             this.Tab_Section_Emulator.Controls.Add(this.TextBox_Arguments);
             this.Tab_Section_Emulator.Controls.Add(this.label2);
-            this.Tab_Section_Emulator.Controls.Add(this.Label_Description_UserLanguage);
-            this.Tab_Section_Emulator.Controls.Add(this.Label_UserLanguage);
-            this.Tab_Section_Emulator.Controls.Add(this.ComboBox_UserLanguage);
-            this.Tab_Section_Emulator.Controls.Add(this.Label_Description_DiscordRPC);
-            this.Tab_Section_Emulator.Controls.Add(this.Label_Description_Fullscreen);
-            this.Tab_Section_Emulator.Controls.Add(this.Label_Description_Gamma);
-            this.Tab_Section_Emulator.Controls.Add(this.Label_Description_VerticalSync);
-            this.Tab_Section_Emulator.Controls.Add(this.Label_Description_2xResolution);
-            this.Tab_Section_Emulator.Controls.Add(this.Label_Description_ForceRTV);
-            this.Tab_Section_Emulator.Controls.Add(this.Label_Description_API);
             this.Tab_Section_Emulator.Controls.Add(this.Button_Open_SaveData);
             this.Tab_Section_Emulator.Controls.Add(this.Button_Open_EmulatorExecutable);
-            this.Tab_Section_Emulator.Controls.Add(this.Label_RPCS3Warning);
-            this.Tab_Section_Emulator.Controls.Add(this.CheckBox_Xenia_DiscordRPC);
-            this.Tab_Section_Emulator.Controls.Add(this.CheckBox_Xenia_Fullscreen);
-            this.Tab_Section_Emulator.Controls.Add(this.CheckBox_Xenia_Gamma);
-            this.Tab_Section_Emulator.Controls.Add(this.CheckBox_Xenia_VerticalSync);
-            this.Tab_Section_Emulator.Controls.Add(this.CheckBox_Xenia_2xResolution);
-            this.Tab_Section_Emulator.Controls.Add(this.CheckBox_Xenia_ForceRTV);
-            this.Tab_Section_Emulator.Controls.Add(this.Label_API);
-            this.Tab_Section_Emulator.Controls.Add(this.ComboBox_API);
-            this.Tab_Section_Emulator.Controls.Add(this.Label_Subtitle_Emulator_Options);
             this.Tab_Section_Emulator.Controls.Add(this.TextBox_SaveData);
             this.Tab_Section_Emulator.Controls.Add(this.Label_Description_EmulatorExecutable);
             this.Tab_Section_Emulator.Controls.Add(this.Button_SaveData);
@@ -591,6 +582,338 @@ namespace Unleash.Environment3
             this.Tab_Section_Emulator.TabIndex = 1;
             this.Tab_Section_Emulator.Text = "Emulator";
             this.Tab_Section_Emulator.Visible = false;
+            // 
+            // Panel_Xenia_Options
+            // 
+            this.Panel_Xenia_Options.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Panel_Xenia_Options.Controls.Add(this.Label_Subtitle_Emulator_Options);
+            this.Panel_Xenia_Options.Controls.Add(this.ComboBox_API);
+            this.Panel_Xenia_Options.Controls.Add(this.Label_API);
+            this.Panel_Xenia_Options.Controls.Add(this.Label_Description_API);
+            this.Panel_Xenia_Options.Controls.Add(this.Panel_Xenia_API_Options);
+            this.Panel_Xenia_Options.Location = new System.Drawing.Point(3, 204);
+            this.Panel_Xenia_Options.Name = "Panel_Xenia_Options";
+            this.Panel_Xenia_Options.Size = new System.Drawing.Size(585, 317);
+            this.Panel_Xenia_Options.TabIndex = 165;
+            // 
+            // Label_Subtitle_Emulator_Options
+            // 
+            this.Label_Subtitle_Emulator_Options.AutoSize = true;
+            this.Label_Subtitle_Emulator_Options.Font = new System.Drawing.Font("Segoe UI", 13F);
+            this.Label_Subtitle_Emulator_Options.Location = new System.Drawing.Point(6, 9);
+            this.Label_Subtitle_Emulator_Options.Name = "Label_Subtitle_Emulator_Options";
+            this.Label_Subtitle_Emulator_Options.Size = new System.Drawing.Size(76, 25);
+            this.Label_Subtitle_Emulator_Options.TabIndex = 57;
+            this.Label_Subtitle_Emulator_Options.Text = "Options";
+            // 
+            // ComboBox_API
+            // 
+            this.ComboBox_API.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ComboBox_API.BackColor = System.Drawing.SystemColors.Window;
+            this.ComboBox_API.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_API.FormattingEnabled = true;
+            this.ComboBox_API.Items.AddRange(new object[] {
+            "DirectX 12",
+            "Vulkan",
+            "Custom"});
+            this.ComboBox_API.Location = new System.Drawing.Point(11, 68);
+            this.ComboBox_API.Name = "ComboBox_API";
+            this.ComboBox_API.Size = new System.Drawing.Size(560, 23);
+            this.ComboBox_API.TabIndex = 59;
+            this.ComboBox_API.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Emulator_SelectedIndexChanged);
+            // 
+            // Label_API
+            // 
+            this.Label_API.AutoSize = true;
+            this.Label_API.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.Label_API.Location = new System.Drawing.Point(8, 46);
+            this.Label_API.Name = "Label_API";
+            this.Label_API.Size = new System.Drawing.Size(26, 17);
+            this.Label_API.TabIndex = 60;
+            this.Label_API.Text = "API";
+            // 
+            // Label_Description_API
+            // 
+            this.Label_Description_API.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Description_API.AutoSize = true;
+            this.Label_Description_API.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Description_API.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.Label_Description_API.Location = new System.Drawing.Point(336, 48);
+            this.Label_Description_API.Name = "Label_Description_API";
+            this.Label_Description_API.Size = new System.Drawing.Size(235, 15);
+            this.Label_Description_API.TabIndex = 144;
+            this.Label_Description_API.Text = "The API the emulator will use as a backend.";
+            // 
+            // Panel_Xenia_API_Options
+            // 
+            this.Panel_Xenia_API_Options.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.Panel_Xenia_API_Options.Controls.Add(this.Label_UserLanguage);
+            this.Panel_Xenia_API_Options.Controls.Add(this.ComboBox_UserLanguage);
+            this.Panel_Xenia_API_Options.Controls.Add(this.Label_Description_DiscordRPC);
+            this.Panel_Xenia_API_Options.Controls.Add(this.Label_Description_Fullscreen);
+            this.Panel_Xenia_API_Options.Controls.Add(this.lol);
+            this.Panel_Xenia_API_Options.Controls.Add(this.Label_Description_UserLanguage);
+            this.Panel_Xenia_API_Options.Controls.Add(this.Label_Description_Gamma);
+            this.Panel_Xenia_API_Options.Controls.Add(this.CheckBox_Xenia_VerticalSync);
+            this.Panel_Xenia_API_Options.Controls.Add(this.Label_Description_VerticalSync);
+            this.Panel_Xenia_API_Options.Controls.Add(this.CheckBox_Xenia_DiscordRPC);
+            this.Panel_Xenia_API_Options.Controls.Add(this.CheckBox_Xenia_Gamma);
+            this.Panel_Xenia_API_Options.Controls.Add(this.CheckBox_Xenia_Fullscreen);
+            this.Panel_Xenia_API_Options.Location = new System.Drawing.Point(3, 95);
+            this.Panel_Xenia_API_Options.Name = "Panel_Xenia_API_Options";
+            this.Panel_Xenia_API_Options.Size = new System.Drawing.Size(579, 222);
+            this.Panel_Xenia_API_Options.TabIndex = 165;
+            // 
+            // Label_UserLanguage
+            // 
+            this.Label_UserLanguage.AutoSize = true;
+            this.Label_UserLanguage.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.Label_UserLanguage.Location = new System.Drawing.Point(5, 2);
+            this.Label_UserLanguage.Name = "Label_UserLanguage";
+            this.Label_UserLanguage.Size = new System.Drawing.Size(65, 17);
+            this.Label_UserLanguage.TabIndex = 152;
+            this.Label_UserLanguage.Text = "Language";
+            // 
+            // ComboBox_UserLanguage
+            // 
+            this.ComboBox_UserLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ComboBox_UserLanguage.BackColor = System.Drawing.SystemColors.Window;
+            this.ComboBox_UserLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_UserLanguage.FormattingEnabled = true;
+            this.ComboBox_UserLanguage.Items.AddRange(new object[] {
+            "English",
+            "Japanese",
+            "German",
+            "French",
+            "Spanish",
+            "Italian",
+            "Korean",
+            "Chinese (Simplified)",
+            "Portuguese",
+            "Polish",
+            "Russian",
+            "Swedish",
+            "Turkish",
+            "Norwegian",
+            "Dutch",
+            "Chinese (Traditional)"});
+            this.ComboBox_UserLanguage.Location = new System.Drawing.Point(8, 24);
+            this.ComboBox_UserLanguage.Name = "ComboBox_UserLanguage";
+            this.ComboBox_UserLanguage.Size = new System.Drawing.Size(560, 23);
+            this.ComboBox_UserLanguage.TabIndex = 151;
+            this.ComboBox_UserLanguage.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Emulator_SelectedIndexChanged);
+            // 
+            // Label_Description_DiscordRPC
+            // 
+            this.Label_Description_DiscordRPC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Description_DiscordRPC.AutoSize = true;
+            this.Label_Description_DiscordRPC.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Description_DiscordRPC.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.Label_Description_DiscordRPC.Location = new System.Drawing.Point(362, 189);
+            this.Label_Description_DiscordRPC.Name = "Label_Description_DiscordRPC";
+            this.Label_Description_DiscordRPC.Size = new System.Drawing.Size(206, 15);
+            this.Label_Description_DiscordRPC.TabIndex = 150;
+            this.Label_Description_DiscordRPC.Text = "Displays the current game on Discord.";
+            // 
+            // Label_Description_Fullscreen
+            // 
+            this.Label_Description_Fullscreen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Description_Fullscreen.AutoSize = true;
+            this.Label_Description_Fullscreen.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Description_Fullscreen.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.Label_Description_Fullscreen.Location = new System.Drawing.Point(372, 164);
+            this.Label_Description_Fullscreen.Name = "Label_Description_Fullscreen";
+            this.Label_Description_Fullscreen.Size = new System.Drawing.Size(196, 15);
+            this.Label_Description_Fullscreen.TabIndex = 149;
+            this.Label_Description_Fullscreen.Text = "Launches the emulator in fullscreen.";
+            // 
+            // lol
+            // 
+            this.lol.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lol.Location = new System.Drawing.Point(0, 54);
+            this.lol.Name = "lol";
+            // 
+            // lol.Panel1
+            // 
+            this.lol.Panel1.Controls.Add(this.Label_Width);
+            this.lol.Panel1.Controls.Add(this.ComboBox_Width);
+            this.lol.Panel1.Controls.Add(this.Label_Description_Width);
+            // 
+            // lol.Panel2
+            // 
+            this.lol.Panel2.Controls.Add(this.ComboBox_Height);
+            this.lol.Panel2.Controls.Add(this.Label_Description_Height);
+            this.lol.Panel2.Controls.Add(this.Label_Height);
+            this.lol.Size = new System.Drawing.Size(579, 54);
+            this.lol.SplitterDistance = 289;
+            this.lol.TabIndex = 165;
+            // 
+            // Label_Width
+            // 
+            this.Label_Width.AutoSize = true;
+            this.Label_Width.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.Label_Width.Location = new System.Drawing.Point(5, 0);
+            this.Label_Width.Name = "Label_Width";
+            this.Label_Width.Size = new System.Drawing.Size(42, 17);
+            this.Label_Width.TabIndex = 159;
+            this.Label_Width.Text = "Width";
+            // 
+            // ComboBox_Width
+            // 
+            this.ComboBox_Width.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ComboBox_Width.BackColor = System.Drawing.SystemColors.Window;
+            this.ComboBox_Width.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_Width.FormattingEnabled = true;
+            this.ComboBox_Width.Items.AddRange(new object[] {
+            "1280",
+            "2560",
+            "3840"});
+            this.ComboBox_Width.Location = new System.Drawing.Point(8, 22);
+            this.ComboBox_Width.Name = "ComboBox_Width";
+            this.ComboBox_Width.Size = new System.Drawing.Size(275, 23);
+            this.ComboBox_Width.TabIndex = 158;
+            this.ComboBox_Width.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Emulator_SelectedIndexChanged);
+            // 
+            // Label_Description_Width
+            // 
+            this.Label_Description_Width.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Description_Width.AutoSize = true;
+            this.Label_Description_Width.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Description_Width.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.Label_Description_Width.Location = new System.Drawing.Point(157, 2);
+            this.Label_Description_Width.Name = "Label_Description_Width";
+            this.Label_Description_Width.Size = new System.Drawing.Size(126, 15);
+            this.Label_Description_Width.TabIndex = 160;
+            this.Label_Description_Width.Text = "The width to render at.";
+            // 
+            // ComboBox_Height
+            // 
+            this.ComboBox_Height.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.ComboBox_Height.BackColor = System.Drawing.SystemColors.Window;
+            this.ComboBox_Height.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ComboBox_Height.FormattingEnabled = true;
+            this.ComboBox_Height.Items.AddRange(new object[] {
+            "720",
+            "1440",
+            "2160"});
+            this.ComboBox_Height.Location = new System.Drawing.Point(0, 22);
+            this.ComboBox_Height.Name = "ComboBox_Height";
+            this.ComboBox_Height.Size = new System.Drawing.Size(275, 23);
+            this.ComboBox_Height.TabIndex = 161;
+            this.ComboBox_Height.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Emulator_SelectedIndexChanged);
+            // 
+            // Label_Description_Height
+            // 
+            this.Label_Description_Height.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Description_Height.AutoSize = true;
+            this.Label_Description_Height.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Description_Height.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.Label_Description_Height.Location = new System.Drawing.Point(146, 2);
+            this.Label_Description_Height.Name = "Label_Description_Height";
+            this.Label_Description_Height.Size = new System.Drawing.Size(130, 15);
+            this.Label_Description_Height.TabIndex = 163;
+            this.Label_Description_Height.Text = "The height to render at.";
+            // 
+            // Label_Height
+            // 
+            this.Label_Height.AutoSize = true;
+            this.Label_Height.Font = new System.Drawing.Font("Segoe UI", 9.75F);
+            this.Label_Height.Location = new System.Drawing.Point(-3, 0);
+            this.Label_Height.Name = "Label_Height";
+            this.Label_Height.Size = new System.Drawing.Size(46, 17);
+            this.Label_Height.TabIndex = 162;
+            this.Label_Height.Text = "Height";
+            // 
+            // Label_Description_UserLanguage
+            // 
+            this.Label_Description_UserLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Description_UserLanguage.AutoSize = true;
+            this.Label_Description_UserLanguage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Description_UserLanguage.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.Label_Description_UserLanguage.Location = new System.Drawing.Point(364, 4);
+            this.Label_Description_UserLanguage.Name = "Label_Description_UserLanguage";
+            this.Label_Description_UserLanguage.Size = new System.Drawing.Size(204, 15);
+            this.Label_Description_UserLanguage.TabIndex = 153;
+            this.Label_Description_UserLanguage.Text = "The system language to be emulated.";
+            // 
+            // Label_Description_Gamma
+            // 
+            this.Label_Description_Gamma.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Description_Gamma.AutoSize = true;
+            this.Label_Description_Gamma.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Description_Gamma.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.Label_Description_Gamma.Location = new System.Drawing.Point(201, 139);
+            this.Label_Description_Gamma.Name = "Label_Description_Gamma";
+            this.Label_Description_Gamma.Size = new System.Drawing.Size(368, 15);
+            this.Label_Description_Gamma.TabIndex = 148;
+            this.Label_Description_Gamma.Text = "Forces gamma on, resulting in more accurate colours (recommended).";
+            // 
+            // CheckBox_Xenia_VerticalSync
+            // 
+            this.CheckBox_Xenia_VerticalSync.AutoSize = true;
+            this.CheckBox_Xenia_VerticalSync.BackColor = System.Drawing.Color.Transparent;
+            this.CheckBox_Xenia_VerticalSync.Location = new System.Drawing.Point(8, 113);
+            this.CheckBox_Xenia_VerticalSync.Name = "CheckBox_Xenia_VerticalSync";
+            this.CheckBox_Xenia_VerticalSync.Size = new System.Drawing.Size(63, 19);
+            this.CheckBox_Xenia_VerticalSync.TabIndex = 63;
+            this.CheckBox_Xenia_VerticalSync.Text = "V-Sync";
+            this.CheckBox_Xenia_VerticalSync.UseVisualStyleBackColor = false;
+            this.CheckBox_Xenia_VerticalSync.CheckedChanged += new System.EventHandler(this.CheckBox_Xenia_CheckedChanged);
+            // 
+            // Label_Description_VerticalSync
+            // 
+            this.Label_Description_VerticalSync.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.Label_Description_VerticalSync.AutoSize = true;
+            this.Label_Description_VerticalSync.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Description_VerticalSync.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.Label_Description_VerticalSync.Location = new System.Drawing.Point(219, 114);
+            this.Label_Description_VerticalSync.Name = "Label_Description_VerticalSync";
+            this.Label_Description_VerticalSync.Size = new System.Drawing.Size(349, 15);
+            this.Label_Description_VerticalSync.TabIndex = 147;
+            this.Label_Description_VerticalSync.Text = "Locks the framerate respective to the game\'s cap (recommended).";
+            // 
+            // CheckBox_Xenia_DiscordRPC
+            // 
+            this.CheckBox_Xenia_DiscordRPC.AutoSize = true;
+            this.CheckBox_Xenia_DiscordRPC.BackColor = System.Drawing.Color.Transparent;
+            this.CheckBox_Xenia_DiscordRPC.Location = new System.Drawing.Point(8, 188);
+            this.CheckBox_Xenia_DiscordRPC.Name = "CheckBox_Xenia_DiscordRPC";
+            this.CheckBox_Xenia_DiscordRPC.Size = new System.Drawing.Size(142, 19);
+            this.CheckBox_Xenia_DiscordRPC.TabIndex = 66;
+            this.CheckBox_Xenia_DiscordRPC.Text = "Discord Rich Presence";
+            this.CheckBox_Xenia_DiscordRPC.UseVisualStyleBackColor = false;
+            this.CheckBox_Xenia_DiscordRPC.CheckedChanged += new System.EventHandler(this.CheckBox_Xenia_CheckedChanged);
+            // 
+            // CheckBox_Xenia_Gamma
+            // 
+            this.CheckBox_Xenia_Gamma.AutoSize = true;
+            this.CheckBox_Xenia_Gamma.BackColor = System.Drawing.Color.Transparent;
+            this.CheckBox_Xenia_Gamma.Location = new System.Drawing.Point(8, 138);
+            this.CheckBox_Xenia_Gamma.Name = "CheckBox_Xenia_Gamma";
+            this.CheckBox_Xenia_Gamma.Size = new System.Drawing.Size(127, 19);
+            this.CheckBox_Xenia_Gamma.TabIndex = 64;
+            this.CheckBox_Xenia_Gamma.Text = "Gamma Correction";
+            this.CheckBox_Xenia_Gamma.UseVisualStyleBackColor = false;
+            this.CheckBox_Xenia_Gamma.CheckedChanged += new System.EventHandler(this.CheckBox_Xenia_CheckedChanged);
+            // 
+            // CheckBox_Xenia_Fullscreen
+            // 
+            this.CheckBox_Xenia_Fullscreen.AutoSize = true;
+            this.CheckBox_Xenia_Fullscreen.BackColor = System.Drawing.Color.Transparent;
+            this.CheckBox_Xenia_Fullscreen.Location = new System.Drawing.Point(8, 163);
+            this.CheckBox_Xenia_Fullscreen.Name = "CheckBox_Xenia_Fullscreen";
+            this.CheckBox_Xenia_Fullscreen.Size = new System.Drawing.Size(134, 19);
+            this.CheckBox_Xenia_Fullscreen.TabIndex = 65;
+            this.CheckBox_Xenia_Fullscreen.Text = "Launch in Fullscreen";
+            this.CheckBox_Xenia_Fullscreen.UseVisualStyleBackColor = false;
+            this.CheckBox_Xenia_Fullscreen.CheckedChanged += new System.EventHandler(this.CheckBox_Xenia_CheckedChanged);
             // 
             // label1
             // 
@@ -627,142 +950,6 @@ namespace Unleash.Environment3
             this.label2.TabIndex = 154;
             this.label2.Text = "Arguments";
             // 
-            // Label_Description_UserLanguage
-            // 
-            this.Label_Description_UserLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Description_UserLanguage.AutoSize = true;
-            this.Label_Description_UserLanguage.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Description_UserLanguage.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.Label_Description_UserLanguage.Location = new System.Drawing.Point(370, 307);
-            this.Label_Description_UserLanguage.Name = "Label_Description_UserLanguage";
-            this.Label_Description_UserLanguage.Size = new System.Drawing.Size(204, 15);
-            this.Label_Description_UserLanguage.TabIndex = 153;
-            this.Label_Description_UserLanguage.Text = "The system language to be emulated.";
-            // 
-            // Label_UserLanguage
-            // 
-            this.Label_UserLanguage.AutoSize = true;
-            this.Label_UserLanguage.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.Label_UserLanguage.Location = new System.Drawing.Point(11, 305);
-            this.Label_UserLanguage.Name = "Label_UserLanguage";
-            this.Label_UserLanguage.Size = new System.Drawing.Size(65, 17);
-            this.Label_UserLanguage.TabIndex = 152;
-            this.Label_UserLanguage.Text = "Language";
-            // 
-            // ComboBox_UserLanguage
-            // 
-            this.ComboBox_UserLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ComboBox_UserLanguage.BackColor = System.Drawing.SystemColors.Window;
-            this.ComboBox_UserLanguage.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBox_UserLanguage.FormattingEnabled = true;
-            this.ComboBox_UserLanguage.Items.AddRange(new object[] {
-            "English",
-            "Japanese",
-            "German",
-            "French",
-            "Spanish",
-            "Italian",
-            "Korean",
-            "Chinese (Simplified)",
-            "Portuguese",
-            "Polish",
-            "Russian",
-            "Swedish",
-            "Turkish",
-            "Norwegian",
-            "Dutch",
-            "Chinese (Traditional)"});
-            this.ComboBox_UserLanguage.Location = new System.Drawing.Point(14, 327);
-            this.ComboBox_UserLanguage.Name = "ComboBox_UserLanguage";
-            this.ComboBox_UserLanguage.Size = new System.Drawing.Size(560, 23);
-            this.ComboBox_UserLanguage.TabIndex = 151;
-            this.ComboBox_UserLanguage.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Emulator_SelectedIndexChanged);
-            // 
-            // Label_Description_DiscordRPC
-            // 
-            this.Label_Description_DiscordRPC.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Description_DiscordRPC.AutoSize = true;
-            this.Label_Description_DiscordRPC.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Description_DiscordRPC.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.Label_Description_DiscordRPC.Location = new System.Drawing.Point(368, 491);
-            this.Label_Description_DiscordRPC.Name = "Label_Description_DiscordRPC";
-            this.Label_Description_DiscordRPC.Size = new System.Drawing.Size(206, 15);
-            this.Label_Description_DiscordRPC.TabIndex = 150;
-            this.Label_Description_DiscordRPC.Text = "Displays the current game on Discord.";
-            // 
-            // Label_Description_Fullscreen
-            // 
-            this.Label_Description_Fullscreen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Description_Fullscreen.AutoSize = true;
-            this.Label_Description_Fullscreen.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Description_Fullscreen.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.Label_Description_Fullscreen.Location = new System.Drawing.Point(378, 466);
-            this.Label_Description_Fullscreen.Name = "Label_Description_Fullscreen";
-            this.Label_Description_Fullscreen.Size = new System.Drawing.Size(196, 15);
-            this.Label_Description_Fullscreen.TabIndex = 149;
-            this.Label_Description_Fullscreen.Text = "Launches the emulator in fullscreen.";
-            // 
-            // Label_Description_Gamma
-            // 
-            this.Label_Description_Gamma.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Description_Gamma.AutoSize = true;
-            this.Label_Description_Gamma.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Description_Gamma.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.Label_Description_Gamma.Location = new System.Drawing.Point(207, 441);
-            this.Label_Description_Gamma.Name = "Label_Description_Gamma";
-            this.Label_Description_Gamma.Size = new System.Drawing.Size(368, 15);
-            this.Label_Description_Gamma.TabIndex = 148;
-            this.Label_Description_Gamma.Text = "Forces gamma on, resulting in more accurate colours (recommended).";
-            // 
-            // Label_Description_VerticalSync
-            // 
-            this.Label_Description_VerticalSync.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Description_VerticalSync.AutoSize = true;
-            this.Label_Description_VerticalSync.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Description_VerticalSync.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.Label_Description_VerticalSync.Location = new System.Drawing.Point(310, 416);
-            this.Label_Description_VerticalSync.Name = "Label_Description_VerticalSync";
-            this.Label_Description_VerticalSync.Size = new System.Drawing.Size(264, 15);
-            this.Label_Description_VerticalSync.TabIndex = 147;
-            this.Label_Description_VerticalSync.Text = "Locks the framerate respective to the game\'s cap.";
-            // 
-            // Label_Description_2xResolution
-            // 
-            this.Label_Description_2xResolution.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Description_2xResolution.AutoSize = true;
-            this.Label_Description_2xResolution.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Description_2xResolution.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.Label_Description_2xResolution.Location = new System.Drawing.Point(403, 391);
-            this.Label_Description_2xResolution.Name = "Label_Description_2xResolution";
-            this.Label_Description_2xResolution.Size = new System.Drawing.Size(171, 15);
-            this.Label_Description_2xResolution.TabIndex = 146;
-            this.Label_Description_2xResolution.Text = "Doubles the internal resolution.";
-            // 
-            // Label_Description_ForceRTV
-            // 
-            this.Label_Description_ForceRTV.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Description_ForceRTV.AutoSize = true;
-            this.Label_Description_ForceRTV.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Description_ForceRTV.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.Label_Description_ForceRTV.Location = new System.Drawing.Point(203, 366);
-            this.Label_Description_ForceRTV.Name = "Label_Description_ForceRTV";
-            this.Label_Description_ForceRTV.Size = new System.Drawing.Size(372, 15);
-            this.Label_Description_ForceRTV.TabIndex = 145;
-            this.Label_Description_ForceRTV.Text = "An alternative rendering technique for DirectX 12 (not recommended).";
-            // 
-            // Label_Description_API
-            // 
-            this.Label_Description_API.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_Description_API.AutoSize = true;
-            this.Label_Description_API.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Description_API.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.Label_Description_API.Location = new System.Drawing.Point(339, 255);
-            this.Label_Description_API.Name = "Label_Description_API";
-            this.Label_Description_API.Size = new System.Drawing.Size(235, 15);
-            this.Label_Description_API.TabIndex = 144;
-            this.Label_Description_API.Text = "The API the emulator will use as a backend.";
-            // 
             // Button_Open_SaveData
             // 
             this.Button_Open_SaveData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -792,128 +979,6 @@ namespace Unleash.Environment3
             this.Button_Open_EmulatorExecutable.TabIndex = 142;
             this.Button_Open_EmulatorExecutable.UseVisualStyleBackColor = true;
             this.Button_Open_EmulatorExecutable.Click += new System.EventHandler(this.Button_Open_Click);
-            // 
-            // Label_RPCS3Warning
-            // 
-            this.Label_RPCS3Warning.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.Label_RPCS3Warning.AutoSize = true;
-            this.Label_RPCS3Warning.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_RPCS3Warning.ForeColor = System.Drawing.Color.Tomato;
-            this.Label_RPCS3Warning.Location = new System.Drawing.Point(271, 222);
-            this.Label_RPCS3Warning.Name = "Label_RPCS3Warning";
-            this.Label_RPCS3Warning.Size = new System.Drawing.Size(303, 15);
-            this.Label_RPCS3Warning.TabIndex = 67;
-            this.Label_RPCS3Warning.Text = "RPCS3 does not support these command line arguments!";
-            this.Label_RPCS3Warning.Visible = false;
-            // 
-            // CheckBox_Xenia_DiscordRPC
-            // 
-            this.CheckBox_Xenia_DiscordRPC.AutoSize = true;
-            this.CheckBox_Xenia_DiscordRPC.BackColor = System.Drawing.Color.Transparent;
-            this.CheckBox_Xenia_DiscordRPC.Location = new System.Drawing.Point(14, 490);
-            this.CheckBox_Xenia_DiscordRPC.Name = "CheckBox_Xenia_DiscordRPC";
-            this.CheckBox_Xenia_DiscordRPC.Size = new System.Drawing.Size(142, 19);
-            this.CheckBox_Xenia_DiscordRPC.TabIndex = 66;
-            this.CheckBox_Xenia_DiscordRPC.Text = "Discord Rich Presence";
-            this.CheckBox_Xenia_DiscordRPC.UseVisualStyleBackColor = false;
-            this.CheckBox_Xenia_DiscordRPC.CheckedChanged += new System.EventHandler(this.CheckBox_Xenia_CheckedChanged);
-            // 
-            // CheckBox_Xenia_Fullscreen
-            // 
-            this.CheckBox_Xenia_Fullscreen.AutoSize = true;
-            this.CheckBox_Xenia_Fullscreen.BackColor = System.Drawing.Color.Transparent;
-            this.CheckBox_Xenia_Fullscreen.Location = new System.Drawing.Point(14, 465);
-            this.CheckBox_Xenia_Fullscreen.Name = "CheckBox_Xenia_Fullscreen";
-            this.CheckBox_Xenia_Fullscreen.Size = new System.Drawing.Size(134, 19);
-            this.CheckBox_Xenia_Fullscreen.TabIndex = 65;
-            this.CheckBox_Xenia_Fullscreen.Text = "Launch in Fullscreen";
-            this.CheckBox_Xenia_Fullscreen.UseVisualStyleBackColor = false;
-            this.CheckBox_Xenia_Fullscreen.CheckedChanged += new System.EventHandler(this.CheckBox_Xenia_CheckedChanged);
-            // 
-            // CheckBox_Xenia_Gamma
-            // 
-            this.CheckBox_Xenia_Gamma.AutoSize = true;
-            this.CheckBox_Xenia_Gamma.BackColor = System.Drawing.Color.Transparent;
-            this.CheckBox_Xenia_Gamma.Location = new System.Drawing.Point(14, 440);
-            this.CheckBox_Xenia_Gamma.Name = "CheckBox_Xenia_Gamma";
-            this.CheckBox_Xenia_Gamma.Size = new System.Drawing.Size(127, 19);
-            this.CheckBox_Xenia_Gamma.TabIndex = 64;
-            this.CheckBox_Xenia_Gamma.Text = "Gamma Correction";
-            this.CheckBox_Xenia_Gamma.UseVisualStyleBackColor = false;
-            this.CheckBox_Xenia_Gamma.CheckedChanged += new System.EventHandler(this.CheckBox_Xenia_CheckedChanged);
-            // 
-            // CheckBox_Xenia_VerticalSync
-            // 
-            this.CheckBox_Xenia_VerticalSync.AutoSize = true;
-            this.CheckBox_Xenia_VerticalSync.BackColor = System.Drawing.Color.Transparent;
-            this.CheckBox_Xenia_VerticalSync.Location = new System.Drawing.Point(14, 415);
-            this.CheckBox_Xenia_VerticalSync.Name = "CheckBox_Xenia_VerticalSync";
-            this.CheckBox_Xenia_VerticalSync.Size = new System.Drawing.Size(63, 19);
-            this.CheckBox_Xenia_VerticalSync.TabIndex = 63;
-            this.CheckBox_Xenia_VerticalSync.Text = "V-Sync";
-            this.CheckBox_Xenia_VerticalSync.UseVisualStyleBackColor = false;
-            this.CheckBox_Xenia_VerticalSync.CheckedChanged += new System.EventHandler(this.CheckBox_Xenia_CheckedChanged);
-            // 
-            // CheckBox_Xenia_2xResolution
-            // 
-            this.CheckBox_Xenia_2xResolution.AutoSize = true;
-            this.CheckBox_Xenia_2xResolution.BackColor = System.Drawing.Color.Transparent;
-            this.CheckBox_Xenia_2xResolution.Location = new System.Drawing.Point(14, 390);
-            this.CheckBox_Xenia_2xResolution.Name = "CheckBox_Xenia_2xResolution";
-            this.CheckBox_Xenia_2xResolution.Size = new System.Drawing.Size(97, 19);
-            this.CheckBox_Xenia_2xResolution.TabIndex = 62;
-            this.CheckBox_Xenia_2xResolution.Text = "2x Resolution";
-            this.CheckBox_Xenia_2xResolution.UseVisualStyleBackColor = false;
-            this.CheckBox_Xenia_2xResolution.CheckedChanged += new System.EventHandler(this.CheckBox_Xenia_CheckedChanged);
-            // 
-            // CheckBox_Xenia_ForceRTV
-            // 
-            this.CheckBox_Xenia_ForceRTV.AutoSize = true;
-            this.CheckBox_Xenia_ForceRTV.BackColor = System.Drawing.Color.Transparent;
-            this.CheckBox_Xenia_ForceRTV.Location = new System.Drawing.Point(14, 365);
-            this.CheckBox_Xenia_ForceRTV.Name = "CheckBox_Xenia_ForceRTV";
-            this.CheckBox_Xenia_ForceRTV.Size = new System.Drawing.Size(163, 19);
-            this.CheckBox_Xenia_ForceRTV.TabIndex = 61;
-            this.CheckBox_Xenia_ForceRTV.Text = "Force Render Target Views";
-            this.CheckBox_Xenia_ForceRTV.UseVisualStyleBackColor = false;
-            this.CheckBox_Xenia_ForceRTV.CheckedChanged += new System.EventHandler(this.CheckBox_Xenia_CheckedChanged);
-            // 
-            // Label_API
-            // 
-            this.Label_API.AutoSize = true;
-            this.Label_API.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.Label_API.Location = new System.Drawing.Point(11, 253);
-            this.Label_API.Name = "Label_API";
-            this.Label_API.Size = new System.Drawing.Size(26, 17);
-            this.Label_API.TabIndex = 60;
-            this.Label_API.Text = "API";
-            // 
-            // ComboBox_API
-            // 
-            this.ComboBox_API.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.ComboBox_API.BackColor = System.Drawing.SystemColors.Window;
-            this.ComboBox_API.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ComboBox_API.FormattingEnabled = true;
-            this.ComboBox_API.Items.AddRange(new object[] {
-            "DirectX 12",
-            "Vulkan",
-            "Custom"});
-            this.ComboBox_API.Location = new System.Drawing.Point(14, 275);
-            this.ComboBox_API.Name = "ComboBox_API";
-            this.ComboBox_API.Size = new System.Drawing.Size(560, 23);
-            this.ComboBox_API.TabIndex = 59;
-            this.ComboBox_API.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Emulator_SelectedIndexChanged);
-            // 
-            // Label_Subtitle_Emulator_Options
-            // 
-            this.Label_Subtitle_Emulator_Options.AutoSize = true;
-            this.Label_Subtitle_Emulator_Options.Font = new System.Drawing.Font("Segoe UI", 13F);
-            this.Label_Subtitle_Emulator_Options.Location = new System.Drawing.Point(9, 216);
-            this.Label_Subtitle_Emulator_Options.Name = "Label_Subtitle_Emulator_Options";
-            this.Label_Subtitle_Emulator_Options.Size = new System.Drawing.Size(76, 25);
-            this.Label_Subtitle_Emulator_Options.TabIndex = 57;
-            this.Label_Subtitle_Emulator_Options.Text = "Options";
             // 
             // TextBox_SaveData
             // 
@@ -2155,6 +2220,16 @@ namespace Unleash.Environment3
             this.Panel_ModBackdrop.ResumeLayout(false);
             this.Tab_Section_Emulator.ResumeLayout(false);
             this.Tab_Section_Emulator.PerformLayout();
+            this.Panel_Xenia_Options.ResumeLayout(false);
+            this.Panel_Xenia_Options.PerformLayout();
+            this.Panel_Xenia_API_Options.ResumeLayout(false);
+            this.Panel_Xenia_API_Options.PerformLayout();
+            this.lol.Panel1.ResumeLayout(false);
+            this.lol.Panel1.PerformLayout();
+            this.lol.Panel2.ResumeLayout(false);
+            this.lol.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lol)).EndInit();
+            this.lol.ResumeLayout(false);
             this.Tab_Section_Debug.ResumeLayout(false);
             this.Panel_DebugControls.ResumeLayout(false);
             this.Tab_Section_Updates.ResumeLayout(false);
@@ -2235,16 +2310,6 @@ namespace Unleash.Environment3
         private System.Windows.Forms.Button Button_EmulatorExecutable;
         private System.Windows.Forms.TextBox TextBox_EmulatorExecutable;
         private System.Windows.Forms.Label Label_EmulatorExecutable;
-        private System.Windows.Forms.Label Label_API;
-        private System.Windows.Forms.ComboBox ComboBox_API;
-        private System.Windows.Forms.Label Label_Subtitle_Emulator_Options;
-        private System.Windows.Forms.CheckBox CheckBox_Xenia_Gamma;
-        private System.Windows.Forms.CheckBox CheckBox_Xenia_VerticalSync;
-        private System.Windows.Forms.CheckBox CheckBox_Xenia_2xResolution;
-        private System.Windows.Forms.CheckBox CheckBox_Xenia_ForceRTV;
-        private System.Windows.Forms.Label Label_RPCS3Warning;
-        private System.Windows.Forms.CheckBox CheckBox_Xenia_DiscordRPC;
-        private System.Windows.Forms.CheckBox CheckBox_Xenia_Fullscreen;
         private SectionButton Rush_Section_Updates;
         private System.Windows.Forms.TabPage Tab_Section_Updates;
         private System.Windows.Forms.Label Label_Version;
@@ -2271,7 +2336,6 @@ namespace Unleash.Environment3
         private System.Windows.Forms.SplitContainer SplitContainer_ModsControls;
         private System.Windows.Forms.Label Label_Description_Reset;
         private System.Windows.Forms.LinkLabel LinkLabel_Reset;
-        private System.Windows.Forms.Label Label_Description_API;
         private SectionButton SectionButton_RefreshMods;
         private SectionButton SectionButton_CheckForModUpdates;
         private System.Windows.Forms.ListView ListView_ModUpdates;
@@ -2295,15 +2359,6 @@ namespace Unleash.Environment3
         private System.Windows.Forms.Label Label_Description_Snapshot;
         private System.Windows.Forms.Panel Panel_MainControls;
         private System.Windows.Forms.SplitContainer SplitContainer_MainControls;
-        private System.Windows.Forms.Label Label_Description_DiscordRPC;
-        private System.Windows.Forms.Label Label_Description_Fullscreen;
-        private System.Windows.Forms.Label Label_Description_Gamma;
-        private System.Windows.Forms.Label Label_Description_VerticalSync;
-        private System.Windows.Forms.Label Label_Description_2xResolution;
-        private System.Windows.Forms.Label Label_Description_ForceRTV;
-        private System.Windows.Forms.Label Label_Description_UserLanguage;
-        private System.Windows.Forms.Label Label_UserLanguage;
-        private System.Windows.Forms.ComboBox ComboBox_UserLanguage;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TextBox_Arguments;
         private System.Windows.Forms.Label label2;
@@ -2314,5 +2369,29 @@ namespace Unleash.Environment3
         private System.Windows.Forms.LinkLabel LinkLabel_slashiee;
         private System.Windows.Forms.ColumnHeader Column_ModsList_Merge;
         private System.Windows.Forms.LinkLabel LinkLabel_Knuxfan24;
+        private System.Windows.Forms.Panel Panel_Xenia_Options;
+        private System.Windows.Forms.Label Label_Subtitle_Emulator_Options;
+        private System.Windows.Forms.ComboBox ComboBox_API;
+        private System.Windows.Forms.Label Label_API;
+        private System.Windows.Forms.Label Label_Description_API;
+        private System.Windows.Forms.Panel Panel_Xenia_API_Options;
+        private System.Windows.Forms.Label Label_UserLanguage;
+        private System.Windows.Forms.ComboBox ComboBox_UserLanguage;
+        private System.Windows.Forms.Label Label_Description_DiscordRPC;
+        private System.Windows.Forms.Label Label_Description_Fullscreen;
+        private System.Windows.Forms.SplitContainer lol;
+        private System.Windows.Forms.Label Label_Width;
+        private System.Windows.Forms.ComboBox ComboBox_Width;
+        private System.Windows.Forms.Label Label_Description_Width;
+        private System.Windows.Forms.ComboBox ComboBox_Height;
+        private System.Windows.Forms.Label Label_Description_Height;
+        private System.Windows.Forms.Label Label_Height;
+        private System.Windows.Forms.Label Label_Description_UserLanguage;
+        private System.Windows.Forms.Label Label_Description_Gamma;
+        private System.Windows.Forms.CheckBox CheckBox_Xenia_VerticalSync;
+        private System.Windows.Forms.Label Label_Description_VerticalSync;
+        private System.Windows.Forms.CheckBox CheckBox_Xenia_DiscordRPC;
+        private System.Windows.Forms.CheckBox CheckBox_Xenia_Gamma;
+        private System.Windows.Forms.CheckBox CheckBox_Xenia_Fullscreen;
     }
 }
