@@ -35,7 +35,7 @@ namespace Unleash.Dialogs
         public static string GameExecutable() {
             OpenFileDialog browseGame = new OpenFileDialog() {
                 Title = "Please select an executable for Sonic Unleashed...",
-                Filter = "Exectuables (*.xex; *.bin)|*.xex;*.bin|" +
+                Filter = "Executables (*.xex; *.bin)|*.xex;*.bin|" +
                          "Xbox Executable (*.xex)|*.xex|" +
                          "PlayStation Executable (*.bin)|*.bin"
             };
