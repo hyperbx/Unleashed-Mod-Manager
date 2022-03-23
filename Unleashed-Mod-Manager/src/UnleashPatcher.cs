@@ -51,6 +51,7 @@ namespace Unleash.Patcher
         public static void InstallMods(string mod, string name) {
             string platform = INI.DeserialiseKey("Platform", mod); // Deserialise 'Platform' key
             bool merge = false; // Deserialise 'Merge' key
+            string[] custom = INI.DeserialiseKey("Custom", mod).Split(','); // Deserialise 'Custom' key
             string[] read_only = INI.DeserialiseKey("Read-only", mod).Split(','); // Deserialise 'Read-only' key
 
             try {
@@ -76,6 +77,13 @@ namespace Unleash.Patcher
                                             s.EndsWith(".pfd")        ||
                                             s.EndsWith(".csb")        ||
                                             s.EndsWith(".cpk")).ToList();
+
+            // Create custom directories before copying custom data
+            foreach (string customEntry in custom) {
+                if (customEntry.Contains('\\') || customEntry.Contains('/')) {
+                    Directory.CreateDirectory(Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), customEntry));
+                }
+            }
 
             foreach (string file in files) {
                 // Absolute file path
@@ -158,13 +166,23 @@ namespace Unleash.Patcher
                     string[] custom = INI.DeserialiseKey("Custom", mod.SubItems[6].Text).Split(','); // Deserialise 'Custom' key
 
                     if (custom[0] != string.Empty) { // Speeds things up a bit - ensures it's not checking a default null parameter
-                        foreach (string file in custom) {
+                        foreach (string customEntry in custom) {
+                            // Delete custom directories
+                            if (customEntry.Contains('\\') || customEntry.Contains('/')) {
+                                string path = Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), customEntry);
+
+                                if (Directory.Exists(path))
+                                    Directory.Delete(path, true);
+
+                                continue;
+                            }
+
                             // Search for all files with filters from custom
-                            List<string> files = Directory.GetFiles(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), file, SearchOption.AllDirectories).ToList();
+                            List<string> files = Directory.GetFiles(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), customEntry, SearchOption.AllDirectories).ToList();
                                 
                             foreach (string customfile in files)
                                 try {
-                                    if (RushInterface._debug) Console.WriteLine($"Removing: {file}");
+                                    if (RushInterface._debug) Console.WriteLine($"Removing: {customEntry}");
                                     File.Delete(customfile); // If custom archive is found, erase...
                                 } catch { }
                         }
