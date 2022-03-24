@@ -173,7 +173,7 @@ namespace Unleash.Environment3
                     Console.SetOut(new ListBoxWriter(ListBox_Debug));
 
                 if (CheckBox_LaunchEmulator.Checked = Properties.Settings.Default.General_LaunchEmulator) {
-                    SectionButton_InstallMods.SectionText = "Save, install content and launch Sonic '06";
+                    SectionButton_InstallMods.SectionText = "Save, install content and launch Unleashed";
                     SectionButton_InstallMods.Refresh();
                 } else {
                     SectionButton_InstallMods.SectionText = "Save and install content";
@@ -1225,7 +1225,7 @@ namespace Unleash.Environment3
         /// Checks to see if the GameBanana 1-Click registry key is installed.
         /// </summary>
         private void CheckRegistry() {
-            RegistryKey key         = Registry.CurrentUser.OpenSubKey($"Software\\Classes\\{protocol}", false), // Open the Sonic '06 Mod Manager protocol key
+            RegistryKey key         = Registry.CurrentUser.OpenSubKey($"Software\\Classes\\{protocol}", false), // Open the Unleashed Mod Manager protocol key
                         getLocation = Registry.CurrentUser.OpenSubKey($"Software\\Classes\\{protocol}\\shell\\open\\command", false);
 
             string command = $"\"{Application.ExecutablePath}\" \"-banana\" \"%1\"";
@@ -1316,7 +1316,7 @@ namespace Unleash.Environment3
         }
 
         /// <summary>
-        /// Launches Sonic '06 without installing any mods, patches or tweaks.
+        /// Launches Sonic Unleashed without installing any mods, patches or tweaks.
         /// Keeps the game intact, whether it have mods installed or not.
         /// </summary>
         private void SectionButton_LaunchGame_Click(object sender, EventArgs e) {
