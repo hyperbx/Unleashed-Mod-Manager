@@ -167,9 +167,17 @@ namespace Unleash.Patcher
 
                     if (custom[0] != string.Empty) { // Speeds things up a bit - ensures it's not checking a default null parameter
                         foreach (string customEntry in custom) {
+                            // Skip this entry if it defines root.
+                            if (customEntry.StartsWith("."))
+                                continue;
+
                             // Delete custom directories
                             if (customEntry.Contains('\\') || customEntry.Contains('/')) {
                                 string path = Path.Combine(Path.GetDirectoryName(Properties.Settings.Default.Path_GameDirectory), customEntry);
+
+                                // Skip this entry if we somehow end up at game root.
+                                if (path == Properties.Settings.Default.Path_GameDirectory)
+                                    continue;
 
                                 if (Directory.Exists(path))
                                     Directory.Delete(path, true);
